@@ -745,6 +745,8 @@
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
             transform-style: preserve-3d;
             transform: perspective(1000px) rotateX(0);
+            display: flex;
+            flex-direction: column;
         }
 
         .app-card::before {
@@ -837,6 +839,8 @@
         .app-features {
             list-style: none;
             padding: 0;
+            margin-bottom: 25px;
+            flex-grow: 1;
         }
 
         .app-features li {
@@ -864,6 +868,10 @@
 
         .app-features li:hover::before {
             transform: scale(1.2);
+        }
+
+        .app-download {
+            margin-top: auto;
         }
 
         /* Contact Section */
@@ -1743,6 +1751,11 @@
                         <li>Dukungan multi sekolah</li>
                         <li>Gratis untuk institusi pendidikan</li>
                     </ul>
+                    <div class="app-download">
+                        <a href="https://sfl.gl/oplO6" target="_blank" class="btn-primary-custom w-100">
+                            <i class="fas fa-download"></i> Download BESTI
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Siapa Pintar App -->
@@ -1762,6 +1775,11 @@
                         <li>Konten edukatif berkualitas</li>
                         <li>Pengalaman pengguna yang menarik</li>
                     </ul>
+                    <div class="app-download">
+                        <a href="https://sfl.gl/fnlrtl8" target="_blank" class="btn-primary-custom w-100">
+                            <i class="fas fa-download"></i> Download Siapa Pintar
+                        </a>
+                    </div>
                 </div>
 
                 <!-- PyEXE App -->
@@ -1781,6 +1799,11 @@
                         <li>Dukungan berbagai versi Python</li>
                         <li>Solusi sepenuhnya gratis</li>
                     </ul>
+                    <div class="app-download">
+                        <a href="https://sfl.gl/93770" target="_blank" class="btn-primary-custom w-100">
+                            <i class="fas fa-download"></i> Download PyEXE
+                        </a>
+                    </div>
                 </div>
 
                 <!-- PiePyd App -->
@@ -1800,6 +1823,11 @@
                         <li>Antarmuka pengguna intuitif</li>
                         <li>Gratis untuk pengembang</li>
                     </ul>
+                    <div class="app-download">
+                        <a href="https://sfl.gl/7gwmc" target="_blank" class="btn-primary-custom w-100">
+                            <i class="fas fa-download"></i> Download PiePyd
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
