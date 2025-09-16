@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUFATECHNO - Inovasi dalam Teknologi</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="logo.ico?v=1.0">
+    <link rel="icon" type="image/png" href="logo.png?v=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png?v=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png?v=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="logo.png?v=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --bg-card-hover: #252525;
+            --accent-red: #c91414;
+            --accent-red-bright: #c91414;
+            --accent-red-dark: #c91414;
+            --text-primary: #e9e7e7;
+            --text-secondary: #b8b6b6;
+            --text-muted: #908e8e;
+            --border-red: rgba(201, 20, 20, 0.3);
+            --glow-red: rgba(201, 20, 20, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-red);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-red-bright);
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--bg-primary);
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(201, 20, 20, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(201, 20, 20, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(201, 20, 20, 0.08) 0%, transparent 50%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+
+        @keyframes bgMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-20%, -20%) rotate(120deg); }
+            66% { transform: translate(20%, -10%) rotate(240deg); }
+        }
+
+        /* Tech Elements Background */
+        .tech-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.05;
+        }
+
+        .tech-element {
+            position: absolute;
+            color: var(--accent-red);
+            animation: floatTech 20s ease-in-out infinite;
+        }
+
+        .tech-element:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            font-size: 3rem;
+            animation-delay: 0s;
+        }
+
+        .tech-element:nth-child(2) {
+            top: 70%;
+            left: 90%;
+            font-size: 2.5rem;
+            animation-delay: 5s;
+        }
+
+        .tech-element:nth-child(3) {
+            top: 40%;
+            left: 85%;
+            font-size: 2rem;
+            animation-delay: 10s;
+        }
+
+        .tech-element:nth-child(4) {
+            top: 80%;
+            left: 10%;
+            font-size: 3.5rem;
+            animation-delay: 15s;
+        }
+
+        @keyframes floatTech {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        /* Matrix Rain Effect */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--accent-red);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(201, 20, 20, 0.3);
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.98);
+            box-shadow: 0 4px 30px rgba(201, 20, 20, 0.5);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 10px;
+        }
+
+        .navbar-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px var(--glow-red));
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.1);
+        }
+
+        .navbar-brand-text {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .navbar-brand-text .bufa {
+            color: var(--accent-red);
+            text-shadow: 0 0 10px var(--glow-red);
+        }
+
+        .navbar-brand-text .techno {
+            color: var(--text-primary);
+        }
+
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-weight: 600;
+            margin: 0 15px;
+            position: relative;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary) !important;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: transparent;
+            padding: 120px 0 50px;
+            border-bottom: 1px solid var(--border-red);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px 0;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 30px var(--glow-red);
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        .hero-title .bufa {
+            color: var(--accent-red);
+            position: relative;
+        }
+
+        .hero-title .techno {
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Enhanced text animation */
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 20px var(--glow-red), 0 0 30px var(--glow-red);
+            }
+            100% {
+                text-shadow: 0 0 30px var(--glow-red), 0 0 40px var(--glow-red), 0 0 50px var(--glow-red);
+            }
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-red-bright));
+            color: var(--text-primary);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 20px rgba(201, 20, 20, 0.5);
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary-custom:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(201, 20, 20, 0.7);
+        }
+
+        .btn-secondary-custom {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--accent-red);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-secondary-custom:hover {
+            background: var(--accent-red);
+            color: var(--text-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(201, 20, 20, 0.7);
+        }
+
+        /* Button icons */
+        .btn-primary-custom i,
+        .btn-secondary-custom i {
+            font-size: 1.1em;
+        }
+
+        /* Floating Tech Icons */
+        .tech-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .tech-icon {
+            position: absolute;
+            color: var(--text-muted);
+            opacity: 0.2;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .tech-icon:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; font-size: 3rem; }
+        .tech-icon:nth-child(2) { top: 65%; left: 88%; animation-delay: 2s; font-size: 2.5rem; }
+        .tech-icon:nth-child(3) { top: 75%; left: 15%; animation-delay: 4s; font-size: 2rem; }
+        .tech-icon:nth-child(4) { top: 25%; left: 92%; animation-delay: 6s; font-size: 3.5rem; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(180deg); }
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+            position: relative;
+            border-bottom: 1px solid var(--border-red);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            position: relative;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+        }
+
+        .about-content {
+            background: var(--bg-card);
+            border-radius: 25px;
+            padding: 50px;
+            border: 2px solid var(--border-red);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(201, 20, 20, 0.2);
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201, 20, 20, 0.1) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .about-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
+        }
+
+        /* Apps Section */
+        .apps {
+            padding: 100px 0;
+            background: var(--bg-primary);
+            position: relative;
+            border-bottom: 1px solid var(--border-red);
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 4rem;
+        }
+
+        .app-card {
+            background: var(--bg-card);
+            border-radius: 25px;
+            padding: 35px;
+            border: 2px solid var(--border-red);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            height: 100%;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(201, 20, 20, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-red);
+            box-shadow: 0 25px 50px rgba(201, 20, 20, 0.4);
+        }
+
+        .app-card:hover::before {
+            opacity: 1;
+        }
+
+        .app-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-red-bright));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(201, 20, 20, 0.4);
+        }
+
+        .app-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .app-icon {
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .app-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .app-description {
+            color: var(--text-secondary);
+            margin-bottom: 22px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .app-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .app-features li {
+            padding: 8px 0;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .app-features li:hover {
+            color: var(--text-primary);
+        }
+
+        .app-features li::before {
+            content: '▶';
+            color: var(--accent-red);
+            margin-right: 12px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(201,20,20,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .contact-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-card);
+            border: 2px solid var(--border-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--accent-red);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+        }
+
+        .social-link:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-red);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(201, 20, 20, 0.5);
+        }
+
+        .social-link:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 2px solid var(--accent-red);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-brand {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand .bufa {
+            color: var(--accent-red);
+            text-shadow: 0 0 10px var(--glow-red);
+        }
+
+        .footer-brand .techno {
+            color: var(--text-primary);
+        }
+
+        /* BUFATECHNO Text Styling */
+        .bufatechno-text {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .bufatechno-text .bufa {
+            color: var(--accent-red);
+            text-shadow: 0 0 10px var(--glow-red);
+        }
+
+        .bufatechno-text .techno {
+            color: var(--text-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0 40px;
+            }
+            
+            .hero-content {
+                padding: 30px 0;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+                letter-spacing: 1px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2.5rem;
+            }
+            
+            .about-content {
+                padding: 30px;
+            }
+            
+            .apps-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 2rem;
+                gap: 15px;
+            }
+            
+            .btn-primary-custom,
+            .btn-secondary-custom {
+                width: 100%;
+                max-width: 300px;
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .app-card {
+                padding: 25px;
+            }
+            
+            .social-links {
+                gap: 20px;
+            }
+            
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .navbar-logo {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .navbar-brand-text {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 20px 0;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-description {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
+            
+            .cta-buttons {
+                margin-top: 1.5rem;
+                gap: 12px;
+            }
+            
+            .btn-primary-custom,
+            .btn-secondary-custom {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .navbar-logo {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .navbar-brand-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            width: 150px;
+            height: 150px;
+            max-width: 80vw;
+            max-height: 80vw;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px var(--glow-red));
+            animation: pulseLogo 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseLogo {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .loader-text {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 25px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .loader-text .bufa {
+            color: var(--accent-red);
+            text-shadow: 0 0 15px var(--glow-red);
+        }
+
+        .loader-text .techno {
+            color: var(--text-primary);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--border-red);
+            border-top-color: var(--accent-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Glow effect for BUFATECHNO */
+        .glow-effect {
+            animation: glowText 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowText {
+            from { text-shadow: 0 0 10px var(--glow-red), 0 0 20px var(--glow-red); }
+            to { text-shadow: 0 0 20px var(--glow-red), 0 0 30px var(--accent-red-bright); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <img src="logo.png" class="loader-logo" alt="BUFATECHNO Logo">
+            <div class="loader-text">
+                <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Animation -->
+    <div class="bg-animation"></div>
+    
+    <!-- Tech Elements Background -->
+    <div class="tech-elements">
+        <i class="fas fa-microchip tech-element"></i>
+        <i class="fas fa-laptop-code tech-element"></i>
+        <i class="fas fa-mobile-alt tech-element"></i>
+        <i class="fas fa-cog tech-element"></i>
+    </div>
+    
+    <!-- Matrix Rain Effect -->
+    <canvas class="matrix-rain" id="matrix"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="logo.png" class="navbar-logo" alt="BUFATECHNO Logo">
+                <div class="navbar-brand-text">
+                    <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#apps">Aplikasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-8 col-xl-7">
+                    <div class="hero-content">
+                        <h1 class="hero-title glow-effect">
+                            <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
+                        </h1>
+                        <p class="hero-subtitle">Inovasi dalam Teknologi</p>
+                        <p class="hero-description">
+                            Menciptakan solusi teknologi terdepan untuk masa depan digital. 
+                            Dari aplikasi pendidikan hingga tools pengembangan, kami menghadirkan 
+                            inovasi yang mengubah cara Anda berinteraksi dengan teknologi.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="#apps" class="btn-primary-custom">
+                                <i class="fas fa-rocket"></i> Jelajahi Aplikasi
+                            </a>
+                            <a href="#about" class="btn-secondary-custom">
+                                <i class="fas fa-info-circle"></i> Pelajari Lebih Lanjut
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Tech Icons -->
+        <div class="tech-icons">
+            <i class="fas fa-microchip tech-icon"></i>
+            <i class="fas fa-laptop-code tech-icon"></i>
+            <i class="fas fa-mobile-alt tech-icon"></i>
+            <i class="fas fa-cog tech-icon"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Tentang <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>
+                                <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> adalah pionir dalam pengembangan solusi teknologi inovatif yang 
+                                dirancang untuk memenuhi kebutuhan digital modern. Dengan dedikasi terhadap 
+                                kualitas dan inovasi, kami telah menciptakan berbagai aplikasi yang 
+                                menggabungkan fungsionalitas tinggi dengan kemudahan penggunaan.
+                            </p>
+                            <p>
+                                Visi kami adalah menjadi pemimpin dalam revolusi digital dengan 
+                                menghadirkan teknologi yang tidak hanya canggih, tetapi juga mudah 
+                                diakses oleh semua kalangan. Setiap produk yang kami kembangkan 
+                                merupakan hasil dari riset mendalam dan pemahaman akan kebutuhan pengguna.
+                            </p>
+                            <p>
+                                Dari sistem otomasi pendidikan hingga tools pengembangan perangkat lunak, 
+                                <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> berkomitmen untuk terus berinovasi dan menciptakan solusi 
+                                yang membuat hidup lebih mudah dan lebih produktif.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apps Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <h2 class="section-title">Aplikasi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+            <div class="apps-grid">
+                <!-- BESTI App -->
+                <div class="app-card">
+                    <div class="app-icon-wrapper">
+                        <img src="image/app/besti.png" alt="BESTI App Icon" class="app-icon">
+                    </div>
+                    <h3 class="app-title">BESTI</h3>
+                    <p class="app-description">
+                        Sistem bel sekolah otomatis revolusioner yang mengubah bel manual tradisional 
+                        menjadi solusi digital cerdas.
+                    </p>
+                    <ul class="app-features">
+                        <li>Sistem penjadwalan otomatis</li>
+                        <li>Nada bel yang dapat disesuaikan</li>
+                        <li>Antarmuka yang mudah digunakan</li>
+                        <li>Dukungan multi sekolah</li>
+                        <li>Gratis untuk institusi pendidikan</li>
+                    </ul>
+                </div>
+
+                <!-- Siapa Pintar App -->
+                <div class="app-card">
+                    <div class="app-icon-wrapper">
+                        <img src="image/app/siapa-pintar.png" alt="Siapa Pintar App Icon" class="app-icon">
+                    </div>
+                    <h3 class="app-title">Siapa Pintar</h3>
+                    <p class="app-description">
+                        Platform game kuis interaktif yang dirancang untuk membuat pembelajaran 
+                        menjadi menyenangkan dan menarik melalui gamifikasi.
+                    </p>
+                    <ul class="app-features">
+                        <li>Berbagai kategori kuis</li>
+                        <li>Tingkat kesulitan adaptif</li>
+                        <li>Sistem penilaian real-time</li>
+                        <li>Konten edukatif berkualitas</li>
+                        <li>Pengalaman pengguna yang menarik</li>
+                    </ul>
+                </div>
+
+                <!-- PyEXE App -->
+                <div class="app-card">
+                    <div class="app-icon-wrapper">
+                        <img src="image/app/pyexe.png" alt="PyEXE App Icon" class="app-icon">
+                    </div>
+                    <h3 class="app-title">PyEXE</h3>
+                    <p class="app-description">
+                        Konverter Python ke EXE yang powerful yang mengubah skrip Python Anda 
+                        menjadi file executable yang berdiri sendiri.
+                    </p>
+                    <ul class="app-features">
+                        <li>Konversi satu klik</li>
+                        <li>Tidak perlu coding tambahan</li>
+                        <li>File executable standalone</li>
+                        <li>Dukungan berbagai versi Python</li>
+                        <li>Solusi sepenuhnya gratis</li>
+                    </ul>
+                </div>
+
+                <!-- PiePyd App -->
+                <div class="app-card">
+                    <div class="app-icon-wrapper">
+                        <img src="image/app/piepyd.png" alt="PiePyd App Icon" class="app-icon">
+                    </div>
+                    <h3 class="app-title">PiePyd</h3>
+                    <p class="app-description">
+                        Tool enkripsi proyek Python tingkat lanjut yang dirancang untuk 
+                        melindungi kode sumber Anda dari akses tidak sah.
+                    </p>
+                    <ul class="app-features">
+                        <li>Enkripsi kelas militer</li>
+                        <li>Perlindungan kode sumber</li>
+                        <li>Proses enkripsi cepat</li>
+                        <li>Antarmuka pengguna intuitif</li>
+                        <li>Gratis untuk pengembang</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+            <div class="contact-content">
+                <p class="contact-description">
+                    Tetap terhubung dengan <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> untuk update terbaru tentang aplikasi kami 
+                    dan inovasi teknologi. Ikuti kami di YouTube dan bergabunglah dengan komunitas 
+                    penggemar teknologi yang terus berkembang.
+                </p>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@bufatechno" target="_blank" class="social-link" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" target="_blank" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" target="_blank" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" target="_blank" class="social-link" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
+                </div>
+                <p>&copy; 2024 <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span>. Inovasi dalam Teknologi. Hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'rgba(201, 20, 20, 0.1)';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Resize canvas
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Hide loader when page is loaded
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.app-card, .about-content, .section-title').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Card hover effect
+        document.querySelectorAll('.app-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-content');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
