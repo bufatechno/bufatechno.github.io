@@ -999,20 +999,20 @@
 
         @keyframes floatTech2 {
             0%, 100% { 
-                transform: translateY(0) rotate(0deg) scale(1); 
+                transform: translate(0, 0) rotate(0deg) scale(1); 
                 opacity: 0.2;
             }
             25% { 
-                transform: translateY(15px) rotate(-5deg) scale(1.05); 
+                transform: translate(15px, -10px) rotate(-5deg) scale(1.05); 
                 opacity: 0.25;
             }
             50% { 
-                transform: translateY(0) rotate(-10deg) scale(1); 
+                transform: translate(30px, 0) rotate(-10deg) scale(0.95); 
                 opacity: 0.18;
             }
             75% { 
-                transform: translateY(-20px) rotate(-5deg) scale(1.1); 
-                opacity: 0.22;
+                transform: translate(15px, 10px) rotate(-5deg) scale(1.02); 
+                opacity: 0.23;
             }
         }
 
@@ -1022,15 +1022,15 @@
                 opacity: 0.18;
             }
             25% { 
-                transform: translate(15px, -10px) rotate(8deg) scale(1.08); 
+                transform: translate(-10px, 20px) rotate(8deg) scale(1.08); 
                 opacity: 0.25;
             }
             50% { 
-                transform: translate(30px, 0) rotate(15deg) scale(0.95); 
+                transform: translate(-20px, 0) rotate(15deg) scale(0.95); 
                 opacity: 0.2;
             }
             75% { 
-                transform: translate(15px, 10px) rotate(8deg) scale(1.02); 
+                transform: translate(-10px, -15px) rotate(8deg) scale(1.05); 
                 opacity: 0.23;
             }
         }
@@ -1041,7 +1041,7 @@
                 opacity: 0.22;
             }
             25% { 
-                transform: translate(-10px, 20px) rotate(-7deg) scale(1.12); 
+                transform: translate(10px, -20px) rotate(-7deg) scale(1.12); 
                 opacity: 0.28;
             }
             50% { 
@@ -1049,7 +1049,7 @@
                 opacity: 0.2;
             }
             75% { 
-                transform: translate(-10px, -15px) rotate(-7deg) scale(1.05); 
+                transform: translate(-10px, 15px) rotate(-7deg) scale(1.05); 
                 opacity: 0.25;
             }
         }
@@ -1164,7 +1164,7 @@
             margin-bottom: 0;
         }
 
-        /* Apps Section - DIDESAIN ULANG DENGAN GAYA MINIMALIS */
+        /* Apps Section - SIMPLIFIED CARDS */
         .apps {
             padding: 80px 0;
             background: var(--bg-primary);
@@ -1180,7 +1180,7 @@
             margin-top: 3rem;
         }
 
-        .app-card {
+        .app-card-simple {
             background: var(--bg-card);
             border-radius: 16px;
             padding: 25px;
@@ -1196,15 +1196,15 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .app-card:hover {
+        .app-card-simple:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(201, 20, 20, 0.3);
             border-color: var(--accent-red);
         }
 
-        .app-icon-wrapper {
-            width: 70px;
-            height: 70px;
+        .app-card-simple .app-icon-wrapper {
+            width: 80px;
+            height: 80px;
             background: var(--gradient-2);
             border-radius: 16px;
             display: flex;
@@ -1216,68 +1216,28 @@
             transition: all 0.3s ease;
         }
 
-        .app-card:hover .app-icon-wrapper {
+        .app-card-simple:hover .app-icon-wrapper {
             transform: scale(1.1);
         }
 
-        .app-icon {
-            width: 40px;
-            height: 40px;
+        .app-card-simple .app-icon {
+            width: 45px;
+            height: 45px;
             object-fit: contain;
         }
 
-        .app-title {
+        .app-card-simple .app-title {
             font-family: 'Orbitron', monospace;
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
             width: 100%;
         }
 
-        .app-description {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            width: 100%;
-        }
-
-        .app-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 25px 0;
-            flex-grow: 1;
-            width: 100%;
-            text-align: left;
-        }
-
-        .app-features li {
-            padding: 6px 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .app-features li::before {
-            content: '•';
-            color: var(--accent-red);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .app-download {
-            margin-top: auto;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .app-download .btn-primary-custom {
+        .app-card-simple .btn-primary-custom {
             width: 100%;
             max-width: 200px;
             padding: 10px 20px;
@@ -1291,198 +1251,220 @@
             background: var(--gradient-2);
             border: none;
             transition: all 0.3s ease;
+            margin: 5px 0;
         }
 
-        .app-download .btn-primary-custom:hover {
+        .app-card-simple .btn-primary-custom:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(201, 20, 20, 0.4);
         }
 
-        .app-card::before {
-            content: '';
-            position: absolute;
+        /* Modal Popup Styles */
+        .modal-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gradient-1);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .app-card:hover {
-            transform: perspective(1000px) rotateX(-5deg) translateY(-10px); /* DIUBAH DARI -12px */
-            border-color: var(--accent-red);
-            box-shadow: 0 20px 40px rgba(201, 20, 20, 0.4); /* DIUBAH DARI 0 25px 50px */
-        }
-
-        .app-card:hover::before {
-            opacity: 1;
-        }
-
-        .app-icon-wrapper {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient-2);
-            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            margin-left: auto;
-            margin-right: auto;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
+            padding: 1rem;
         }
 
-        .app-card:hover .app-icon-wrapper {
-            transform: scale(1.1);
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .app-icon {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-        }
-
-        .app-card:hover .app-icon-wrapper {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .app-icon-wrapper::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s ease-in-out infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .app-icon {
-            font-size: 2rem; /* DIUBAH DARI 2.2rem */
-            color: var(--text-primary);
+        .modal-container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-red);
+            box-shadow: 0 20px 50px rgba(201, 20, 20, 0.5);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
-            z-index: 1;
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
         }
 
-        .app-title {
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem 1rem;
+            border-bottom: 1px solid var(--border-red);
+        }
+
+        .modal-title {
             font-family: 'Orbitron', monospace;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 12px;
+            margin: 0;
             text-transform: uppercase;
             letter-spacing: 1px;
-            width: 100%;
         }
 
-        .app-description {
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-red);
+            background: rgba(201, 20, 20, 0.1);
+        }
+
+        .modal-content {
+            padding: 1.5rem 2rem;
+        }
+
+        .modal-app-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-red);
+        }
+
+        .modal-app-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-app-icon {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .modal-app-info h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-app-description {
+            font-size: 1rem;
             color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            width: 100%;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
-        .app-features {
+        .modal-app-features {
+            margin-bottom: 2rem;
+        }
+
+        .modal-app-features h4 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 1rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .features-list {
             list-style: none;
             padding: 0;
-            margin: 0 0 25px 0;
-            flex-grow: 1;
-            width: 100%;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
         }
 
-        .app-features li {
-            padding: 8px 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            position: relative;
-            padding-left: 28px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.2s ease;
-        }
-
-        .app-features li:last-child {
-            border-bottom: none;
-        }
-
-        .app-features li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            background: var(--accent-red);
-            border-radius: 50%;
+        .feature-item {
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .app-features li::after {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 6px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .app-card:hover .app-features li {
-            color: var(--text-secondary);
-        }
-
-        .app-card:hover .app-features li:hover {
-            color: var(--text-primary);
-            transform: translateX(3px);
-        }
-
-        .app-download {
-            margin-top: auto;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .app-download .btn-primary-custom {
-            width: 100%;
-            max-width: 200px;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: var(--gradient-2);
-            border: none;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            background: rgba(201, 20, 20, 0.05);
+            border-radius: 12px;
+            border: 1px solid var(--border-red);
             transition: all 0.3s ease;
         }
 
-        .app-download .btn-primary-custom:hover {
+        .feature-item:hover {
+            background: rgba(201, 20, 20, 0.1);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(201, 20, 20, 0.4);
+        }
+
+        .feature-icon {
+            color: var(--accent-red);
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 2rem 2rem;
+        }
+
+        .modal-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem 2rem;
+            background: var(--gradient-2);
+            color: var(--text-primary);
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .modal-download-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(201, 20, 20, 0.5);
         }
 
         /* Contact Section */
@@ -1929,6 +1911,7 @@
             
             .badge-text {
                 font-size: 0.7rem;
+                letter-spacing: 1px;
             }
             
             .hero-main-title {
@@ -2674,13 +2657,7 @@
                         <a class="nav-link" href="#home">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">Tentang</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#apps">Aplikasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Kontak</a>
                     </li>
                 </ul>
             </div>
@@ -2712,20 +2689,16 @@
                         </span>
                     </h1>
                     <div class="hero-subheading">
-                        <span class="subheading-text">Membentuk Masa Depan Inovasi Digital</span>
+                        <span class="subheading-text">Temukan Aplikasi Terbaik Kami</span>
                     </div>
                     <p class="hero-description-modern">
-                        Kami menciptakan solusi teknologi terdepan untuk masa depan digital. 
-                        Dari aplikasi pendidikan hingga tools pengembangan, kami menghadirkan 
-                        inovasi yang mengubah cara Anda berinteraksi dengan teknologi.
+                        Jelajahi koleksi aplikasi inovatif kami yang dirancang untuk memenuhi kebutuhan digital modern. 
+                        Gunakan fitur pencarian dan filter kategori untuk menemukan aplikasi yang paling sesuai dengan kebutuhan Anda.
                     </p>
                     <div class="hero-actions">
-                        <a href="/apps" class="btn-primary-futuristic">
+                        <a href="#apps" class="btn-primary-futuristic">
                             <span class="btn-text">Jelajahi Aplikasi</span>
                             <i class="fas fa-arrow-right btn-icon"></i>
-                        </a>
-                        <a href="#about" class="btn-secondary-futuristic">
-                            <span class="btn-text">Pelajari Lebih Lanjut</span>
                         </a>
                     </div>
                 </div>
@@ -2765,129 +2738,65 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about fold-section hardware-accelerated professional-spacing" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title neon-text">Tentang <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <div class="about-content modern-card">
-                        <div class="about-text">
-                            <p>
-                                <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> adalah pengembang aplikasi inovatif yang telah berdedikasi sejak 2008 dalam menciptakan solusi teknologi terdepan yang dirancang untuk memenuhi kebutuhan digital modern. Dengan komitmen terhadap kualitas dan inovasi, kami telah mengembangkan berbagai aplikasi yang menggabungkan fungsionalitas tinggi dengan kemudahan penggunaan.
-                            </p>
-                            <p>
-                                Sebagai pionir dalam revolusi digital, visi kami adalah menghadirkan teknologi yang tidak hanya canggih, tetapi juga mudah diakses oleh semua kalangan. Setiap produk yang kami kembangkan merupakan hasil dari riset mendalam dan pemahaman akan kebutuhan pengguna.
-                            </p>
-                            <p>
-                                Dari sistem otomasi pendidikan hingga tools pengembangan perangkat lunak, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> berkomitmen untuk terus berinovasi dan menciptakan solusi yang membuat hidup lebih mudah dan lebih produktif.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Apps Section - DIPERBAIKI TAMPILANNYA -->
+    <!-- Apps Section - SIMPLIFIED CARDS -->
     <section id="apps" class="apps fold-section hardware-accelerated professional-spacing" data-aos="fade-up">
         <div class="container">
             <h2 class="section-title neon-text">Aplikasi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
             <div class="apps-grid modern-grid">
                 <!-- BESTI App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="app-card-simple category-windows category-web" data-aos="fade-up" data-aos-delay="100">
                     <div class="app-icon-wrapper">
                         <img src="image/app/besti.png" alt="BESTI App Icon" class="app-icon" loading="lazy">
                     </div>
                     <h3 class="app-title">BESTI</h3>
-                    <p class="app-description">
-                        Sistem bel sekolah otomatis revolusioner yang mengubah bel manual tradisional 
-                        menjadi solusi digital cerdas.
-                    </p>
-                    <ul class="app-features">
-                        <li>Sistem penjadwalan otomatis</li>
-                        <li>Nada bel yang dapat disesuaikan</li>
-                        <li>Antarmuka yang mudah digunakan</li>
-                        <li>Dukungan multi sekolah</li>
-                        <li>Gratis untuk institusi pendidikan</li>
-                    </ul>
-                    <div class="app-download">
-                        <a href="https://sfl.gl/oplO6" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    </div>
+                    <button class="btn-primary-custom app-details-btn" data-app="besti">
+                        <i class="fas fa-info-circle"></i> Detail
+                    </button>
+                    <a href="https://sfl.gl/oplO6" target="_blank" class="btn-primary-custom app-download-btn">
+                        <i class="fas fa-download"></i> Download
+                    </a>
                 </div>
 
                 <!-- Siapa Pintar App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="app-card-simple category-android category-ios" data-aos="fade-up" data-aos-delay="200">
                     <div class="app-icon-wrapper">
                         <img src="image/app/siapa-pintar.png" alt="Siapa Pintar App Icon" class="app-icon" loading="lazy">
                     </div>
                     <h3 class="app-title">Siapa Pintar</h3>
-                    <p class="app-description">
-                        Platform game kuis interaktif yang dirancang untuk membuat pembelajaran 
-                        menjadi menyenangkan dan menarik melalui gamifikasi.
-                    </p>
-                    <ul class="app-features">
-                        <li>Berbagai kategori kuis</li>
-                        <li>Tingkat kesulitan adaptif</li>
-                        <li>Sistem penilaian real-time</li>
-                        <li>Konten edukatif berkualitas</li>
-                        <li>Pengalaman pengguna yang menarik</li>
-                    </ul>
-                    <div class="app-download">
-                        <a href="https://sfl.gl/fnlrtl8" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    </div>
+                    <button class="btn-primary-custom app-details-btn" data-app="siapa-pintar">
+                        <i class="fas fa-info-circle"></i> Detail
+                    </button>
+                    <a href="https://sfl.gl/fnlrtl8" target="_blank" class="btn-primary-custom app-download-btn">
+                        <i class="fas fa-download"></i> Download
+                    </a>
                 </div>
 
                 <!-- PyEXE App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="app-card-simple category-windows" data-aos="fade-up" data-aos-delay="300">
                     <div class="app-icon-wrapper">
                         <img src="image/app/pyexe.png" alt="PyEXE App Icon" class="app-icon" loading="lazy">
                     </div>
                     <h3 class="app-title">PyEXE</h3>
-                    <p class="app-description">
-                        Konverter Python ke EXE yang powerful yang mengubah skrip Python Anda 
-                        menjadi file executable yang berdiri sendiri.
-                    </p>
-                    <ul class="app-features">
-                        <li>Konversi satu klik</li>
-                        <li>Tidak perlu coding tambahan</li>
-                        <li>File executable standalone</li>
-                        <li>Dukungan berbagai versi Python</li>
-                        <li>Solusi sepenuhnya gratis</li>
-                    </ul>
-                    <div class="app-download">
-                        <a href="https://sfl.gl/93770" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    </div>
+                    <button class="btn-primary-custom app-details-btn" data-app="pyexe">
+                        <i class="fas fa-info-circle"></i> Detail
+                    </button>
+                    <a href="https://sfl.gl/93770" target="_blank" class="btn-primary-custom app-download-btn">
+                        <i class="fas fa-download"></i> Download
+                    </a>
                 </div>
 
                 <!-- PiePyd App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="app-card-simple category-windows" data-aos="fade-up" data-aos-delay="400">
                     <div class="app-icon-wrapper">
                         <img src="image/app/piepyd.png" alt="PiePyd App Icon" class="app-icon" loading="lazy">
                     </div>
                     <h3 class="app-title">PiePyd</h3>
-                    <p class="app-description">
-                        Tool enkripsi proyek Python tingkat lanjut yang dirancang untuk 
-                        melindungi kode sumber Anda dari akses tidak sah.
-                    </p>
-                    <ul class="app-features">
-                        <li>Enkripsi kelas militer</li>
-                        <li>Perlindungan kode sumber</li>
-                        <li>Proses enkripsi cepat</li>
-                        <li>Antarmuka pengguna intuitif</li>
-                        <li>Gratis untuk pengembang</li>
-                    </ul>
-                    <div class="app-download">
-                        <a href="https://sfl.gl/7gwmc" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    </div>
+                    <button class="btn-primary-custom app-details-btn" data-app="piepyd">
+                        <i class="fas fa-info-circle"></i> Detail
+                    </button>
+                    <a href="https://sfl.gl/7gwmc" target="_blank" class="btn-primary-custom app-download-btn">
+                        <i class="fas fa-download"></i> Download
+                    </a>
                 </div>
             </div>
         </div>
@@ -3145,7 +3054,7 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             
-            const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+            const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`}]}";
             const matrixArray = matrix.split("");
             
             const fontSize = 9; /* DIUBAH DARI 10 */
@@ -3333,7 +3242,7 @@
         const scrollIndicator = document.getElementById('scrollIndicator');
         if (scrollIndicator) {
             scrollIndicator.addEventListener('click', () => {
-                document.getElementById('about').scrollIntoView({
+                document.getElementById('apps').scrollIntoView({
                     behavior: 'smooth'
                 });
             });
@@ -3420,10 +3329,12 @@
         document.querySelectorAll('.app-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'perspective(1000px) rotateX(-5deg) translateY(-10px) scale(1.02)'; /* DIUBAH DARI -12px */
+                this.style.borderColor = 'var(--accent-red)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'perspective(1000px) rotateX(0) translateY(0) scale(1)';
+                this.style.borderColor = 'var(--border-red)';
             });
         });
         
@@ -3495,7 +3406,7 @@
                 
                 hoverElements.forEach(element => {
                     element.addEventListener('mouseenter', () => {
-                        cursor.style.transform = 'scale(1.4)'; /* DIUBAH DARI 1.5 */
+                        cursor.style.transform = 'scale(1.4)'; /* DIUBAH DARI 1.5 */ 
                         cursorFollower.style.transform = 'scale(1.4)'; /* DIUBAH DARI 1.5 */
                     });
                     
@@ -3561,6 +3472,154 @@
 
                 aboutObserver.observe(aboutSection);
             }
+
+            // Modal popup functionality
+            const modalTriggers = document.querySelectorAll('.app-details-btn');
+            const modalOverlay = document.createElement('div');
+            modalOverlay.className = 'modal-overlay';
+            modalOverlay.innerHTML = `
+                <div class="modal-container">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Detail Aplikasi</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-content">
+                        <div class="modal-app-header">
+                            <div class="modal-app-icon-wrapper">
+                                <img src="" alt="App Icon" class="modal-app-icon">
+                            </div>
+                            <div class="modal-app-info">
+                                <h3 class="modal-app-name"></h3>
+                                <p class="modal-app-description"></p>
+                            </div>
+                        </div>
+                        <div class="modal-app-features">
+                            <h4>Fitur Unggulan</h4>
+                            <ul class="features-list"></ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" target="_blank" class="modal-download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modalOverlay);
+            
+            // App data
+            const appData = {
+                'besti': {
+                    name: 'BESTI',
+                    icon: 'image/app/besti.png',
+                    description: 'Sistem bel sekolah otomatis revolusioner yang mengubah bel manual tradisional menjadi solusi digital cerdas.',
+                    features: [
+                        'Sistem penjadwalan otomatis',
+                        'Nada bel yang dapat disesuaikan',
+                        'Antarmuka yang mudah digunakan',
+                        'Dukungan multi sekolah',
+                        'Gratis untuk institusi pendidikan'
+                    ],
+                    downloadUrl: 'https://sfl.gl/oplO6'
+                },
+                'siapa-pintar': {
+                    name: 'Siapa Pintar',
+                    icon: 'image/app/siapa-pintar.png',
+                    description: 'Platform game kuis interaktif yang dirancang untuk membuat pembelajaran menjadi menyenangkan dan menarik melalui gamifikasi.',
+                    features: [
+                        'Berbagai kategori kuis',
+                        'Tingkat kesulitan adaptif',
+                        'Sistem penilaian real-time',
+                        'Konten edukatif berkualitas',
+                        'Pengalaman pengguna yang menarik'
+                    ],
+                    downloadUrl: 'https://sfl.gl/fnlrtl8'
+                },
+                'pyexe': {
+                    name: 'PyEXE',
+                    icon: 'image/app/pyexe.png',
+                    description: 'Konverter Python ke EXE yang powerful yang mengubah skrip Python Anda menjadi file executable yang berdiri sendiri.',
+                    features: [
+                        'Konversi satu klik',
+                        'Tidak perlu coding tambahan',
+                        'File executable standalone',
+                        'Dukungan berbagai versi Python',
+                        'Solusi sepenuhnya gratis'
+                    ],
+                    downloadUrl: 'https://sfl.gl/93770'
+                },
+                'piepyd': {
+                    name: 'PiePyd',
+                    icon: 'image/app/piepyd.png',
+                    description: 'Tool enkripsi proyek Python tingkat lanjut yang dirancang untuk melindungi kode sumber Anda dari akses tidak sah.',
+                    features: [
+                        'Enkripsi kelas militer',
+                        'Perlindungan kode sumber',
+                        'Proses enkripsi cepat',
+                        'Antarmuka pengguna intuitif',
+                        'Gratis untuk pengembang'
+                    ],
+                    downloadUrl: 'https://sfl.gl/7gwmc'
+                }
+            };
+            
+            // Modal trigger event listeners
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const appId = this.dataset.app;
+                    const app = appData[appId];
+                    
+                    if (app) {
+                        // Populate modal with app data
+                        modalOverlay.querySelector('.modal-app-name').textContent = app.name;
+                        modalOverlay.querySelector('.modal-app-icon').src = app.icon;
+                        modalOverlay.querySelector('.modal-app-icon').alt = `${app.name} App Icon`;
+                        modalOverlay.querySelector('.modal-app-description').textContent = app.description;
+                        
+                        // Populate features list
+                        const featuresList = modalOverlay.querySelector('.features-list');
+                        featuresList.innerHTML = '';
+                        app.features.forEach(feature => {
+                            const li = document.createElement('li');
+                            li.className = 'feature-item';
+                            li.innerHTML = `
+                                <i class="fas fa-check-circle feature-icon"></i>
+                                <span class="feature-text">${feature}</span>
+                            `;
+                            featuresList.appendChild(li);
+                        });
+                        
+                        // Set download button URL
+                        modalOverlay.querySelector('.modal-download-btn').href = app.downloadUrl;
+                        
+                        // Show modal
+                        modalOverlay.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // Close modal functionality
+            const closeModal = () => {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+            
+            modalOverlay.querySelector('.modal-close').addEventListener('click', closeModal);
+            
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
         });
     </script>
 </body>
