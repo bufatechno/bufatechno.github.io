@@ -611,3 +611,142 @@ document.addEventListener('DOMContentLoaded', function() {
         aboutObserver.observe(aboutSection);
     }
 });
+
+// Mobile Navbar Enhancements
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const body = document.querySelector('body');
+    
+    // Improved toggle functionality with better performance
+    if (navbarToggler) {
+        navbarToggler.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Toggle aria-expanded attribute for accessibility
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            
+            // Toggle menu with optimized performance
+            if (navbarCollapse) {
+                navbarCollapse.classList.toggle('show');
+                
+                // Prevent body scroll when menu is open
+                if (navbarCollapse.classList.contains('show')) {
+                    body.style.overflow = 'hidden';
+                    body.style.paddingRight = window.innerWidth - document.documentElement.clientWidth + 'px';
+                } else {
+                    body.style.overflow = '';
+                    body.style.paddingRight = '';
+                }
+            }
+        });
+    }
+    
+    // Close navbar when clicking outside with debouncing
+    let clickTimeout;
+    document.addEventListener('click', function(event) {
+        if (!navbarToggler || !navbarCollapse) return;
+        
+        const isClickInsideNavbar = navbarCollapse.contains(event.target) || navbarToggler.contains(event.target);
+        
+        if (!isClickInsideNavbar && navbarCollapse.classList.contains('show')) {
+            // Debounce the click to prevent double triggering
+            clearTimeout(clickTimeout);
+            clickTimeout = setTimeout(() => {
+                navbarCollapse.classList.remove('show');
+                navbarToggler.setAttribute('aria-expanded', 'false');
+                body.style.overflow = '';
+                body.style.paddingRight = '';
+            }, 10);
+        }
+    });
+    
+    // Close navbar when clicking on a nav link (with slight delay for better UX)
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (!navbarCollapse) return;
+            
+            if (navbarCollapse.classList.contains('show')) {
+                setTimeout(() => {
+                    navbarCollapse.classList.remove('show');
+                    if (navbarToggler) {
+                        navbarToggler.setAttribute('aria-expanded', 'false');
+                    }
+                    body.style.overflow = '';
+                    body.style.paddingRight = '';
+                }, 150); // Small delay to allow link click to register
+            }
+        });
+    });
+    
+    // Close navbar when pressing Escape key
+    document.addEventListener('keydown', function(event) {
+        if (!navbarCollapse || !navbarToggler) return;
+        
+        if (event.key === 'Escape' && navbarCollapse.classList.contains('show')) {
+            navbarCollapse.classList.remove('show');
+            navbarToggler.setAttribute('aria-expanded', 'false');
+            navbarToggler.focus(); // Return focus to toggler
+            body.style.overflow = '';
+            body.style.paddingRight = '';
+        }
+    });
+    
+    // Add scroll behavior to close navbar when scrolling on mobile
+    let lastScrollTop = 0;
+    let scrollTimeout;
+    
+    window.addEventListener('scroll', function() {
+        if (!navbarCollapse || !navbarToggler) return;
+        
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const isMobile = window.innerWidth <= 992;
+        
+        // Clear previous timeout
+        clearTimeout(scrollTimeout);
+        
+        // Only close navbar on mobile when scrolling down
+        if (isMobile && navbarCollapse.classList.contains('show') && scrollTop > lastScrollTop && scrollTop > 100) {
+            navbarCollapse.classList.remove('show');
+            navbarToggler.setAttribute('aria-expanded', 'false');
+            body.style.overflow = '';
+            body.style.paddingRight = '';
+        }
+        
+        lastScrollTop = scrollTop;
+    }, { passive: true }); // Passive listener for better scroll performance
+    
+    // Handle window resize with throttling
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        if (!navbarCollapse || !navbarToggler) return;
+        
+        // Throttle resize events
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Close menu on resize for better responsiveness
+            if (navbarCollapse.classList.contains('show')) {
+                navbarCollapse.classList.remove('show');
+                navbarToggler.setAttribute('aria-expanded', 'false');
+                body.style.overflow = '';
+                body.style.paddingRight = '';
+            }
+            
+            // Reset navbar styles when resizing to desktop
+            if (window.innerWidth > 992) {
+                body.style.overflow = '';
+                body.style.paddingRight = '';
+            }
+        }, 100);
+    });
+    
+    // Touch device optimizations
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        // Add touch-friendly styles
+        if (navbarToggler) {
+            navbarToggler.style.webkitTapHighlightColor = 'rgba(0,0,0,0)';
+        }
+    }
+});
