@@ -30,44 +30,10 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
-    <!-- Interactive Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-    
-    <!-- Cyberpunk Grid Background -->
-    <div class="cyber-grid"></div>
-    
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-    
-    <!-- Three.js Background -->
-    <div id="three-container"></div>
-    
-    <!-- Tech Elements Background -->
-    <div class="tech-elements">
-        <i class="fas fa-microchip tech-element"></i>
-        <i class="fas fa-laptop-code tech-element"></i>
-        <i class="fas fa-mobile-alt tech-element"></i>
-        <i class="fas fa-cog tech-element"></i>
-    </div>
-    
-    <!-- Matrix Rain Effect -->
-    <canvas class="matrix-rain" id="matrix"></canvas>
-    
-    <!-- Digital Rain Effect -->
-    <canvas class="digital-rain" id="digitalRain"></canvas>
-    
-    <!-- Scanlines Effect -->
-    <div class="scanlines"></div>
-    
     <!-- Loading Screen -->
-    <div class="loader" id="loader">
+    <div class="loader" id="loader" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
         <div class="loader-content">
             <img src="logo.png" class="loader-logo" alt="BUFATECHNO Logo" loading="lazy">
             <div class="loader-text">
@@ -76,275 +42,317 @@
         </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#home">
-                <img src="logo.png" class="navbar-logo" alt="BUFATECHNO Logo" loading="lazy">
-                <div class="navbar-brand-text bufatechno-text">
-                    <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
-                </div>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">Tentang</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#apps">Aplikasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Kontak</a>
-                    </li>
-                </ul>
-            </div>
+    <!-- Background Effects Container -->
+    <div class="background-effects">
+        <!-- Interactive Cursor -->
+        <div class="cursor" role="presentation"></div>
+        <div class="cursor-follower" role="presentation"></div>
+        
+        <!-- Scroll Progress Indicator -->
+        <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        
+        <!-- Cyberpunk Grid Background -->
+        <div class="cyber-grid" role="presentation"></div>
+        
+        <!-- Particles Background -->
+        <div id="particles-js" role="presentation"></div>
+        
+        <!-- Three.js Background -->
+        <div id="three-container" role="presentation"></div>
+        
+        <!-- Tech Elements Background -->
+        <div class="tech-elements" role="presentation">
+            <i class="fas fa-microchip tech-element"></i>
+            <i class="fas fa-laptop-code tech-element"></i>
+            <i class="fas fa-mobile-alt tech-element"></i>
+            <i class="fas fa-cog tech-element"></i>
         </div>
-    </nav>
+        
+        <!-- Matrix Rain Effect -->
+        <canvas class="matrix-rain" id="matrix" role="presentation"></canvas>
+        
+        <!-- Digital Rain Effect -->
+        <canvas class="digital-rain" id="digitalRain" role="presentation"></canvas>
+        
+        <!-- Scanlines Effect -->
+        <div class="scanlines" role="presentation"></div>
+    </div>
 
-    <!-- Hero Section - Completely Redesigned -->
-    <section id="home" class="hero-futuristic parallax hardware-accelerated" data-speed="0.5">
-        <div class="hero-container">
-            <div class="hero-grid">
-                <div class="hero-content-left">
-                    <div class="hero-badge">
-                        <span class="badge-text">INOVASI TEKNOLOGI</span>
+    <!-- Main Content -->
+    <main>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg fixed-top" id="navbar" role="navigation" aria-label="Navigasi utama">
+            <div class="container">
+                <a class="navbar-brand" href="#home" aria-label="Kembali ke beranda">
+                    <img src="logo.png" class="navbar-logo" alt="BUFATECHNO Logo" loading="lazy">
+                    <div class="navbar-brand-text bufatechno-text">
+                        <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
                     </div>
-                    <h1 class="hero-main-title">
-                        <span class="title-line">
-                            <span class="title-char b">B</span>
-                            <span class="title-char u">U</span>
-                            <span class="title-char f">F</span>
-                            <span class="title-char a">A</span>
-                        </span>
-                        <span class="title-line">
-                            <span class="title-char t">T</span>
-                            <span class="title-char e">E</span>
-                            <span class="title-char c">C</span>
-                            <span class="title-char h">H</span>
-                            <span class="title-char n">N</span>
-                            <span class="title-char o">O</span>
-                        </span>
-                    </h1>
-                    <h2 class="hero-subheading">
-                        <span class="subheading-text">Membentuk Masa Depan Inovasi Digital</span>
-                    </h2>
-                     <p class="hero-description-modern">
-                         <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> mengembangkan solusi teknologi mutakhir untuk berbagai kebutuhan digital.
-                         Dari aplikasi edukasi hingga alat pengembangan canggih, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> menghadirkan
-                         inovasi yang mentransformasi pengalaman Anda dalam berinteraksi dengan teknologi.
-                     </p>
-                     <div class="hero-actions">
-                         <a href="#apps" class="btn-primary-futuristic">
-                             <span class="btn-text">Jelajahi Aplikasi</span>
-                             <i class="fas fa-arrow-right btn-icon"></i>
-                         </a>
-                         <a href="#about" class="btn-secondary-futuristic">
-                             <span class="btn-text">Pelajari Lebih Lanjut</span>
-                         </a>
-                     </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" aria-hidden="true"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a class="nav-link" href="#home" role="menuitem">Beranda</a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a class="nav-link" href="#about" role="menuitem">Tentang</a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a class="nav-link" href="#apps" role="menuitem">Aplikasi</a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a class="nav-link" href="#contact" role="menuitem">Kontak</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-                     <!-- Scroll Indicator moved here for mobile -->
-                     <div class="scroll-indicator-futuristic" id="scrollIndicator">
-                         <span class="scroll-text">Gulir Ke Bawah</span>
-                         <div class="scroll-arrow">
-                             <i class="fas fa-chevron-down"></i>
-                         </div>
-                     </div>
-                 </div>
-                <div class="hero-content-right">
-                    <div class="hero-visual">
-                        <div class="tech-hexagon">
-                            <div class="hexagon-inner">
-                                <div class="hexagon-content">
-                                    <i class="fas fa-microchip hexagon-icon"></i>
-                                </div>
+        <!-- Hero Section -->
+        <section id="home" class="hero-futuristic parallax hardware-accelerated" data-speed="0.5" aria-labelledby="hero-title">
+            <div class="hero-container">
+                <div class="hero-grid">
+                    <div class="hero-content-left">
+                        <div class="hero-badge">
+                            <span class="badge-text">INOVASI TEKNOLOGI</span>
+                        </div>
+                        <h1 id="hero-title" class="hero-main-title">
+                            <span class="title-line">
+                                <span class="title-char b">B</span>
+                                <span class="title-char u">U</span>
+                                <span class="title-char f">F</span>
+                                <span class="title-char a">A</span>
+                            </span>
+                            <span class="title-line">
+                                <span class="title-char t">T</span>
+                                <span class="title-char e">E</span>
+                                <span class="title-char c">C</span>
+                                <span class="title-char h">H</span>
+                                <span class="title-char n">N</span>
+                                <span class="title-char o">O</span>
+                            </span>
+                        </h1>
+                        <h2 class="hero-subheading">
+                            <span class="subheading-text">Membentuk Masa Depan Inovasi Digital</span>
+                        </h2>
+                        <p class="hero-description-modern">
+                            <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> mengembangkan solusi teknologi mutakhir untuk berbagai kebutuhan digital.
+                            Dari aplikasi edukasi hingga alat pengembangan canggih, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> menghadirkan
+                            inovasi yang mentransformasi pengalaman Anda dalam berinteraksi dengan teknologi.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#apps" class="btn-primary-futuristic" aria-label="Jelajahi aplikasi BUFATECHNO">
+                                <span class="btn-text">Jelajahi Aplikasi</span>
+                                <i class="fas fa-arrow-right btn-icon" aria-hidden="true"></i>
+                            </a>
+                            <a href="#about" class="btn-secondary-futuristic" aria-label="Pelajari lebih lanjut tentang BUFATECHNO">
+                                <span class="btn-text">Pelajari Lebih Lanjut</span>
+                            </a>
+                        </div>
+                        <div class="scroll-indicator-futuristic" id="scrollIndicator" role="button" tabindex="0" aria-label="Gulir ke bawah">
+                            <span class="scroll-text">Gulir Ke Bawah</span>
+                            <div class="scroll-arrow">
+                                <i class="fas fa-chevron-down" aria-hidden="true"></i>
                             </div>
                         </div>
-                        <div class="floating-elements">
-                            <div class="floating-element element-1"></div>
-                            <div class="floating-element element-2"></div>
-                            <div class="floating-element element-3"></div>
+                    </div>
+                    <div class="hero-content-right">
+                        <div class="hero-visual">
+                            <div class="tech-hexagon">
+                                <div class="hexagon-inner">
+                                    <div class="hexagon-content">
+                                        <i class="fas fa-microchip hexagon-icon" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="floating-elements">
+                                <div class="floating-element element-1" aria-hidden="true"></div>
+                                <div class="floating-element element-2" aria-hidden="true"></div>
+                                <div class="floating-element element-3" aria-hidden="true"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Floating Tech Icons -->
-        <div class="tech-icons">
-            <i class="fas fa-microchip tech-icon"></i>
-            <i class="fas fa-laptop-code tech-icon"></i>
-            <i class="fas fa-mobile-alt tech-icon"></i>
-            <i class="fas fa-cog tech-icon"></i>
-        </div>
-        
+            <div class="tech-icons" role="presentation">
+                <i class="fas fa-microchip tech-icon" aria-hidden="true"></i>
+                <i class="fas fa-laptop-code tech-icon" aria-hidden="true"></i>
+                <i class="fas fa-mobile-alt tech-icon" aria-hidden="true"></i>
+                <i class="fas fa-cog tech-icon" aria-hidden="true"></i>
+            </div>
+        </section>
 
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about fold-section hardware-accelerated professional-spacing" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title neon-text">Tentang <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <div class="about-content modern-card">
-                        <div class="about-text">
-                             <p>
-                                 <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> adalah pengembang aplikasi inovatif yang telah berdedikasi sejak 2008 dalam menciptakan solusi teknologi terdepan yang dirancang untuk memenuhi kebutuhan digital modern. Dengan komitmen terhadap kualitas dan inovasi, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> telah mengembangkan berbagai aplikasi yang menggabungkan fungsionalitas tinggi dengan kemudahan penggunaan.
-                             </p>
-                             <p>
-                                 Dalam dunia teknologi yang terus berkembang, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> berkomitmen untuk menghadirkan solusi inovatif yang dapat diakses oleh semua kalangan. Setiap produk yang <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> kembangkan lahir dari riset intensif dan empati mendalam terhadap kebutuhan pengguna modern.
-                             </p>
-                             <p>
-                                 Mulai dari sistem otomasi edukasi hingga alat pengembangan software mutakhir, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> terus berinovasi untuk menghadirkan solusi yang menyederhanakan dan meningkatkan produktivitas hidup Anda.
-                             </p>
+        <!-- About Section -->
+        <section id="about" class="about fold-section hardware-accelerated professional-spacing" aria-labelledby="about-title">
+            <div class="container">
+                <h2 id="about-title" class="section-title neon-text">Tentang <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="about-content modern-card">
+                            <div class="about-text">
+                                <p>
+                                    <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> adalah pengembang aplikasi inovatif yang telah berdedikasi sejak 2008 dalam menciptakan solusi teknologi terdepan yang dirancang untuk memenuhi kebutuhan digital modern. Dengan komitmen terhadap kualitas dan inovasi, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> telah mengembangkan berbagai aplikasi yang menggabungkan fungsionalitas tinggi dengan kemudahan penggunaan.
+                                </p>
+                                <p>
+                                    Dalam dunia teknologi yang terus berkembang, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> berkomitmen untuk menghadirkan solusi inovatif yang dapat diakses oleh semua kalangan. Setiap produk yang <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> kembangkan lahir dari riset intensif dan empati mendalam terhadap kebutuhan pengguna modern.
+                                </p>
+                                <p>
+                                    Mulai dari sistem otomasi edukasi hingga alat pengembangan software mutakhir, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> terus berinovasi untuk menghadirkan solusi yang menyederhanakan dan meningkatkan produktivitas hidup Anda.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Apps Section - DIPERBAIKI TAMPILANNYA -->
-    <section id="apps" class="apps fold-section hardware-accelerated professional-spacing" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title neon-text">Aplikasi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
-            <div class="apps-grid modern-grid">
-                <!-- BESTI App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="app-icon-wrapper">
-                        <img src="image/app/besti.png" alt="BESTI App Icon" class="app-icon" loading="lazy">
+        <!-- Apps Section -->
+        <section id="apps" class="apps fold-section hardware-accelerated professional-spacing" aria-labelledby="apps-title">
+            <div class="container">
+                <h2 id="apps-title" class="section-title neon-text">Aplikasi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+                <div class="apps-grid modern-grid">
+                    <!-- BESTI App -->
+                    <div class="app-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="app-icon-wrapper">
+                            <img src="image/app/besti.png" alt="BESTI App Icon" class="app-icon" loading="lazy">
+                        </div>
+                        <h3 class="app-title">BESTI</h3>
+                        <p class="app-description">
+                            Sistem bel sekolah otomatis revolusioner yang mengubah bel manual tradisional 
+                            menjadi solusi digital cerdas.
+                        </p>
+                        <ul class="app-features">
+                            <li>Sistem penjadwalan otomatis</li>
+                            <li>Nada bel yang dapat disesuaikan</li>
+                            <li>Antarmuka yang mudah digunakan</li>
+                            <li>Dukungan multi sekolah</li>
+                            <li>Gratis untuk institusi pendidikan</li>
+                        </ul>
+                        <div class="app-download">
+                            <a href="https://sfl.gl/oplO6" target="_blank" class="btn-primary-custom" rel="noopener noreferrer">
+                                <i class="fas fa-download" aria-hidden="true"></i> Download
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="app-title">BESTI</h3>
-                    <p class="app-description">
-                        Sistem bel sekolah otomatis revolusioner yang mengubah bel manual tradisional 
-                        menjadi solusi digital cerdas.
-                    </p>
-                    <ul class="app-features">
-                        <li>Sistem penjadwalan otomatis</li>
-                        <li>Nada bel yang dapat disesuaikan</li>
-                        <li>Antarmuka yang mudah digunakan</li>
-                        <li>Dukungan multi sekolah</li>
-                        <li>Gratis untuk institusi pendidikan</li>
-                    </ul>
-                    <div class="app-download">
-                        <a href="https://sfl.gl/oplO6" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
-                        </a>
+
+                    <!-- Siapa Pintar App -->
+                    <div class="app-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="app-icon-wrapper">
+                            <img src="image/app/siapa-pintar.png" alt="Siapa Pintar App Icon" class="app-icon" loading="lazy">
+                        </div>
+                        <h3 class="app-title">Siapa Pintar</h3>
+                        <p class="app-description">
+                            Platform game kuis interaktif yang dirancang untuk membuat pembelajaran 
+                            menjadi menyenangkan dan menarik melalui gamifikasi.
+                        </p>
+                        <ul class="app-features">
+                            <li>Berbagai kategori kuis</li>
+                            <li>Tingkat kesulitan adaptif</li>
+                            <li>Sistem penilaian real-time</li>
+                            <li>Konten edukatif berkualitas</li>
+                            <li>Pengalaman pengguna yang menarik</li>
+                        </ul>
+                        <div class="app-download">
+                            <a href="https://sfl.gl/fnlrtl8" target="_blank" class="btn-primary-custom" rel="noopener noreferrer">
+                                <i class="fas fa-download" aria-hidden="true"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PyEXE App -->
+                    <div class="app-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="app-icon-wrapper">
+                            <img src="image/app/pyexe.png" alt="PyEXE App Icon" class="app-icon" loading="lazy">
+                        </div>
+                        <h3 class="app-title">PyEXE</h3>
+                        <p class="app-description">
+                            Konverter Python ke EXE yang powerful yang mengubah skrip Python Anda 
+                            menjadi file executable yang berdiri sendiri.
+                        </p>
+                        <ul class="app-features">
+                            <li>Konversi satu klik</li>
+                            <li>Tidak perlu coding tambahan</li>
+                            <li>File executable standalone</li>
+                            <li>Dukungan berbagai versi Python</li>
+                            <li>Solusi sepenuhnya gratis</li>
+                        </ul>
+                        <div class="app-download">
+                            <a href="https://sfl.gl/93770" target="_blank" class="btn-primary-custom" rel="noopener noreferrer">
+                                <i class="fas fa-download" aria-hidden="true"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PiePyd App -->
+                    <div class="app-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="app-icon-wrapper">
+                            <img src="image/app/piepyd.png" alt="PiePyd App Icon" class="app-icon" loading="lazy">
+                        </div>
+                        <h3 class="app-title">PiePyd</h3>
+                        <p class="app-description">
+                            Tool enkripsi proyek Python tingkat lanjut yang dirancang untuk 
+                            melindungi kode sumber Anda dari akses tidak sah.
+                        </p>
+                        <ul class="app-features">
+                            <li>Enkripsi kelas militer</li>
+                            <li>Perlindungan kode sumber</li>
+                            <li>Proses enkripsi cepat</li>
+                            <li>Antarmuka pengguna intuitif</li>
+                            <li>Gratis untuk pengembang</li>
+                        </ul>
+                        <div class="app-download">
+                            <a href="https://sfl.gl/7gwmc" target="_blank" class="btn-primary-custom" rel="noopener noreferrer">
+                                <i class="fas fa-download" aria-hidden="true"></i> Download
+                            </a>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Siapa Pintar App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="app-icon-wrapper">
-                        <img src="image/app/siapa-pintar.png" alt="Siapa Pintar App Icon" class="app-icon" loading="lazy">
-                    </div>
-                    <h3 class="app-title">Siapa Pintar</h3>
-                    <p class="app-description">
-                        Platform game kuis interaktif yang dirancang untuk membuat pembelajaran 
-                        menjadi menyenangkan dan menarik melalui gamifikasi.
+        <!-- Contact Section -->
+        <section id="contact" class="contact fold-section hardware-accelerated professional-spacing" aria-labelledby="contact-title">
+            <div class="container">
+                <h2 id="contact-title" class="section-title neon-text">Hubungi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+                <div class="contact-content">
+                    <p class="contact-description responsive-text">
+                        Tetap terhubung dengan <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> untuk update terbaru tentang aplikasi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span>
+                        dan inovasi teknologi. Ikuti <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> di YouTube dan bergabunglah dengan komunitas
+                        penggemar teknologi yang terus berkembang.
                     </p>
-                    <ul class="app-features">
-                        <li>Berbagai kategori kuis</li>
-                        <li>Tingkat kesulitan adaptif</li>
-                        <li>Sistem penilaian real-time</li>
-                        <li>Konten edukatif berkualitas</li>
-                        <li>Pengalaman pengguna yang menarik</li>
-                    </ul>
-                    <div class="app-download">
-                        <a href="https://sfl.gl/fnlrtl8" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@bufatechno" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" 
+                           title="YouTube BUFATECHNO" rel="noopener noreferrer">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                            <span class="sr-only">YouTube</span>
                         </a>
-                    </div>
-                </div>
-
-                <!-- PyEXE App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="app-icon-wrapper">
-                        <img src="image/app/pyexe.png" alt="PyEXE App Icon" class="app-icon" loading="lazy">
-                    </div>
-                    <h3 class="app-title">PyEXE</h3>
-                    <p class="app-description">
-                        Konverter Python ke EXE yang powerful yang mengubah skrip Python Anda 
-                        menjadi file executable yang berdiri sendiri.
-                    </p>
-                    <ul class="app-features">
-                        <li>Konversi satu klik</li>
-                        <li>Tidak perlu coding tambahan</li>
-                        <li>File executable standalone</li>
-                        <li>Dukungan berbagai versi Python</li>
-                        <li>Solusi sepenuhnya gratis</li>
-                    </ul>
-                    <div class="app-download">
-                        <a href="https://sfl.gl/93770" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
+                        <a href="https://github.com/bufatechno" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" 
+                           title="GitHub BUFATECHNO" rel="noopener noreferrer">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                            <span class="sr-only">GitHub</span>
                         </a>
-                    </div>
-                </div>
-
-                <!-- PiePyd App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="app-icon-wrapper">
-                        <img src="image/app/piepyd.png" alt="PiePyd App Icon" class="app-icon" loading="lazy">
-                    </div>
-                    <h3 class="app-title">PiePyd</h3>
-                    <p class="app-description">
-                        Tool enkripsi proyek Python tingkat lanjut yang dirancang untuk 
-                        melindungi kode sumber Anda dari akses tidak sah.
-                    </p>
-                    <ul class="app-features">
-                        <li>Enkripsi kelas militer</li>
-                        <li>Perlindungan kode sumber</li>
-                        <li>Proses enkripsi cepat</li>
-                        <li>Antarmuka pengguna intuitif</li>
-                        <li>Gratis untuk pengembang</li>
-                    </ul>
-                    <div class="app-download">
-                        <a href="https://sfl.gl/7gwmc" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
+                        <a href="mailto:bufatechno@gmail.com" class="social-link holographic will-change-transform enhanced-hover smooth-transition" 
+                           title="Email BUFATECHNO">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <span class="sr-only">Email</span>
+                        </a>
+                        <a href="https://wa.me/085179974553" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" 
+                           title="WhatsApp BUFATECHNO" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                            <span class="sr-only">WhatsApp</span>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact fold-section hardware-accelerated professional-spacing" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title neon-text">Hubungi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
-            <div class="contact-content">
-                 <p class="contact-description responsive-text">
-                     Tetap terhubung dengan <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> untuk update terbaru tentang aplikasi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span>
-                     dan inovasi teknologi. Ikuti <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> di YouTube dan bergabunglah dengan komunitas
-                     penggemar teknologi yang terus berkembang.
-                 </p>
-                <div class="social-links">
-                    <a href="https://www.youtube.com/@bufatechno" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" title="YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="https://github.com/bufatechno" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:bufatechno@gmail.com" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://wa.me/085179974553" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" title="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
@@ -356,8 +364,8 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+    <div class="back-to-top" id="backToTop" role="button" tabindex="0" aria-label="Kembali ke atas">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </div>
 
     <!-- Bootstrap JS -->
@@ -374,5 +382,5 @@
     
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
- </body>
+</body>
 </html>
