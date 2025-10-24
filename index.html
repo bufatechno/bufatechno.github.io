@@ -3,80 +3,1721 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUFATECHNO - Inovasi Teknologi</title>
+    <title>BUFATECHNO - Solusi Aplikasi Cerdas</title>
     
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="logo.ico?v=1.0">
     <link rel="icon" type="image/png" href="logo.png?v=1.0">
     <link rel="apple-touch-icon" sizes="180x180" href="logo.png?v=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="logo.png?v=1.0">
     <link rel="icon" type="image/png" sizes="16x16" href="logo.png?v=1.0">
     
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Rajdhani:wght@500;700&display=swap" as="style">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --primary: #c71313;
+            --primary-dark: #a00e0e;
+            --secondary: #e8e8e7;
+            --accent: #c71313;
+            --dark: #0e0c0b;
+            --darker: #050505;
+            --light: #e8e8e7;
+            --gray: #8C8CA1;
+            --gray-light: #b0b0b0;
+            --success: #2DD4BF;
+            --warning: #FBBF24; /* Warna kuning untuk bintang */
+            --danger: #F87171;
+            
+            --gradient-primary: linear-gradient(135deg, var(--primary), #e74c3c);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary), #d0d0d0);
+            --gradient-dark: linear-gradient(135deg, var(--dark), #1a1a1a);
+            
+            --font-primary: 'Inter', sans-serif;
+            --font-heading: 'Inter', sans-serif;
+            --font-accent: 'Rajdhani', sans-serif;
+            
+            --shadow-sm: 0 2px 10px rgba(199, 19, 19, 0.1);
+            --shadow-md: 0 8px 30px rgba(199, 19, 19, 0.15);
+            --shadow-lg: 0 20px 60px rgba(199, 19, 19, 0.2);
+            --shadow-xl: 0 30px 90px rgba(199, 19, 19, 0.3);
+            
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --border-radius-xl: 30px;
+            
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-slow: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--light);
+            background: var(--gradient-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* Konsistensi warna untuk semua teks BUFATECHNO */
+        .bufa {
+            font-family: var(--font-primary); /* <<< PERUBAHAN DI SINI */
+            color: var(--primary);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(199, 19, 19, 0.5);
+        }
+
+        .techno {
+            font-family: var(--font-primary); /* <<< PERUBAHAN DI SINI */
+            color: var(--light);
+            font-weight: 700;
+        }
+
+        .bufatechno-text {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        .brand-highlight .bufa,
+        .brand-highlight .techno {
+            font-size: inherit;
+        }
+
+        /* ===== BACKGROUND ELEMENTS ===== */
+        .bg-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            filter: blur(40px);
+        }
+
+        .bg-1 {
+            width: 600px;
+            height: 600px;
+            top: -300px;
+            right: -200px;
+        }
+
+        .bg-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -200px;
+            left: -100px;
+        }
+
+        .bg-3 {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 60%;
+        }
+
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(199, 19, 19, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(199, 19, 19, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ===== LAYOUT & CONTAINERS ===== */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                padding: 0;
+            }
+        }
+
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        @media (max-width: 767px) {
+            .section-padding {
+                padding: 4rem 0; 
+            }
+        }
+
+        /* ===== SCROLL PROGRESS ===== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--gradient-primary);
+            z-index: 9998;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            padding: 1rem 0;
+            background: rgba(14, 12, 11, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            padding: 0.75rem 0;
+            background: rgba(14, 12, 11, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .navbar-logo {
+            height: 40px;
+            width: auto;
+            margin-right: 0.75rem;
+            filter: drop-shadow(0 0 10px rgba(199, 19, 19, 0.5));
+        }
+
+        .navbar-brand-text {
+            font-size: 1.25rem;
+        }
+
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 0.75rem 0;
+            }
+            
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+            
+            .navbar-logo {
+                height: 35px;
+            }
+            
+            .navbar-brand-text {
+                font-size: 1.1rem;
+            }
+        }
+
+        .navbar-toggler {
+            border: none;
+            background: transparent;
+            color: var(--light);
+            font-size: 1.5rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+            outline: none;
+        }
+
+        .navbar-nav {
+            gap: 1rem;
+        }
+
+        .nav-link {
+            color: var(--gray-light);
+            font-weight: 500;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            left: 0;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: rgba(14, 12, 11, 0.98);
+                padding: 1.5rem;
+                border-radius: var(--border-radius-lg);
+                margin-top: 1rem;
+                box-shadow: var(--shadow-lg);
+                backdrop-filter: blur(20px);
+            }
+            
+            .navbar-nav {
+                gap: 0.5rem;
+            }
+            
+            .nav-link {
+                padding: 0.75rem 1.5rem !important;
+            }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-modern {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 8rem 0 4rem;
+            overflow: hidden;
+        }
+
+        @media (max-width: 767px) {
+            .hero-modern {
+                padding: 7rem 0 2rem;
+                min-height: 90vh;
+            }
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 6rem;
+                padding: 0 2rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-container {
+                gap: 2.5rem;
+                text-align: center;
+            }
+        }
+
+        .hero-badge {
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            .hero-badge {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        .badge-text {
+            display: inline-block;
+            background: rgba(199, 19, 19, 0.15);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(199, 19, 19, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        @media (max-width: 767px) {
+            .badge-text {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-title {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+                line-height: 1.2;
+            }
+        }
+
+        .brand-name {
+            font-size: inherit;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 767px) {
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--gray-light);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 767px) {
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                line-height: 1.6;
+            }
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        @media (max-width: 767px) {
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+            }
+        }
+
+        .btn-primary-modern,
+        .btn-secondary-modern {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 767px) {
+            .btn-primary-modern,
+            .btn-secondary-modern {
+                width: 100%;
+                justify-content: center;
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        .btn-primary-modern {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .btn-primary-modern:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary-modern:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary-modern {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary-modern:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-illustration {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-illustration {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-illustration {
+                height: 350px;
+            }
+        }
+
+        /* --- PERUBAHAN CSS UNTUK FLOATING CARDS DIMULAI DI SINI --- */
+        .floating-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 1; 
+        }
+
+        @media (max-width: 991px) {
+            .floating-card {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Default (Mobile First) - Kartu akan relatif dan menumpuk */
+        @media (max-width: 767px) {
+            .hero-illustration {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+                max-width: 100%;
+            }
+            .floating-card {
+                position: relative;
+                top: auto; left: auto; right: auto; bottom: auto;
+                margin-bottom: 1.5rem; 
+                width: 90% !important; 
+                max-width: 300px;
+                animation: none; 
+            }
+            .card-1, .card-2, .card-3, .card-4 {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Posisi Absolute untuk layar lebih besar dari 767px */
+        @media (min-width: 768px) {
+            .floating-card {
+                position: absolute; 
+            }
+            .card-1 { /* Kiri Atas */
+                top: 10%; 
+                left: 0%;
+                width: 200px;
+                animation: float-1 6s ease-in-out infinite;
+            }
+            .card-2 { /* Kanan Tengah */
+                top: 40%; 
+                right: 0%;
+                left: auto;
+                width: 220px;
+                animation: float-2 7s ease-in-out infinite 1s;
+            }
+            .card-3 { /* Kiri Bawah */
+                bottom: 20%; /* NAIK DARI 10% */
+                left: 10%; /* KIRI DARI 15% */
+                top: auto; 
+                width: 180px;
+                animation: float-3 5s ease-in-out infinite 0.5s;
+            }
+            .card-4 { /* Kanan Bawah */
+                bottom: 25%; 
+                right: 15%; 
+                left: auto;
+                top: auto;
+                width: 190px; 
+                animation: float-4 6.5s ease-in-out infinite 0.7s; 
+            }
+        }
+
+        /* Penyesuaian untuk Desktop Kecil */
+        @media (min-width: 992px) { 
+            .hero-illustration {
+                height: 600px; 
+                max-width: 650px; 
+            }
+            .card-1 { /* Kiri Atas - Sedikit ke luar */
+                top: 5%; 
+                left: -5%; 
+                width: 250px; 
+            }
+            .card-2 { /* Kanan Atas - Sedikit ke luar */
+                top: 10%; 
+                right: -5%; 
+                left: auto;
+                width: 270px; 
+            }
+            .card-3 { /* Kiri Bawah - Lebih ke tengah, digeser ke kiri dan naik */
+                bottom: 20%; /* NAIK DARI 10% */
+                left: -5%;  /* KIRI DARI -2% */
+                top: auto;
+                width: 230px; 
+            }
+            .card-4 { /* Kanan Bawah - Lebih ke tengah */
+                bottom: 20%; 
+                right: 5%; 
+                left: auto;
+                top: auto;
+                width: 240px; 
+            }
+        }
+
+        /* Penyesuaian untuk Desktop Besar */
+        @media (min-width: 1200px) {
+            .hero-illustration {
+                height: 700px; 
+                max-width: 750px;
+            }
+             .card-1 { /* Kiri Atas - Sedikit lebih ke dalam */
+                top: 10%;
+                left: 0%;
+                width: 280px;
+                padding: 1.75rem; 
+            }
+            .card-2 { /* Kanan Atas - Sedikit lebih ke dalam */
+                top: 15%; 
+                right: 0%;
+                left: auto;
+                width: 300px;
+                padding: 1.75rem;
+            }
+            .card-3 { /* Kiri Bawah - Lebih ke tengah, digeser ke kiri dan naik */
+                bottom: 22%; /* NAIK DARI 12% */
+                left: 0%; /* KIRI DARI 2% */
+                top: auto;
+                width: 260px;
+                padding: 1.75rem;
+            }
+            .card-4 { /* Kanan Bawah - Lebih ke tengah */
+                bottom: 15%; 
+                right: 10%; 
+                left: auto;
+                top: auto;
+                width: 270px;
+                padding: 1.75rem;
+            }
+            .floating-card i {
+                font-size: 2.25rem;
+            }
+            .floating-card h4 {
+                font-size: 1.15rem;
+            }
+            .floating-card p {
+                font-size: 0.95rem;
+            }
+        }
+        /* --- AKHIR PERUBAHAN CSS UNTUK FLOATING CARDS --- */
+        
+
+        .floating-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        @media (max-width: 767px) {
+            .floating-card i {
+                font-size: 1.75rem;
+            }
+        }
+
+        .floating-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 767px) {
+            .floating-card h4 {
+                font-size: 0.95rem;
+            }
+        }
+
+        .floating-card p {
+            font-size: 0.875rem;
+            color: var(--gray-light);
+            margin-bottom: 0;
+        }
+
+        @keyframes float-1 {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); } 
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes float-2 {
+            0% { transform: translateY(0) translateX(0) rotate(0); }
+            50% { transform: translateY(-10px) translateX(3px) rotate(0.5deg); }
+            100% { transform: translateY(0) translateX(0) rotate(0); }
+        }
+
+        @keyframes float-3 {
+            0% { transform: translateY(0) rotate(-0.5deg); }
+            50% { transform: translateY(-12px) translateX(-3px) rotate(0deg); }
+            100% { transform: translateY(0) rotate(-0.5deg); }
+        }
+
+        @keyframes float-4 {
+            0% { transform: translateY(0) translateX(0) rotate(0.5deg); }
+            50% { transform: translateY(-8px) translateX(2px) rotate(0deg); }
+            100% { transform: translateY(0) translateX(0) rotate(0.5deg); }
+        }
+
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--gray-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .scroll-indicator:hover {
+            color: var(--light);
+        }
+
+        .scroll-text {
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scroll-arrow {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        @media (max-width: 767px) {
+            .about-section {
+                padding: 3rem 0; 
+            }
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 991px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-light);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        @media (max-width: 767px) {
+            .section-subtitle {
+                font-size: 1.1rem;
+                margin: 0 auto 2.5rem;
+                padding: 0 1rem;
+            }
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .about-grid {
+                 gap: 2.5rem; 
+            }
+        }
+
+        .about-content .section-title {
+            text-align: left;
+        }
+
+        .about-text p {
+            color: var(--gray-light);
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        @media (max-width: 767px) {
+            .about-text p {
+                font-size: 1rem;
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+            
+            .about-content .section-title {
+                text-align: center;
+            }
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 767px) {
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem; 
+                margin-top: 2rem; 
+                margin-bottom: 2.5rem; 
+            }
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 767px) {
+            .stat-item {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(199, 19, 19, 0.3);
+        }
+
+        @media (max-width: 767px) {
+            .stat-item:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(199, 19, 19, 0.3);
+        }
+
+        @media (max-width: 767px) {
+            .stat-number {
+                font-size: 2rem;
+                margin-bottom: 0.25rem;
+            }
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-light);
+            font-weight: 500;
+        }
+
+        /* --- CSS 'ABOUT VISUAL' (KONSEP ORB MENGAMBANG) --- */
+        .about-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 500px; 
+        }
+        
+        @media (max-width: 767px) {
+            .about-visual {
+                min-height: auto; 
+                padding-top: 1rem; 
+                padding-bottom: 1rem; 
+            }
+        }
+
+        .about-illustration {
+            position: relative;
+            width: 100%;
+            max-width: 500px; 
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width: 991px) {
+            .about-illustration {
+                max-width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .about-illustration {
+                max-width: 350px;
+                height: 350px;
+                margin-top: 0rem; 
+                margin-bottom: 0rem;
+            }
+        }
+
+        .center-logo-container {
+            position: relative; 
+            width: 250px; 
+            height: 250px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 35px rgba(199, 19, 19, 0.6), 0 0 70px rgba(199, 19, 19, 0.4); 
+            animation: subtle-pulse-center 3s infinite alternate ease-in-out;
+            z-index: 10;
+        }
+
+        .tech-icon-logo {
+            width: 85%; 
+            height: 85%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5)); 
+            transition: var(--transition);
+        }
+
+        .center-logo-container:hover .tech-icon-logo {
+            transform: scale(1.05);
+        }
+
+        .tech-orb {
+            position: absolute;
+            width: 75px; 
+            height: 75px;
+            background: rgba(255, 255, 255, 0.05); 
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 0 15px rgba(199, 19, 19, 0.1); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: orb-float 6s ease-in-out infinite alternate;
+            z-index: 5; 
+        }
+
+        .orb-1 { 
+            top: 15%; 
+            left: 15%; 
+            animation-delay: 0s;
+        }
+        .orb-2 { 
+            top: 15%; 
+            right: 15%; 
+            left: auto; 
+            animation-delay: 1s;
+        }
+        .orb-3 { 
+            bottom: 15%; 
+            left: 15%; 
+            top: auto; 
+            animation-delay: 0.5s;
+        }
+        .orb-4 { 
+            bottom: 15%; 
+            right: 15%; 
+            top: auto; 
+            left: auto; 
+            animation-delay: 1.5s;
+        }
+
+        .orb-icon {
+            font-size: 1.8rem; 
+            color: var(--primary); 
+            text-shadow: 0 0 10px rgba(199, 19, 19, 0.5); 
+            transition: var(--transition);
+        }
+
+        .tech-orb:hover {
+             background: rgba(255, 255, 255, 0.08);
+             box-shadow: 0 5px 20px rgba(199, 19, 19, 0.2);
+        }
+
+        .tech-orb:hover .orb-icon {
+            color: var(--light);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 991px) {
+            .center-logo-container {
+                width: 220px; 
+                height: 220px;
+            }
+            .tech-icon-logo {
+                width: 80%;
+                height: 80%;
+            }
+            .tech-orb {
+                width: 70px;
+                height: 70px;
+            }
+            .orb-icon {
+                font-size: 1.6rem;
+            }
+            .orb-1, .orb-3 { left: 18%; }
+            .orb-2, .orb-4 { right: 18%; }
+            .orb-1, .orb-2 { top: 18%; }
+            .orb-3, .orb-4 { bottom: 18%; }
+        }
+        @media (max-width: 767px) {
+            .center-logo-container {
+                width: 180px; 
+                height: 180px;
+            }
+            .tech-icon-logo {
+                width: 75%;
+                height: 75%;
+            }
+             .tech-orb {
+                width: 60px;
+                height: 60px;
+            }
+            .orb-icon {
+                font-size: 1.4rem;
+            }
+            .orb-1, .orb-3 { left: 10%; } 
+            .orb-2, .orb-4 { right: 10%; } 
+            .orb-1, .orb-2 { top: 10%; } 
+            .orb-3, .orb-4 { bottom: 10%; } 
+        }
+
+        @keyframes subtle-pulse-center {
+            0% { transform: scale(0.98); box-shadow: 0 0 30px rgba(199, 19, 19, 0.5), 0 0 60px rgba(199, 19, 19, 0.3); }
+            100% { transform: scale(1.02); box-shadow: 0 0 40px rgba(199, 19, 19, 0.7), 0 0 80px rgba(199, 19, 19, 0.5); }
+        }
+
+        @keyframes orb-float {
+            0% { 
+                transform: translateY(0px); 
+            }
+            50% { 
+                transform: translateY(-10px); 
+            }
+            100% { 
+                transform: translateY(0px); 
+            }
+        }
+       
+        /* --- AKHIR PERUBAHAN CSS 'ABOUT VISUAL' --- */
+
+
+        /* ===== APPS SECTION ===== */
+        .apps-section {
+            padding: 8rem 0;
+            background: rgba(5, 5, 5, 0.5);
+        }
+
+        @media (max-width: 767px) {
+            .apps-section {
+                padding: 4rem 0;
+            }
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .apps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .apps-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .apps-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        .app-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 991px) {
+            .app-card {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .app-card {
+                padding: 1.5rem;
+            }
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .app-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(199, 19, 19, 0.3);
+        }
+
+        @media (max-width: 767px) {
+            .app-card:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .app-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 767px) {
+            .app-header {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--border-radius);
+            margin-right: 1rem; /* Dikecilkan dari 1.5rem */
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 767px) {
+            .app-icon {
+                width: 50px;
+                height: 50px;
+                margin-right: 1rem;
+            }
+        }
+        
+        /* Wrapper untuk Judul dan Rating */
+        .app-title-rating-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            white-space: nowrap; /* Memastikan 1 baris */
+        }
+
+        @media (max-width: 767px) {
+            .app-title {
+                font-size: 1.25rem;
+            }
+        }
+
+        .app-description {
+            color: var(--gray-light);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        @media (max-width: 767px) {
+            .app-description {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+        
+        /* ===== RATING BINTANG APLIKASI (PERUBAHAN POSISI) ===== */
+        .app-rating {
+            display: flex;
+            gap: 0.25rem;
+            margin-top: 0.25rem; 
+            color: var(--warning); 
+            font-size: 1rem; 
+        }
+
+        .app-rating .far.fa-star {
+            color: var(--gray-light); /* Bintang kosong */
+        }
+        
+        @media (max-width: 767px) {
+            .app-rating {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* ===== IMPROVED APP FEATURES STYLING ===== */
+        .app-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            padding-left: 0;
+        }
+
+        @media (max-width: 767px) {
+            .app-features {
+                margin-bottom: 2rem;
+            }
+        }
+
+        .app-features li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            transition: var(--transition);
+        }
+
+        .app-features li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 16px;
+            height: 16px;
+            background: rgba(199, 19, 19, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .app-features li:after {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 16px;
+            height: 16px;
+            color: var(--primary);
+            font-size: 0.65rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .app-card:hover .app-features li:before {
+            background: rgba(199, 19, 19, 0.2);
+            transform: scale(1.1);
+        }
+
+        .app-card:hover .app-features li:after {
+            color: var(--light);
+            text-shadow: 0 0 5px rgba(199, 19, 19, 0.5);
+        }
+
+        @media (max-width: 767px) {
+            .app-features li {
+                font-size: 0.9rem;
+                margin-bottom: 0.6rem;
+                padding-left: 1.25rem;
+            }
+            
+            .app-features li:before,
+            .app-features li:after {
+                width: 14px;
+                height: 14px;
+                top: 0.2rem;
+            }
+            
+            .app-features li:after {
+                font-size: 0.6rem;
+            }
+        }
+
+        .btn-app-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 767px) {
+            .btn-app-download {
+                padding: 0.875rem 1.25rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        .btn-app-download:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-section {
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        @media (max-width: 767px) {
+            .contact-section {
+                padding: 4rem 0;
+            }
+        }
+
+        .contact-description {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            color: var(--gray-light);
+            font-size: 1.25rem;
+        }
+
+        @media (max-width: 767px) {
+            .contact-description {
+                font-size: 1.1rem;
+                margin: 0 auto 2.5rem;
+                padding: 0 1rem;
+            }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            .social-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .social-links {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            width: 150px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 991px) {
+            .social-link {
+                width: 140px;
+                padding: 1.75rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .social-link {
+                width: 130px;
+                padding: 1.5rem;
+                gap: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .social-link {
+                width: 100%;
+                padding: 1.25rem;
+            }
+        }
+
+        .social-link:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(199, 19, 19, 0.3);
+        }
+
+        @media (max-width: 767px) {
+            .social-link:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .social-link i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        @media (max-width: 767px) {
+            .social-link i {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* ===== CSS BARU UNTUK IKON GAMBAR DONASI ===== */
+        .social-icon-img {
+            height: 2rem; /* Menyamakan ukuran dengan font-size ikon i */
+            width: auto;
+            max-width: 100%; 
+            object-fit: contain;
+        }
+
+        @media (max-width: 767px) {
+            .social-icon-img {
+                height: 1.75rem; /* Menyamakan ukuran responsif */
+            }
+        }
+        /* ===== AKHIR CSS BARU ===== */
+
+
+        .social-link span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 767px) {
+            .social-link span {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ===== DONASI SECTION ===== */
+        .donasi-section {
+            background: rgba(5, 5, 5, 0.5); /* Latar belakang seperti #apps */
+            text-align: center;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 4rem 0;
+            background: rgba(5, 5, 5, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        @media (max-width: 767px) {
+            .footer {
+                padding: 3rem 0;
+            }
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 767px) {
+            .footer-content {
+                gap: 1rem;
+            }
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 767px) {
+            .footer-brand {
+                font-size: 1.75rem;
+            }
+        }
+
+        .footer p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 767px) {
+            .footer p {
+                font-size: 0.9rem;
+                padding: 0 1rem;
+            }
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 767px) {
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary: #c71313;
+                --accent: #c71313;
+                --dark: #000000;
+                --light: #ffffff;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Interactive Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-    
-    <!-- Cyberpunk Grid Background -->
-    <div class="cyber-grid"></div>
-    
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-    
-    <!-- Three.js Background -->
-    <div id="three-container"></div>
-    
-    <!-- Tech Elements Background -->
-    <div class="tech-elements">
-        <i class="fas fa-microchip tech-element"></i>
-        <i class="fas fa-laptop-code tech-element"></i>
-        <i class="fas fa-mobile-alt tech-element"></i>
-        <i class="fas fa-cog tech-element"></i>
+    <div class="bg-elements">
+        <div class="bg-element bg-1"></div>
+        <div class="bg-element bg-2"></div>
+        <div class="bg-element bg-3"></div>
     </div>
-    
-    <!-- Matrix Rain Effect -->
-    <canvas class="matrix-rain" id="matrix"></canvas>
-    
-    <!-- Digital Rain Effect -->
-    <canvas class="digital-rain" id="digitalRain"></canvas>
-    
-    <!-- Scanlines Effect -->
-    <div class="scanlines"></div>
-    
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <img src="logo.png" class="loader-logo" alt="BUFATECHNO Logo" loading="lazy">
-            <div class="loader-text">
-                <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
-            </div>
-        </div>
-    </div>
+    <div class="grid-pattern"></div>
 
-    <!-- Navbar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="#home">
@@ -86,7 +1727,7 @@
                 </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
@@ -102,200 +1743,241 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Kontak</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#donasi">Donasi</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section - Completely Redesigned -->
-    <section id="home" class="hero-futuristic parallax hardware-accelerated" data-speed="0.5">
+    <section id="home" class="hero-modern">
         <div class="hero-container">
-            <div class="hero-grid">
-                <div class="hero-content-left">
-                    <div class="hero-badge">
-                        <span class="badge-text">INOVASI TEKNOLOGI</span>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">SOLUSI APLIKASI CERDAS</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="brand-name"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span>
+                </h1>
+                <p class="hero-subtitle">
+                    Membangun Aplikasi Sebagai Solusi Cerdas
+                </p>
+                <p class="hero-description">
+                    Mengembangkan aplikasi sebagai solusi cerdas untuk berbagai kebutuhan Anda. Dari aplikasi edukasi hingga pengembangan dengan menghadirkan inovasi yang mentransformasi pengalaman Anda dalam bekerja.
+                </p>
+                <div class="hero-actions">
+                    <a href="#apps" class="btn-primary-modern">
+                        <span>Jelajahi Aplikasi</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#about" class="btn-secondary-modern">
+                        <span>Pelajari Lebih Lanjut</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="hero-illustration">
+                    <div class="floating-card card-1" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Performa Unggul</h4>
+                        <p>Aplikasi dirancang untuk respon cepat dan efisiensi maksimal</p>
                     </div>
-                    <h1 class="hero-main-title">
-                        <span class="title-line">
-                            <span class="title-char b">B</span>
-                            <span class="title-char u">U</span>
-                            <span class="title-char f">F</span>
-                            <span class="title-char a">A</span>
-                        </span>
-                        <span class="title-line">
-                            <span class="title-char t">T</span>
-                            <span class="title-char e">E</span>
-                            <span class="title-char c">C</span>
-                            <span class="title-char h">H</span>
-                            <span class="title-char n">N</span>
-                            <span class="title-char o">O</span>
-                        </span>
-                    </h1>
-                    <h2 class="hero-subheading">
-                        <span class="subheading-text">Membentuk Masa Depan Inovasi Digital</span>
-                    </h2>
-                     <p class="hero-description-modern">
-                         <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> mengembangkan solusi teknologi mutakhir untuk berbagai kebutuhan digital.
-                         Dari aplikasi edukasi hingga alat pengembangan canggih, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> menghadirkan
-                         inovasi yang mentransformasi pengalaman Anda dalam berinteraksi dengan teknologi.
-                     </p>
-                     <div class="hero-actions">
-                         <a href="#apps" class="btn-primary-futuristic">
-                             <span class="btn-text">Jelajahi Aplikasi</span>
-                             <i class="fas fa-arrow-right btn-icon"></i>
-                         </a>
-                         <a href="#about" class="btn-secondary-futuristic">
-                             <span class="btn-text">Pelajari Lebih Lanjut</span>
-                         </a>
-                     </div>
+                    <div class="floating-card card-2" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Keamanan Terjamin</h4>
+                        <p>Aplikasi terjamin bebas dari virus dan malware</p>
+                    </div>
+                    <div class="floating-card card-3" data-aos="fade-up" data-aos-delay="500">
+                        <i class="fas fa-rocket"></i>
+                        <h4>Inovasi Terdepan</h4>
+                        <p>Aplikasi dikembangkan dengan teknologi terkini dan modern</p>
+                    </div>
+                     <div class="floating-card card-4" data-aos="fade-up" data-aos-delay="700">
+                        <i class="fas fa-heart"></i>
+                        <h4>Dibuat dengan Cinta</h4>
+                        <p>Aplikasi dikembangkan dengan cinta untuk pengalaman dan hasil terbaik</p>
+                    </div>
+                </div>
+            </div>
 
-                     <!-- Scroll Indicator moved here for mobile -->
-                     <div class="scroll-indicator-futuristic" id="scrollIndicator">
-                         <span class="scroll-text">Gulir Ke Bawah</span>
-                         <div class="scroll-arrow">
-                             <i class="fas fa-chevron-down"></i>
-                         </div>
-                     </div>
-                 </div>
-                <div class="hero-content-right">
-                    <div class="hero-visual">
-                        <div class="tech-hexagon">
-                            <div class="hexagon-inner">
-                                <div class="hexagon-content">
-                                    <i class="fas fa-microchip hexagon-icon"></i>
-                                </div>
+            <div class="scroll-indicator" id="scrollIndicator">
+                <span class="scroll-text">Gulir Ke Bawah</span>
+                <div class="scroll-arrow">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="section-title">TENTANG <span class="brand-highlight"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+                    <div class="about-text">
+                        <p>
+                            <span class="brand-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> adalah pengembang aplikasi inovatif yang telah berdedikasi sejak 2008 dalam menciptakan solusi teknologi terdepan untuk kebutuhan digital modern.
+                        </p>
+                        <p>
+                            Dengan komitmen terhadap kualitas dan inovasi, kami mengembangkan aplikasi yang menggabungkan fungsionalitas tinggi dengan kemudahan penggunaan, didukung riset intensif dan pemahaman mendalam terhadap kebutuhan pengguna.
+                        </p>
+                        <p>
+                            Dari sistem otomasi edukasi hingga alat pengembangan software, kami terus berinovasi untuk menyederhanakan dan meningkatkan produktivitas hidup Anda.
+                        </p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Tahun Pengalaman</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Aplikasi Dikembangkan</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">165+</div>
+                            <div class="stat-label">Pengguna Aktif</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-visual">
+                    <div class="about-illustration">
+                        <div class="center-logo-container">
+                             <img src="logo.png" alt="BUFATECHNO Logo" class="tech-icon-logo">
+                        </div>
+
+                        <div class="tech-orb orb-1">
+                            <i class="fas fa-cogs orb-icon"></i>
+                        </div>
+                        <div class="tech-orb orb-2">
+                            <i class="fas fa-desktop orb-icon"></i>
+                        </div>
+                        <div class="tech-orb orb-3">
+                             <i class="fas fa-mobile-alt orb-icon"></i>
+                        </div>
+                         <div class="tech-orb orb-4">
+                            <i class="fas fa-microchip orb-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="apps" class="apps-section section-padding">
+        <div class="container">
+            <h2 class="section-title">APLIKASI <span class="brand-highlight"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+            <p class="section-subtitle">Temukan solusi cerdas dan inovatif untuk kebutuhan Anda</p>
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-header">
+                        <img src="image/app/besti.png" alt="BESTI App Icon" class="app-icon" loading="lazy">
+                        <div class="app-title-rating-wrapper">
+                            <h3 class="app-title">BESTI</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
                             </div>
                         </div>
-                        <div class="floating-elements">
-                            <div class="floating-element element-1"></div>
-                            <div class="floating-element element-2"></div>
-                            <div class="floating-element element-3"></div>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Floating Tech Icons -->
-        <div class="tech-icons">
-            <i class="fas fa-microchip tech-icon"></i>
-            <i class="fas fa-laptop-code tech-icon"></i>
-            <i class="fas fa-mobile-alt tech-icon"></i>
-            <i class="fas fa-cog tech-icon"></i>
-        </div>
-        
-
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about fold-section hardware-accelerated professional-spacing" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title neon-text">Tentang <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <div class="about-content modern-card">
-                        <div class="about-text">
-                             <p>
-                                 <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> adalah pengembang aplikasi inovatif yang telah berdedikasi sejak 2008 dalam menciptakan solusi teknologi terdepan yang dirancang untuk memenuhi kebutuhan digital modern. Dengan komitmen terhadap kualitas dan inovasi, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> telah mengembangkan berbagai aplikasi yang menggabungkan fungsionalitas tinggi dengan kemudahan penggunaan.
-                             </p>
-                             <p>
-                                 Dalam dunia teknologi yang terus berkembang, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> berkomitmen untuk menghadirkan solusi inovatif yang dapat diakses oleh semua kalangan. Setiap produk yang <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> kembangkan lahir dari riset intensif dan empati mendalam terhadap kebutuhan pengguna modern.
-                             </p>
-                             <p>
-                                 Mulai dari sistem otomasi edukasi hingga alat pengembangan software mutakhir, <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> terus berinovasi untuk menghadirkan solusi yang menyederhanakan dan meningkatkan produktivitas hidup Anda.
-                             </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Apps Section - DIPERBAIKI TAMPILANNYA -->
-    <section id="apps" class="apps fold-section hardware-accelerated professional-spacing" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title neon-text">Aplikasi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
-            <div class="apps-grid modern-grid">
-                <!-- BESTI App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="app-icon-wrapper">
-                        <img src="image/app/besti.png" alt="BESTI App Icon" class="app-icon" loading="lazy">
-                    </div>
-                    <h3 class="app-title">BESTI</h3>
                     <p class="app-description">
-                        Sistem bel sekolah otomatis revolusioner yang mengubah bel manual tradisional 
-                        menjadi solusi digital cerdas.
+                        Sistem bel sekolah otomatis modern yang mengubah bel manual tradisional
+                        menjadi solusi digital cerdas untuk institusi pendidikan.
                     </p>
                     <ul class="app-features">
                         <li>Sistem penjadwalan otomatis</li>
                         <li>Nada bel yang dapat disesuaikan</li>
                         <li>Antarmuka yang mudah digunakan</li>
-                        <li>Dukungan multi sekolah</li>
-                        <li>Gratis untuk institusi pendidikan</li>
+                        <li>Dapat berjalan otomatis</li>
                     </ul>
-                    <div class="app-download">
-                        <a href="https://pixeldrain.com/u/SsaXyf3y" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    </div>
+                    <a href="https://pixeldrain.com/u/SsaXyf3y" target="_blank" rel="noopener noreferrer" class="btn-app-download">
+                        <i class="fas fa-download"></i>
+                        <span>Download</span>
+                    </a>
                 </div>
 
-                <!-- Siapa Pintar App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="app-icon-wrapper">
+                <div class="app-card">
+                    <div class="app-header">
                         <img src="image/app/siapa-pintar.png" alt="Siapa Pintar App Icon" class="app-icon" loading="lazy">
+                        <div class="app-title-rating-wrapper">
+                            <h3 class="app-title">Siapa Pintar</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="app-title">Siapa Pintar</h3>
                     <p class="app-description">
-                        Platform game kuis interaktif yang dirancang untuk membuat pembelajaran 
-                        menjadi menyenangkan dan menarik melalui gamifikasi.
+                        Aplikasi game kuis interaktif yang dirancang untuk membuat pembelajaran
+                        menyenangkan dan menarik melalui gamifikasi edukatif.
                     </p>
                     <ul class="app-features">
-                        <li>Berbagai kategori kuis</li>
+                        <li>Pertanyaan dan jawaban yang dapat disesuaikan</li>
                         <li>Tingkat kesulitan adaptif</li>
                         <li>Sistem penilaian real-time</li>
-                        <li>Konten edukatif berkualitas</li>
-                        <li>Pengalaman pengguna yang menarik</li>
+                        <li>Memiliki panel siswa dan guru</li>
                     </ul>
-                    <div class="app-download">
-                        <a href="https://pixeldrain.com/u/vALNpA8x" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    </div>
+                    <a href="https://pixeldrain.com/u/vALNpA8x" target="_blank" rel="noopener noreferrer" class="btn-app-download">
+                        <i class="fas fa-download"></i>
+                        <span>Download</span>
+                    </a>
                 </div>
 
-                <!-- PyEXE App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="app-icon-wrapper">
+                <div class="app-card">
+                    <div class="app-header">
                         <img src="image/app/pyexe.png" alt="PyEXE App Icon" class="app-icon" loading="lazy">
+                        <div class="app-title-rating-wrapper">
+                            <h3 class="app-title">PyEXE</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="app-title">PyEXE</h3>
                     <p class="app-description">
-                        Konverter Python ke EXE yang powerful yang mengubah skrip Python Anda 
-                        menjadi file executable yang berdiri sendiri.
+                        Konverter Python ke EXE yang powerful yang mengubah skrip Python Anda
+                        menjadi file executable yang dapat dijalankan dengan mudah.
                     </p>
                     <ul class="app-features">
                         <li>Konversi satu klik</li>
                         <li>Tidak perlu coding tambahan</li>
                         <li>File executable standalone</li>
                         <li>Dukungan berbagai versi Python</li>
-                        <li>Solusi sepenuhnya gratis</li>
                     </ul>
-                    <div class="app-download">
-                        <a href="https://pixeldrain.com/u/z6XezQku" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    </div>
+                    <a href="https://pixeldrain.com/u/z6XezQku" target="_blank" rel="noopener noreferrer" class="btn-app-download">
+                        <i class="fas fa-download"></i>
+                        <span>Download</span>
+                    </a>
                 </div>
 
-                <!-- PiePyd App -->
-                <div class="app-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="app-icon-wrapper">
+                <div class="app-card">
+                    <div class="app-header">
                         <img src="image/app/piepyd.png" alt="PiePyd App Icon" class="app-icon" loading="lazy">
+                        <div class="app-title-rating-wrapper">
+                            <h3 class="app-title">PiePyd</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="app-title">PiePyd</h3>
                     <p class="app-description">
-                        Tool enkripsi proyek Python tingkat lanjut yang dirancang untuk 
+                        Tool enkripsi proyek Python tingkat lanjut yang dirancang untuk
                         melindungi kode sumber Anda dari akses tidak sah.
                     </p>
                     <ul class="app-features">
@@ -303,76 +1985,331 @@
                         <li>Perlindungan kode sumber</li>
                         <li>Proses enkripsi cepat</li>
                         <li>Antarmuka pengguna intuitif</li>
-                        <li>Gratis untuk pengembang</li>
                     </ul>
-                    <div class="app-download">
-                        <a href="https://pixeldrain.com/u/FiiZ3gJR" target="_blank" class="btn-primary-custom">
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    </div>
+                    <a href="https://pixeldrain.com/u/FiiZ3gJR" target="_blank" rel="noopener noreferrer" class="btn-app-download">
+                        <i class="fas fa-download"></i>
+                        <span>Download</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact fold-section hardware-accelerated professional-spacing" data-aos="fade-up">
+    <section id="contact" class="contact-section section-padding">
         <div class="container">
-            <h2 class="section-title neon-text">Hubungi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
             <div class="contact-content">
-                 <p class="contact-description responsive-text">
-                     Tetap terhubung dengan <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> untuk update terbaru tentang aplikasi <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span>
-                     dan inovasi teknologi. Ikuti <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span> di YouTube dan bergabunglah dengan komunitas
-                     penggemar teknologi yang terus berkembang.
-                 </p>
+                <h2 class="section-title">HUBUNGI <span class="brand-highlight"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+                <p class="contact-description">
+                    Tetap terhubung dengan kami untuk update terbaru tentang aplikasi dan informasi terkait. Hubungi dan temui kami dari berbagai platform media sosial yang tersedia berikut. Selain yang tertera disini adalah kontak palsu.
+                </p>
                 <div class="social-links">
-                    <a href="https://www.youtube.com/@bufatechno" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" title="YouTube">
+                    <a href="https://www.youtube.com/@bufatechno" target="_blank" rel="noopener noreferrer" class="social-link" title="YouTube">
                         <i class="fab fa-youtube"></i>
+                        <span>YouTube</span>
                     </a>
-                    <a href="https://github.com/bufatechno" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" title="GitHub">
+                    <a href="https://github.com/bufatechno" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
                         <i class="fab fa-github"></i>
+                        <span>GitHub</span>
                     </a>
-                    <a href="mailto:bufatechno@gmail.com" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" title="Email">
+                    <a href="mailto:bufatechno@gmail.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Email">
                         <i class="fas fa-envelope"></i>
+                        <span>Email</span>
                     </a>
-                    <a href="https://wa.me/085179974553" target="_blank" class="social-link holographic will-change-transform enhanced-hover smooth-transition" title="WhatsApp">
+                    <a href="https://wa.me/085179974553" target="_blank" rel="noopener noreferrer" class="social-link" title="WhatsApp">
                         <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section id="donasi" class="donasi-section section-padding">
+        <div class="container">
+            <div class="contact-content"> <h2 class="section-title">DUKUNG <span class="brand-highlight"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span></h2>
+                <p class="contact-description"> Kami berterima kasih kepada Anda yang sudah mendukung kami selama ini. Dukungan Anda sangat berarti untuk membantu kami terus berinovasi dan mengembangkan aplikasi gratis yang lebih baik di masa depan. Dukung kami melalui platforma yang tersedia dan kami tidak menerima dukungan apapun dari selain paltform yang tersedia.
+                </p>
+                <div class="social-links">
+                    <a href="https://saweria.co/bufatechno" target="_blank" rel="noopener noreferrer" class="social-link" title="Donasi via Saweria">
+                        <img src="saweria.png" alt="Saweria" class="social-icon-img">
+                        <span>Saweria</span>
+                    </a>
+                    <a href="https://teer.id/bufatechno" target="_blank" rel="noopener noreferrer" class="social-link" title="Donasi via Trakteer">
+                        <img src="trakteer.png" alt="Trakteer" class="social-icon-img">
+                        <span>Trakteer</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
                 </div>
-                <p>&copy; <span id="currentYear"></span> <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span>. Inovasi Teknologi. Hak cipta dilindungi.</p>
+                <p>&copy; <span id="currentYear"></span> <span class="bufatechno-text"><span class="bufa">BUFA</span><span class="techno">TECHNO</span></span>. Hak cipta dilindungi.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
- </body>
+    <script>
+        // script.js - Optimized and Modern JavaScript for BUFATECHNO
+
+        // Initialize when DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize components
+            initScrollProgress();
+            initNavbar();
+            initScrollIndicator();
+            initBackToTop();
+            initCurrentYear();
+            initAOS();
+            
+            // Add resize listener for responsive adjustments
+            window.addEventListener('resize', handleResize);
+            
+            // Add BUFATECHNO signature touch
+            addBufatechnoSignature();
+        });
+
+        // ===== SCROLL PROGRESS INDICATOR =====
+        function initScrollProgress() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            
+            if (!scrollProgress) return;
+            
+            window.addEventListener('scroll', function() {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollPercentage = (scrollTop / documentHeight) * 100;
+                
+                scrollProgress.style.width = scrollPercentage + '%';
+            });
+        }
+
+        // ===== NAVBAR FUNCTIONALITY =====
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            if (!navbar) return;
+            
+            // Handle scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                // Update active nav link based on scroll position
+                updateActiveNavLink();
+            });
+            
+            // Close mobile navbar when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const navbarCollapse = document.getElementById('navbarNav');
+                    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                        bsCollapse.hide();
+                    }
+                });
+            });
+            
+            // Initialize active nav link on page load
+            updateActiveNavLink();
+        }
+
+        // Update active navigation link based on scroll position
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // ===== SCROLL INDICATOR FUNCTIONALITY =====
+        function initScrollIndicator() {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            
+            if (!scrollIndicator) return;
+            
+            scrollIndicator.addEventListener('click', function() {
+                const aboutSection = document.getElementById('about');
+                if (aboutSection) {
+                    aboutSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            
+            // Hide scroll indicator when user starts scrolling
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    scrollIndicator.style.opacity = '0';
+                    scrollIndicator.style.pointerEvents = 'none';
+                } else {
+                    scrollIndicator.style.opacity = '1';
+                    scrollIndicator.style.pointerEvents = 'auto';
+                }
+            });
+        }
+
+        // ===== BACK TO TOP BUTTON =====
+        function initBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            
+            if (!backToTop) return;
+            
+            // Show/hide back to top button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+            
+            // Scroll to top when button is clicked
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // ===== CURRENT YEAR IN FOOTER =====
+        function initCurrentYear() {
+            const yearElement = document.getElementById('currentYear');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        }
+
+        // ===== AOS INITIALIZATION =====
+        function initAOS() {
+            // Check if AOS is available
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    easing: 'ease-in-out',
+                    once: true,
+                    offset: 100
+                });
+            }
+        }
+
+        // ===== BUFATECHNO SIGNATURE TOUCH =====
+        function addBufatechnoSignature() {
+            // Add subtle animation to brand elements
+            const brandElements = document.querySelectorAll('.bufa, .techno');
+            
+            brandElements.forEach((element, index) => {
+                element.style.animation = `pulse 2s infinite ${index * 0.2}s`;
+            });
+            
+            // Add custom style for pulse animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0% { opacity: 1; }
+                    50% { opacity: 0.8; }
+                    100% { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Add console message (signature BUFATECHNO)
+            console.log('%c🚀 BUFATECHNO - Solusi Aplikasi Cerdas', 'color: #c71313; font-size: 16px; font-weight: bold;');
+            console.log('%cTerima kasih telah mengunjungi website BUFATECHNO!', 'color: #e8e8e7; font-size: 14px;');
+        }
+
+        // ===== RESIZE HANDLER =====
+        function handleResize() {
+            // Update any components that need recalculation on resize
+            updateActiveNavLink();
+        }
+
+        // ===== PERFORMANCE OPTIMIZATIONS =====
+        // Debounce function for scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Throttle function for scroll events
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        // Apply throttling to scroll events for better performance
+        window.addEventListener('scroll', throttle(function() {
+            // Scroll-dependent functions that need throttling
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+            
+            const backToTop = document.getElementById('backToTop');
+            if (backToTop) {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            }
+        }, 100));
+
+        // ===== ERROR HANDLING =====
+        window.addEventListener('error', function(e) {
+            console.error('Error occurred:', e.error);
+        });
+    </script>
+</body>
 </html>
