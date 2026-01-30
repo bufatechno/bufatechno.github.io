@@ -11,7 +11,7 @@
     <meta name="description"
         content="BUFATECHNO mengembangkan aplikasi cerdas untuk solusi pendidikan dan produktivitas. Temukan aplikasi Bel Sekolah Otomatis (BESTI), Game Edukasi, dan Tools bermanfaat lainnya.">
     <meta name="keywords"
-        content="BUFATECHNO, Aplikasi Sekolah, Bel Sekolah Otomatis, BESTI, Media Pembelajaran, Software Edukasi, Download Aplikasi Gratis">
+        content="BUFATECHNO, Aplikasi Sekolah, Bel Sekolah Otomatis, BESTI, Ahlkata, Siapa Pintar, BOORacle, PyEXE, PiePyd, Media Pembelajaran, Software Edukasi, Download Aplikasi Gratis, Technology Solutions, Python Tools, Educational Games">
     <meta name="author" content="BUFATECHNO">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://bufatechno.github.io/">
@@ -640,7 +640,7 @@
             }
         }
 
-        /* --- PERUBAHAN CSS UNTUK FLOATING CARDS DIMULAI DI SINI --- */
+        /* Floating Cards */
         .floating-card {
             position: absolute;
             background: rgba(255, 255, 255, 0.03);
@@ -841,7 +841,7 @@
             }
         }
 
-        /* --- AKHIR PERUBAHAN CSS UNTUK FLOATING CARDS --- */
+
 
 
         .floating-card i {
@@ -1133,7 +1133,7 @@
             font-weight: 500;
         }
 
-        /* --- CSS 'ABOUT VISUAL' (KONSEP ORB MENGAMBANG) --- */
+        /* About Visual Orb */
         .about-visual {
             display: flex;
             justify-content: center;
@@ -1371,7 +1371,7 @@
             }
         }
 
-        /* --- AKHIR PERUBAHAN CSS 'ABOUT VISUAL' --- */
+
 
 
         /* ===== APPS SECTION ===== */
@@ -1411,7 +1411,7 @@
         }
 
 
-        /* ===== APP CARD MINIMALIST ===== */
+        /* ===== APP CARD ===== */
         .app-card {
             background: rgba(255, 255, 255, 0.03);
             border-radius: var(--border-radius-lg);
@@ -1469,9 +1469,20 @@
             color: var(--warning);
         }
 
-        /* Clear old styles */
-        .app-card .app-description,
-        .app-card .app-features,
+        /* Description Preview */
+        .app-card .app-description-preview {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            margin: 1rem 0;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .app-card .btn-app-download,
         .app-card .d-flex,
         .app-card .app-header,
@@ -2130,17 +2141,142 @@
             }
         }
     </style>
-    <!-- JSON-LD SEO Schema -->
+    <!-- Schema.org Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "BUFATECHNO",
-      "url": "https://bufatechno.github.io/",
-      "logo": "https://bufatechno.github.io/logo.png",
-      "sameAs": [
-        "https://www.youtube.com/@bufatechno",
-        "https://github.com/bufatechno"
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://bufatechno.github.io/#organization",
+          "name": "BUFATECHNO",
+          "url": "https://bufatechno.github.io/",
+          "logo": "https://bufatechno.github.io/logo.png",
+          "sameAs": [
+            "https://www.youtube.com/@bufatechno",
+            "https://github.com/bufatechno"
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "BESTI",
+          "operatingSystem": "Windows, Linux",
+          "applicationCategory": "EducationalApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IDR"
+          },
+          "description": "Sistem bel sekolah otomatis modern yang mengubah bel manual tradisional menjadi solusi digital cerdas untuk institusi pendidikan.",
+          "aggregateRating": {
+             "@type": "AggregateRating",
+             "ratingValue": "5",
+             "ratingCount": "150"
+          },
+          "author": {
+              "@id": "https://bufatechno.github.io/#organization"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Ahlkata",
+          "operatingSystem": "Windows, Linux",
+          "applicationCategory": "Productivity",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IDR"
+          },
+          "description": "Aplikasi kecerdasan buatan untuk membantu mahasiswa dan akademisi dalam memparafrase dan menerjemahkan teks untuk keperluan akademik.",
+          "aggregateRating": {
+             "@type": "AggregateRating",
+             "ratingValue": "5",
+             "ratingCount": "120"
+          },
+          "author": {
+              "@id": "https://bufatechno.github.io/#organization"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Siapa Pintar",
+          "operatingSystem": "Windows",
+          "applicationCategory": "GameApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IDR"
+          },
+          "description": "Aplikasi game kuis interaktif yang dirancang untuk membuat pembelajaran menyenangkan melalui gamifikasi edukatif.",
+          "aggregateRating": {
+             "@type": "AggregateRating",
+             "ratingValue": "3",
+             "ratingCount": "50"
+          },
+          "author": {
+              "@id": "https://bufatechno.github.io/#organization"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "BOORacle",
+          "operatingSystem": "Android",
+          "applicationCategory": "EntertainmentApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IDR"
+          },
+          "description": "Aplikasi Android untuk meramal nasib atau takdir berbasis AI sesuai dengan data diri pengguna.",
+          "aggregateRating": {
+             "@type": "AggregateRating",
+             "ratingValue": "3",
+             "ratingCount": "40"
+          },
+          "author": {
+              "@id": "https://bufatechno.github.io/#organization"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "PyEXE",
+          "operatingSystem": "Windows",
+          "applicationCategory": "DevelopmentTool",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IDR"
+          },
+          "description": "Konverter Python ke EXE yang powerful mengubah skrip Python menjadi file executable tanpa perlu install Python.",
+          "aggregateRating": {
+             "@type": "AggregateRating",
+             "ratingValue": "4.5",
+             "ratingCount": "85"
+          },
+          "author": {
+              "@id": "https://bufatechno.github.io/#organization"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "PiePyd",
+          "operatingSystem": "Windows",
+          "applicationCategory": "SecurityApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IDR"
+          },
+          "description": "Tool enkripsi proyek Python tingkat lanjut untuk melindungi kode sumber dari akses tidak sah dan reverse engineering.",
+          "aggregateRating": {
+             "@type": "AggregateRating",
+             "ratingValue": "4.5",
+             "ratingCount": "60"
+          },
+          "author": {
+              "@id": "https://bufatechno.github.io/#organization"
+          }
+        }
       ]
     }
     </script>
@@ -2323,6 +2459,8 @@
                 <div class="app-card" onclick="openAppModal('besti')">
                     <img src="image/app/besti.png" alt="BESTI" class="app-icon" loading="lazy">
                     <h3 class="app-title">BESTI</h3>
+                    <p class="app-description-preview">Sistem bel sekolah otomatis modern yang mengubah bel manual
+                        tradisional menjadi solusi digital cerdas.</p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -2336,6 +2474,8 @@
                 <div class="app-card" onclick="openAppModal('ahlkata')">
                     <img src="image/app/ahlkata.png" alt="Ahlkata" class="app-icon" loading="lazy">
                     <h3 class="app-title">Ahlkata</h3>
+                    <p class="app-description-preview">Aplikasi AI untuk membantu mahasiswa dan akademisi dalam
+                        memparafrase dan menerjemahkan teks akademik.</p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -2349,6 +2489,8 @@
                 <div class="app-card" onclick="openAppModal('siapapintar')">
                     <img src="image/app/siapa-pintar.png" alt="Siapa Pintar" class="app-icon" loading="lazy">
                     <h3 class="app-title">Siapa Pintar</h3>
+                    <p class="app-description-preview">Game kuis interaktif yang dirancang untuk membuat pembelajaran
+                        menyenangkan melalui gamifikasi edukatif.</p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -2362,6 +2504,8 @@
                 <div class="app-card" onclick="openAppModal('booracle')">
                     <img src="image/app/booracle.png" alt="BOORacle" class="app-icon" loading="lazy">
                     <h3 class="app-title">BOORacle</h3>
+                    <p class="app-description-preview">Aplikasi Android untuk meramal nasib atau takdir berbasis AI
+                        sesuai dengan data diri pengguna.</p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -2375,6 +2519,8 @@
                 <div class="app-card" onclick="openAppModal('pyexe')">
                     <img src="image/app/pyexe.png" alt="PyEXE" class="app-icon" loading="lazy">
                     <h3 class="app-title">PyEXE</h3>
+                    <p class="app-description-preview">Konverter Python ke EXE yang powerful, mengubah skrip menjadi
+                        executable tanpa instalasi Python.</p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -2388,6 +2534,8 @@
                 <div class="app-card" onclick="openAppModal('piepyd')">
                     <img src="image/app/piepyd.png" alt="PiePyd" class="app-icon" loading="lazy">
                     <h3 class="app-title">PiePyd</h3>
+                    <p class="app-description-preview">Tool enkripsi proyek Python tingkat lanjut untuk melindungi kode
+                        sumber dari akses tidak sah.</p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -2400,7 +2548,7 @@
 
             <!-- MODAL CONTAINER (Akan diisi via JavaScript) -->
             <div id="appModalOverlay" class="app-modal-overlay">
-                <!-- Content injected here via JS -->
+                <!-- Modal Content -->
             </div>
         </div>
     </section>
@@ -2492,7 +2640,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // script.js - Optimized and Modern JavaScript for BUFATECHNO
+        // Main Application Scripts
 
         // Initialize when DOM is fully loaded
         document.addEventListener('DOMContentLoaded', function () {
@@ -2578,9 +2726,7 @@
                 }
             });
 
-            // FORCE BOTTOM SECTION ACTIVE
-            // If user has scrolled to the very bottom, force the last section to be active.
-            // This is critical for short final sections (like Donasi) or when footer overlaps.
+            // Force bottom section active on scroll end
             const bottomThreshold = document.documentElement.scrollHeight - window.innerHeight - 50;
             if (window.scrollY >= bottomThreshold) {
                 if (sections.length > 0) {
@@ -2655,7 +2801,6 @@
 
         // ===== AOS INITIALIZATION =====
         function initAOS() {
-            // Check if AOS is available
             if (typeof AOS !== 'undefined') {
                 AOS.init({
                     duration: 1000,
@@ -2666,7 +2811,7 @@
             }
         }
 
-        // ===== BUFATECHNO SIGNATURE TOUCH =====
+        // ===== BRAND SIGNATURE =====
         function addBufatechnoSignature() {
             // Add subtle animation to brand elements
             const brandElements = document.querySelectorAll('.bufa, .techno');
