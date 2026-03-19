@@ -1444,11 +1444,7 @@
             margin-right: 0;
             margin-bottom: 1.5rem;
             transition: var(--transition);
-            border-radius: var(--border-radius);
-            object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 0.5rem;
-            background: rgba(255, 255, 255, 0.05);
+            object-fit: contain;
         }
 
         .app-card:hover .app-icon {
@@ -1492,22 +1488,29 @@
 
 
         /* ===== MODAL POPUP STYLES ===== */
+        /* ===== APP MODAL ===== */
         .app-modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
+            inset: 0;
+            background: rgba(0, 0, 0, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 10000;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
+            /* Mobile: sheet from bottom */
             opacity: 0;
             visibility: hidden;
-            transition: var(--transition);
-            padding: 1rem;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 0;
+        }
+
+        @media (min-width: 600px) {
+            .app-modal-overlay {
+                align-items: center;
+                padding: 1.5rem;
+            }
         }
 
         .app-modal-overlay.active {
@@ -1516,173 +1519,776 @@
         }
 
         .app-modal-content {
-            background: #1a1a1a;
-            /* Fallback */
-            background: linear-gradient(145deg, rgba(20, 20, 20, 0.95), rgba(30, 30, 30, 0.95));
+            background: #141414;
             width: 100%;
-            max-width: 600px;
-            border-radius: var(--border-radius-xl);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2.5rem;
+            max-width: 580px;
+            border-radius: 28px 28px 0 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: none;
             position: relative;
-            transform: scale(0.9);
+            transform: translateY(60px);
             opacity: 0;
-            transition: var(--transition-slow);
-            box-shadow: var(--shadow-xl);
-            max-height: 90vh;
-            overflow-y: auto;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+            box-shadow: 0 -10px 60px rgba(0, 0, 0, 0.6);
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        @media (min-width: 600px) {
+            .app-modal-content {
+                border-radius: 28px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                max-height: 88vh;
+                transform: translateY(20px) scale(0.97);
+            }
         }
 
         .app-modal-overlay.active .app-modal-content {
-            transform: scale(1);
+            transform: translateY(0) scale(1);
             opacity: 1;
+        }
+
+        /* Drag handle for mobile sheet */
+        .modal-drag-handle {
+            width: 40px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 2px;
+            margin: 0.85rem auto 0;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 600px) {
+            .modal-drag-handle {
+                display: none;
+            }
+        }
+
+        /* Sticky modal header */
+        .modal-header-section {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 1.5rem 1.5rem 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        @media (min-width: 600px) {
+            .modal-header-section {
+                padding: 2rem 2rem 1.5rem;
+                gap: 1.5rem;
+            }
+        }
+
+        .modal-app-icon {
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        @media (min-width: 600px) {
+            .modal-app-icon {
+                width: 84px;
+                height: 84px;
+            }
+        }
+
+        .modal-header-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .modal-app-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin: 0 0 0.35rem;
+            color: white;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 600px) {
+            .modal-app-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        .modal-app-rating {
+            color: var(--warning);
+            font-size: 1rem;
+            display: flex;
+            gap: 2px;
         }
 
         .modal-close-btn {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--light);
-            width: 40px;
-            height: 40px;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-light);
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: var(--transition);
+            font-size: 0.9rem;
             z-index: 10;
         }
 
         .modal-close-btn:hover {
-            background: var(--primary);
+            background: rgba(199, 19, 19, 0.2);
+            border-color: var(--primary);
+            color: white;
             transform: rotate(90deg);
         }
 
-        .modal-header-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 2rem;
-        }
-
-        .modal-app-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-app-title {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-app-rating {
-            color: var(--warning);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
+        /* Scrollable body */
         .modal-body-section {
-            margin-bottom: 2rem;
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            overscroll-behavior: contain;
+        }
+
+        @media (min-width: 600px) {
+            .modal-body-section {
+                padding: 2rem;
+            }
         }
 
         .modal-description {
             color: var(--gray-light);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
+            margin-bottom: 1.75rem;
+            line-height: 1.75;
+            font-size: 0.95rem;
         }
 
         .modal-features-title {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--light);
-            border-left: 3px solid var(--primary);
-            padding-left: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 0.85rem;
         }
 
         .modal-features-list {
             list-style: none;
             padding: 0;
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 400px) {
+            .modal-features-list {
+                grid-template-columns: 1fr;
+            }
         }
 
         .modal-features-list li {
             position: relative;
-            padding-left: 2rem;
-            color: var(--gray);
+            padding: 0.65rem 0.85rem 0.65rem 2.6rem;
+            color: var(--light);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.88rem;
+            transition: var(--transition);
+        }
+
+        .modal-features-list li:hover {
+            background: rgba(199, 19, 19, 0.06);
+            border-color: rgba(199, 19, 19, 0.2);
+        }
+
+        .modal-features-list li i.feature-icon,
+        .modal-features-list li::before {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 0.95rem;
+            width: 1.2rem;
+            text-align: center;
         }
 
         .modal-features-list li::before {
             content: '\f00c';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: var(--primary);
         }
 
+        .modal-features-list li.has-custom-icon::before {
+            content: none;
+        }
+
+        /* Download bar — sticky bottom */
         .modal-download-section {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 2rem;
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            flex-shrink: 0;
+            text-align: center;
         }
 
-        /* Re-add button styles for modal */
+        @media (min-width: 600px) {
+            .modal-download-section {
+                padding: 1.5rem 2rem;
+            }
+        }
+
+        .modal-download-label {
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-download-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.85rem;
+            margin-bottom: 0.2rem;
+        }
+
         .btn-app-download {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 0.65rem;
             background: var(--gradient-primary);
             color: white;
-            padding: 1rem 1.5rem;
+            padding: 0.85rem 1.6rem;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            box-shadow: var(--shadow-md);
             text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .btn-app-download:hover {
             transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 8px 25px rgba(199, 19, 19, 0.3);
             color: white;
         }
 
-        /* Responsive Modal */
-        @media (max-width: 767px) {
-            .app-modal-content {
-                padding: 1.5rem;
-                width: 95%;
+        .modal-pricing-separator {
+            width: 80%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            margin: 0.5rem auto;
+        }
+
+        .modal-pricing-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            align-self: center;
+            height: 46px;
+            padding: 0 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1.5px solid rgba(199, 19, 19, 0.5);
+            background: rgba(199, 19, 19, 0.07);
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-pricing-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(199, 19, 19, 0.3);
+        }
+
+        .modal-pricing-btn i {
+            font-size: 0.85rem;
+        }
+
+        /* ===== PRICING DIALOG ===== */
+        /* ===== PRICING DIALOG (BUFATECHNO THEME) ===== */
+        .pricing-dialog-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 10100;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        @media (min-width: 600px) {
+            .pricing-dialog-overlay {
+                align-items: center;
+                padding: 1.25rem;
+            }
+        }
+
+        .pricing-dialog-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .pricing-dialog {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: none;
+            border-radius: 24px 24px 0 0;
+            width: 100%;
+            max-width: 440px;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.8);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @media (min-width: 600px) {
+            .pricing-dialog {
+                border-radius: 24px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                transform: translateY(12px) scale(0.985);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .pricing-dialog {
+                max-height: 95vh;
+            }
+        }
+
+        .pricing-dialog-overlay.active .pricing-dialog {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Header */
+        .pricing-dialog-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem 1rem;
+            flex-shrink: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        @media (min-width: 600px) {
+            .pricing-dialog-header {
+                padding: 1.5rem 1.75rem 1.1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .pricing-dialog-header {
+                padding: 1.1rem 1.25rem 0.9rem;
             }
 
-            .modal-app-title {
-                font-size: 1.75rem;
+            .pricing-dialog-title {
+                font-size: 1rem;
+            }
+        }
+
+        .pricing-dialog-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 0 0.18rem;
+            line-height: 1.2;
+        }
+
+        .pricing-dialog-subtitle {
+            font-size: 0.76rem;
+            color: var(--gray);
+            margin: 0;
+        }
+
+        .pricing-dialog-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--gray-light);
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .pricing-dialog-close:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* Freeware note */
+        .pricing-free-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            padding: 0.85rem 1.5rem;
+            background: rgba(45, 212, 191, 0.05);
+            border-bottom: 1px solid rgba(45, 212, 191, 0.1);
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 600px) {
+            .pricing-free-note {
+                padding: 0.85rem 1.75rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .pricing-free-note {
+                padding: 0.65rem 1rem;
+                gap: 0.5rem;
             }
 
-            .modal-app-icon {
-                width: 80px;
-                height: 80px;
+            .pricing-free-note span {
+                font-size: 0.68rem;
             }
+        }
+
+        .pricing-free-note i {
+            color: var(--success);
+            font-size: 0.85rem;
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+
+        .pricing-free-note span {
+            font-size: 0.74rem;
+            color: var(--success);
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .pricing-free-note strong {
+            font-weight: 700;
+        }
+
+        /* Scrollable plains */
+        .pricing-plans-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.25rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            overscroll-behavior: contain;
+        }
+
+        @media (min-width: 600px) {
+            .pricing-plans-list {
+                padding: 1.5rem 1.75rem;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .pricing-plans-list {
+                padding: 0.75rem 0.85rem 2rem;
+                gap: 0.85rem;
+            }
+        }
+
+        /* Plan card */
+        .pricing-plan-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 1.25rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        @media (max-width: 440px) {
+            .pricing-plan-card {
+                padding: 1.15rem 1rem 1.4rem;
+            }
+        }
+
+        .pricing-plan-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-plan-card.plan-recommended {
+            border: 1px solid rgba(199, 19, 19, 0.25);
+            border-top: 4px solid var(--primary);
+            background: rgba(199, 19, 19, 0.04);
+        }
+
+        .pricing-plan-card.plan-recommended:hover {
+            border-color: rgba(199, 19, 19, 0.5);
+        }
+
+        /* Best Value card specifically uses Warning/Gold */
+        .pricing-plan-card.plan-best {
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            border-top: 4px solid var(--warning);
+            background: rgba(251, 191, 36, 0.04);
+        }
+
+        .pricing-plan-card.plan-best:hover {
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+
+        /* Card top row */
+        .plan-card-top {
+            display: flex;
+            align-items: center;
+            gap: 1.15rem;
+        }
+
+        @media (max-width: 440px) {
+            .plan-card-top {
+                gap: 0.85rem;
+            }
+        }
+
+        .plan-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 440px) {
+            .plan-icon-wrap {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+                border-radius: 12px;
+            }
+        }
+
+        .plan-icon-wrap.clr-default {
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--gray-light);
+        }
+
+        .plan-icon-wrap.clr-primary {
+            background: rgba(199, 19, 19, 0.15);
+            color: var(--primary);
+        }
+
+        .plan-icon-wrap.clr-warning {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--warning);
+        }
+
+        .plan-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .plan-badge {
+            display: inline-block;
+            font-size: 0.52rem;
+            font-weight: 800;
+            padding: 0.15rem 0.5rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            margin-bottom: 0.25rem;
+        }
+
+        .plan-badge.clr-primary {
+            background: rgba(199, 19, 19, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(199, 19, 19, 0.3);
+        }
+
+        .plan-badge.clr-warning {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--warning);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .plan-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        @media (max-width: 440px) {
+            .plan-name {
+                font-size: 0.9rem;
+            }
+        }
+
+        .plan-short {
+            font-size: 0.74rem;
+            color: var(--gray-light);
+            margin: 0.15rem 0 0;
+            opacity: 0.7;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 440px) {
+            .plan-short {
+                font-size: 0.7rem;
+            }
+        }
+
+        .plan-price-col {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .plan-price-unit {
+            display: block;
+            font-size: 0.62rem;
+            color: var(--gray);
+            margin-bottom: 0.12rem;
+            opacity: 0.8;
+        }
+
+        .plan-price {
+            display: block;
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 440px) {
+            .plan-price {
+                font-size: 1.15rem;
+            }
+        }
+
+        .plan-price.clr-white {
+            color: white;
+        }
+
+        .plan-price.clr-primary {
+            color: var(--primary);
+        }
+
+        .plan-price.clr-warning {
+            color: var(--warning);
+        }
+
+        .plan-price-period {
+            display: block;
+            font-size: 0.62rem;
+            color: var(--gray);
+            margin-top: 0.18rem;
+        }
+
+        @media (max-width: 440px) {
+            .plan-price-period {
+                font-size: 0.58rem;
+            }
+        }
+
+        /* Tags array */
+        .plan-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.45rem;
+            margin-top: 1.15rem;
+            padding-top: 0.95rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 440px) {
+            .plan-tags {
+                margin-top: 0.95rem;
+                padding-top: 0.85rem;
+            }
+        }
+
+        .plan-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            line-height: 1;
+            transition: var(--transition);
+        }
+
+        @media (max-width: 440px) {
+            .plan-tag {
+                font-size: 0.68rem;
+                padding: 0.3rem 0.65rem;
+            }
+        }
+
+        .plan-tag i {
+            font-size: 0.6rem;
+        }
+
+        @media (max-width: 400px) {
+            .plan-tag i {
+                font-size: 0.52rem;
+            }
+        }
+
+        .plan-tag.tag-ok {
+            background: rgba(45, 212, 191, 0.08);
+            color: var(--success);
+            border: 1px solid rgba(45, 212, 191, 0.15);
+        }
+
+        .plan-tag.tag-no {
+            background: rgba(255, 255, 255, 0.03);
+            color: rgba(140, 140, 161, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-decoration: line-through;
+        }
+
+        .plan-tag.tag-best {
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
         @media (max-width: 767px) {
@@ -2477,8 +3083,8 @@
                 <div class="app-card" onclick="openAppModal('ahlkata')">
                     <img src="image/app/ahlkata.png" alt="Ahlkata" class="app-icon" loading="lazy">
                     <h3 class="app-title">Ahlkata</h3>
-                    <p class="app-description-preview">Aplikasi AI untuk membantu mahasiswa dan akademisi dalam
-                        memparafrase dan menerjemahkan teks akademik.</p>
+                    <p class="app-description-preview">Solusi cerdas berbasis AI untuk Parafrase, Humanizer, Terjemahan,
+                        Deteksi AI, Plagiat, dan Penulisan Karya Ilmiah.</p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -2900,14 +3506,17 @@
             'besti': {
                 title: 'BESTI',
                 icon: 'image/app/besti.png',
+                item_id: 'besti',
                 rating: 5,
-                description: 'Sistem bel sekolah otomatis modern yang mengubah bel manual tradisional menjadi solusi digital cerdas untuk institusi pendidikan. Memastikan ketepatan waktu dalam setiap kegiatan belajar mengajar.',
+                description: 'Aplikasi bel sekolah otomatis yang memberikan kemudahan dalam manajemen jadwal kegiatan sekolah secara presisi. Dilengkapi ragam fitur unggulan untuk personalisasi dan fungsionalitas yang lebih optimal.',
+                pricing_subtitle: 'Akses penuh ke seluruh fitur BESTI',
+                pricing_note: 'BESTI adalah Freeware. Lisensi premium diperlukan untuk membuka seluruh fitur ekslusif.',
                 features: [
-                    'Sistem penjadwalan otomatis yang fleksibel',
-                    'Manajemen jadwal bel yang lengkap',
-                    'Nada bel yang keren dan dapat disesuaikan',
-                    'Antarmuka yang mudah digunakan oleh operator sekolah',
-                    'Dapat berjalan otomatis saat komputer menyala (Startup)'
+                    { text: 'Bel Otomatis', icon: 'fas fa-bell' },
+                    { text: 'Template Jadwal', icon: 'fas fa-calendar-days' },
+                    { text: 'Auto Startup', icon: 'fas fa-power-off' },
+                    { text: 'Mode Layar Kunci', icon: 'fas fa-lock' },
+                    { text: 'Suara Kustom', icon: 'fas fa-music' }
                 ],
                 downloads: [
                     {
@@ -2922,6 +3531,27 @@
                         color: '#0078D7',
                         link: 'https://sourceforge.net/projects/bufatechno-aplikasi/files/Windows/BESTI_x64_Installer.exe/download'
                     }
+                ],
+                pricing: [
+                    {
+                        name: 'Lisensi Perangkat',
+                        badge: 'BEST VALUE',
+                        description: 'Akses semua fitur ekslusif selamanya.',
+                        full_description: 'Lisensi seumur hidup (lifetime) untuk 1 perangkat. Membuka akses ke semua fitur ekslusif untuk menunjang kedisiplinan sekolah.',
+                        price: 'Rp 275.000',
+                        price_unit: 'lifetime per perangkat',
+                        icon: 'fas fa-shield-halved',
+                        class: 'brand-warning',
+                        badgeClass: 'badge-hemat',
+                        cardClass: 'plan-best',
+                        features_access: [
+                            { name: 'Bel Otomatis', ok: true, exclusive: false },
+                            { name: 'Template Jadwal', ok: true, exclusive: true },
+                            { name: 'Auto Startup', ok: true, exclusive: true },
+                            { name: 'Mode Layar Kunci', ok: true, exclusive: true },
+                            { name: 'Suara Kustom', ok: true, exclusive: true }
+                        ]
+                    }
                 ]
             },
             'siapapintar': {
@@ -2930,10 +3560,10 @@
                 rating: 3, // Rating updated to 3
                 description: 'Aplikasi game kuis interaktif yang dirancang untuk membuat pembelajaran menyenangkan dan menarik melalui gamifikasi edukatif. Cocok untuk evaluasi pembelajaran yang tidak membosankan.',
                 features: [
-                    'Pertanyaan dan jawaban yang dapat disesuaikan sepenuhnya',
-                    'Tingkat kesulitan adaptif',
-                    'Sistem penilaian real-time yang seru',
-                    'Memiliki panel siswa dan panel guru terpisah'
+                    { text: 'Kustomisasi Soal', icon: 'fas fa-edit' },
+                    { text: 'Penilaian Realtime', icon: 'fas fa-clock' },
+                    { text: 'Panel Guru', icon: 'fas fa-chalkboard-user' },
+                    { text: 'Panel Siswa', icon: 'fas fa-user-graduate' }
                 ],
                 downloads: [
                     {
@@ -2950,10 +3580,11 @@
                 rating: 4.5,
                 description: 'Konverter Python ke EXE yang powerful yang mengubah skrip Python Anda menjadi file executable yang dapat dijalankan dengan mudah tanpa perlu menginstall Python di komputer target.',
                 features: [
-                    'Konversi satu klik yang sangat cepat',
-                    'Tidak perlu pengetahuan coding tambahan',
-                    'Menghasilkan file executable standalone',
-                    'Dukungan berbagai versi Python dan library'
+                    { text: 'Konverter Py to EXE', icon: 'fab fa-python' },
+                    { text: 'Output Single EXE', icon: 'fas fa-file-export' },
+                    { text: 'Output One Folder', icon: 'fas fa-folder-open' },
+                    { text: 'Include Library', icon: 'fas fa-boxes-stacked' },
+                    { text: 'Profil Build', icon: 'fas fa-gear' }
                 ],
                 downloads: [
                     {
@@ -2970,10 +3601,9 @@
                 rating: 4.5,
                 description: 'Tool enkripsi proyek Python tingkat lanjut yang dirancang untuk melindungi kode sumber Anda dari akses tidak sah dan rekayasa balik (reverse engineering).',
                 features: [
-                    'Enkripsi kelas militer untuk keamanan maksimal',
-                    'Perlindungan kode sumber yang handal',
-                    'Proses enkripsi cepat dan efisien',
-                    'Antarmuka pengguna intuitif dan modern'
+                    { text: 'Konverter Py to PYD', icon: 'fab fa-python' },
+                    { text: 'Include Library', icon: 'fas fa-boxes-stacked' },
+                    { text: 'Icon Include', icon: 'fas fa-icons' }
                 ],
                 downloads: [
                     {
@@ -2990,10 +3620,10 @@
                 rating: 3,
                 description: 'Aplikasi Android untuk meramal nasib atau takdir berbasis AI sesuai dengan data diri pengguna, memberikan wawasan pribadi yang canggih dan personal sebagai hiburan cerdas.',
                 features: [
-                    'Peramalan berbasis Artificial Intelligence',
-                    'Personalisasi hasil sesuai data diri pengguna',
-                    'Antarmuka pengguna intuitif di perangkat mobile',
-                    'Analisis mendalam dan unik tentang takdir'
+                    { text: 'Peramal Berbasis AI', icon: 'fas fa-brain' },
+                    { text: 'Hitung Weton', icon: 'fas fa-calendar-day' },
+                    { text: 'Hitung Zodiak', icon: 'fas fa-star' },
+                    { text: 'Ramalan Berdasar Waktu', icon: 'fas fa-clock' }
                 ],
                 downloads: [
                     {
@@ -3007,13 +3637,79 @@
             'ahlkata': {
                 title: 'Ahlkata',
                 icon: 'image/app/ahlkata.png',
+                item_id: 'ahlkata',
                 rating: 5,
-                description: 'Aplikasi kecerdasan buatan yang dirancang khusus untuk membantu mahasiswa dan akademisi dalam memparafrase, menerjemahkan, dan mengolah teks untuk keperluan akademik dan perkuliahan.',
+                description: 'Solusi cerdas berbasis kecerdasan buatan (AI) untuk kebutuhan akademik lengkap, mulai dari Parafrase, Humanizer, Terjemahan, hingga Deteksi AI dan Plagiat untuk memastikan integritas karya ilmiah serta bantuan penulisan yang efisien.',
+                pricing_subtitle: 'Akses seluruh model Ahlkata AI dan fitur ekslusif',
+                pricing_note: 'Ahlkata adalah Freeware. Tanpa lisensi, Anda tetap bisa menggunakan semua fitur standar dengan API Key sendiri.',
                 features: [
-                    'Parafrase kalimat berbasis AI yang akurat',
-                    'Terjemahan kontekstual berbasis AI',
-                    'Kustomisasi API untuk kebutuhan spesifik',
-                    'Dioptimalkan untuk penulisan akademik/jurnal'
+                    { text: 'Parafrase', icon: 'fas fa-wand-magic-sparkles' },
+                    { text: 'Humanizer', icon: 'fas fa-face-smile-beam' },
+                    { text: 'Terjemahan', icon: 'fas fa-language' },
+                    { text: 'Deteksi AI', icon: 'fas fa-magnifying-glass-chart' },
+                    { text: 'Deteksi Plagiat', icon: 'fas fa-file-circle-check' },
+                    { text: 'Penulisan', icon: 'fas fa-file-pen' }
+                ],
+                pricing: [
+                    {
+                        name: 'Paket Harian',
+                        badge: '',
+                        description: 'Akses Ahlkata AI selama 1 hari.',
+                        full_description: 'Harga per hari per perangkat, dapat dipesan untuk 1, 2 hari atau lebih untuk keperluan jangka pendek.',
+                        price: 'Rp 10.000',
+                        price_unit: 'per hari per perangkat',
+                        icon: 'fas fa-bolt',
+                        class: '',
+                        cardClass: '',
+                        features_access: [
+                            { name: 'Parafrase', ok: true, exclusive: false },
+                            { name: 'Humanizer', ok: true, exclusive: false },
+                            { name: 'Terjemahan', ok: true, exclusive: false },
+                            { name: 'Deteksi AI', ok: true, exclusive: false },
+                            { name: 'Deteksi Plagiat', ok: true, exclusive: false },
+                            { name: 'Penulisan (Ekslusif)', ok: false, exclusive: true }
+                        ]
+                    },
+                    {
+                        name: 'Paket Bulanan',
+                        badge: 'REKOMENDASI',
+                        description: 'Akses Ahlkata AI selama 1 bulan.',
+                        full_description: 'Ideal untuk mahasiswa dan profesional. Harga per bulan per perangkat, dapat dipesan untuk 1, 2, 3 bulan atau lebih.',
+                        price: 'Rp 150.000',
+                        price_unit: 'per bulan per perangkat',
+                        icon: 'fas fa-calendar-alt',
+                        class: 'brand-primary',
+                        badgeClass: 'badge-rekomendasi',
+                        cardClass: 'plan-recommended',
+                        features_access: [
+                            { name: 'Parafrase', ok: true, exclusive: false },
+                            { name: 'Humanizer', ok: true, exclusive: false },
+                            { name: 'Terjemahan', ok: true, exclusive: false },
+                            { name: 'Deteksi AI', ok: true, exclusive: false },
+                            { name: 'Deteksi Plagiat', ok: true, exclusive: false },
+                            { name: 'Penulisan (Fitur Ekslusif)', ok: false, exclusive: true }
+                        ]
+                    },
+                    {
+                        name: 'Paket Tahunan',
+                        badge: 'HEMAT 75%',
+                        description: 'Akses Ahlkata AI + semua fitur ekslusif.',
+                        full_description: 'Investasi terbaik. Hemat hingga 75% dan unlock semua fitur ekslusif. Harga per tahun per perangkat, dapat dipesan untuk 1, 2 tahun atau lebih.',
+                        price: 'Rp 900.000',
+                        price_unit: 'per tahun per perangkat',
+                        icon: 'fas fa-star',
+                        class: 'brand-warning',
+                        badgeClass: 'badge-hemat',
+                        cardClass: 'plan-best',
+                        features_access: [
+                            { name: 'Parafrase', ok: true, exclusive: false },
+                            { name: 'Humanizer', ok: true, exclusive: false },
+                            { name: 'Terjemahan', ok: true, exclusive: false },
+                            { name: 'Deteksi AI', ok: true, exclusive: false },
+                            { name: 'Deteksi Plagiat', ok: true, exclusive: false },
+                            { name: 'Penulisan (Fitur Ekslusif)', ok: true, exclusive: true }
+                        ]
+                    }
                 ],
                 downloads: [
                     {
@@ -3056,43 +3752,61 @@
                 }
 
                 // Generate Features HTML
-                const featuresHtml = data.features.map(feature => `<li>${feature}</li>`).join('');
+                const featuresHtml = data.features.map(feature => {
+                    if (typeof feature === 'string') {
+                        return `<li>${feature}</li>`;
+                    } else {
+                        return `<li class="has-custom-icon"><i class="${feature.icon} feature-icon"></i>${feature.text}</li>`;
+                    }
+                }).join('');
 
                 // Generate Downloads HTML
                 const downloadsHtml = data.downloads.map(dl => `
-                    <a href="${dl.link}" target="_blank" rel="noopener noreferrer" class="btn-app-download" style="min-width: 140px;">
-                        <i class="${dl.icon}" style="font-size: 1.2rem; color: ${dl.color};"></i>
+                    <a href="${dl.link}" target="_blank" rel="noopener noreferrer" class="btn-app-download">
+                        <i class="${dl.icon}" style="font-size: 1.1rem; color: ${dl.color};"></i>
                         <span>${dl.platform}</span>
                     </a>
                 `).join('');
 
+                // Pricing button at the top
+                const pricingBtnHtml = (data.pricing && data.pricing.length > 0)
+                    ? `<button class="modal-pricing-btn" onclick="openPricingDialog('${appId}')">
+                           <i class="fas fa-crown"></i>
+                           <span>Harga Lisensi Premium</span>
+                       </button>
+                       <div class="modal-pricing-separator"></div>`
+                    : '';
+
                 // Populate Modal Content
                 modalOverlay.innerHTML = `
                     <div class="app-modal-content">
-                        <button class="modal-close-btn" onclick="closeAppModal()">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        
+                        <div class="modal-drag-handle"></div>
+
                         <div class="modal-header-section">
                             <img src="${data.icon}" alt="${data.title}" class="modal-app-icon">
-                            <h2 class="modal-app-title">${data.title}</h2>
-                            <div class="modal-app-rating">
-                                ${starsHtml}
+                            <div class="modal-header-info">
+                                <h2 class="modal-app-title">${data.title}</h2>
+                                <div class="modal-app-rating">${starsHtml}</div>
                             </div>
+                            <button class="modal-close-btn" onclick="closeAppModal()" aria-label="Tutup">
+                                <i class="fas fa-times"></i>
+                            </button>
                         </div>
-                        
+
                         <div class="modal-body-section">
                             <p class="modal-description">${data.description}</p>
-                            
-                            <h4 class="modal-features-title">Fitur Unggulan</h4>
+                            <p class="modal-features-title">Fitur Unggulan</p>
                             <ul class="modal-features-list">
                                 ${featuresHtml}
                             </ul>
                         </div>
-                        
+
                         <div class="modal-download-section">
-                            <h4 class="modal-features-title" style="width: 100%; margin-bottom: 0; text-align: left;">Download</h4>
-                            ${downloadsHtml}
+                            ${pricingBtnHtml}
+                            <span class="modal-download-label">Link Download Tersedia</span>
+                            <div class="modal-download-links">
+                                ${downloadsHtml}
+                            </div>
                         </div>
                     </div>
                 `;
@@ -3122,9 +3836,110 @@
             // Close on Escape key
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') {
+                    closePricingDialog();
                     closeAppModal();
                 }
             });
+
+            // ===== PRICING DIALOG LOGIC =====
+            window.openPricingDialog = function (appId) {
+                const data = appData[appId];
+                if (!data || !data.pricing) return;
+
+                const plansHtml = data.pricing.map(plan => {
+                    const iconClr = plan.class === 'brand-primary' ? 'clr-primary'
+                        : plan.class === 'brand-warning' ? 'clr-warning'
+                            : 'clr-default';
+                    const priceClr = plan.class === 'brand-primary' ? 'clr-primary'
+                        : plan.class === 'brand-warning' ? 'clr-warning'
+                            : 'clr-white';
+                    const badgeHtml = plan.badge
+                        ? `<span class="plan-badge ${iconClr}">${plan.badge}</span>`
+                        : '';
+
+                    // Simplified feature tags grouping
+                    const hasStandard = (plan.features_access || []).some(f => !f.exclusive && f.ok);
+                    const hasExclusive = (plan.features_access || []).some(f => f.exclusive);
+                    const exclusiveOk = (plan.features_access || []).some(f => f.exclusive && f.ok);
+
+                    const tagsHtml = `<div class="plan-tags">
+                        ${hasStandard ? `<span class="plan-tag tag-ok"><i class="fas fa-check"></i>Fitur Standar</span>` : ''}
+                        ${hasExclusive
+                            ? `<span class="plan-tag ${exclusiveOk ? 'tag-best' : 'tag-no'}">
+                                 <i class="fas ${exclusiveOk ? 'fa-star' : 'fa-times'}"></i>
+                                 Fitur Eksklusif
+                               </span>`
+                            : ''
+                        }
+                    </div>`;
+
+                    const cardClass = plan.cardClass || '';
+
+                    return `
+                        <div class="pricing-plan-card ${cardClass}">
+                            <div class="plan-card-top">
+                                <div class="plan-icon-wrap ${iconClr}">
+                                    <i class="${plan.icon}"></i>
+                                </div>
+                                <div class="plan-info">
+                                    ${badgeHtml}
+                                    <p class="plan-name">${plan.name}</p>
+                                    <p class="plan-short">${plan.description}</p>
+                                </div>
+                                <div class="plan-price-col">
+                                    <span class="plan-price-unit">Mulai dari</span>
+                                    <span class="plan-price ${priceClr}">${plan.price}</span>
+                                    <span class="plan-price-period">${plan.price_unit}</span>
+                                </div>
+                            </div>
+                            ${tagsHtml}
+                        </div>
+                    `;
+                }).join('');
+
+                let overlay = document.getElementById('pricingDialogOverlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.id = 'pricingDialogOverlay';
+                    overlay.className = 'pricing-dialog-overlay';
+                    document.body.appendChild(overlay);
+                }
+
+                overlay.innerHTML = `
+                    <div class="pricing-dialog" role="dialog" aria-modal="true">
+                        <div class="pricing-dialog-header">
+                            <div>
+                                <h3 class="pricing-dialog-title">Paket Lisensi Premium</h3>
+                                <p class="pricing-dialog-subtitle">${data.pricing_subtitle || 'Akses fitur eksklusif sekarang'}</p>
+                            </div>
+                            <button class="pricing-dialog-close" onclick="closePricingDialog()" aria-label="Tutup">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="pricing-free-note">
+                            <i class="fas fa-circle-info"></i>
+                            <span>${data.pricing_note || 'Akses fitur premium untuk pengalaman terbaik.'}</span>
+                        </div>
+                        <div class="pricing-plans-list">
+                            ${plansHtml}
+                        </div>
+                    </div>
+                `;
+
+                overlay.onclick = function (e) {
+                    if (e.target === overlay) closePricingDialog();
+                };
+
+                requestAnimationFrame(() => { overlay.classList.add('active'); });
+            };
+
+            window.closePricingDialog = function () {
+                const overlay = document.getElementById('pricingDialogOverlay');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                    setTimeout(() => { overlay.innerHTML = ''; }, 350);
+                }
+            };
         }
 
         // ===== ERROR HANDLING =====
