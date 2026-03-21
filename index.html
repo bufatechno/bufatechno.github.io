@@ -1733,6 +1733,23 @@
             content: none;
         }
 
+        .feature-badge-exclusive {
+            font-size: 0.62rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            margin-left: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            box-shadow: 0 2px 8px rgba(199, 19, 19, 0.3);
+            vertical-align: middle;
+            display: inline-block;
+            position: relative;
+            top: -1px;
+        }
+
         /* Download bar — sticky bottom */
         .modal-download-section {
             display: flex;
@@ -3513,10 +3530,11 @@
                 pricing_note: 'BESTI adalah Freeware. Lisensi premium diperlukan untuk membuka seluruh fitur ekslusif.',
                 features: [
                     { text: 'Bel Otomatis', icon: 'fas fa-bell' },
-                    { text: 'Template Jadwal', icon: 'fas fa-calendar-days' },
-                    { text: 'Auto Startup', icon: 'fas fa-power-off' },
-                    { text: 'Mode Layar Kunci', icon: 'fas fa-lock' },
-                    { text: 'Suara Kustom', icon: 'fas fa-music' }
+                    { text: 'Template Jadwal', icon: 'fas fa-calendar-days', exclusive: true },
+                    { text: 'Auto Startup', icon: 'fas fa-power-off', exclusive: true },
+                    { text: 'Mode Layar Kunci', icon: 'fas fa-lock', exclusive: true },
+                    { text: 'Suara Kustom', icon: 'fas fa-music', exclusive: true },
+                    { text: 'Masih Banyak Lagi', icon: 'fas fa-plus' }
                 ],
                 downloads: [
                     {
@@ -3648,7 +3666,7 @@
                     { text: 'Terjemahan', icon: 'fas fa-language' },
                     { text: 'Deteksi AI', icon: 'fas fa-magnifying-glass-chart' },
                     { text: 'Deteksi Plagiat', icon: 'fas fa-file-circle-check' },
-                    { text: 'Penulisan', icon: 'fas fa-file-pen' }
+                    { text: 'Penulisan', icon: 'fas fa-file-pen', exclusive: true }
                 ],
                 pricing: [
                     {
@@ -3756,7 +3774,8 @@
                     if (typeof feature === 'string') {
                         return `<li>${feature}</li>`;
                     } else {
-                        return `<li class="has-custom-icon"><i class="${feature.icon} feature-icon"></i>${feature.text}</li>`;
+                        const exclusiveBadge = feature.exclusive ? '<span class="feature-badge-exclusive">Eksklusif</span>' : '';
+                        return `<li class="has-custom-icon"><i class="${feature.icon} feature-icon"></i>${feature.text}${exclusiveBadge}</li>`;
                     }
                 }).join('');
 
