@@ -1697,13 +1697,17 @@
 
         .modal-features-list li {
             position: relative;
-            padding: 0.65rem 0.85rem 0.65rem 2.6rem;
+            padding: 0.75rem 0.85rem 0.75rem 2.8rem;
             color: var(--light);
             background: rgba(255, 255, 255, 0.03);
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            min-height: 56px;
+            line-height: 1.3;
         }
 
         .modal-features-list li:hover {
@@ -1714,7 +1718,7 @@
         .modal-features-list li i.feature-icon,
         .modal-features-list li::before {
             position: absolute;
-            left: 0.85rem;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--primary);
@@ -1844,6 +1848,276 @@
 
         .modal-pricing-btn i {
             font-size: 0.85rem;
+        }
+
+        .modal-action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        .modal-ss-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            height: 46px;
+            padding: 0 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--gray-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-ss-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== SCREENSHOT DIALOG ===== */
+        .ss-dialog-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 10200;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        @media (min-width: 600px) {
+            .ss-dialog-overlay {
+                align-items: center;
+                padding: 1.5rem;
+            }
+        }
+
+        .ss-dialog-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .ss-dialog {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: none;
+            border-radius: 24px 24px 0 0;
+            width: 100%;
+            max-width: 1200px;
+            /* even wider */
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.8);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @media (min-width: 600px) {
+            .ss-dialog {
+                width: 95%;
+                border-radius: 24px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                transform: translateY(20px) scale(0.98);
+            }
+        }
+
+        .ss-dialog-overlay.active .ss-dialog {
+            transform: translateY(0) scale(1);
+        }
+
+        .ss-dialog-header {
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .ss-dialog-title {
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .ss-dialog-subtitle {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin: 0.25rem 0 0;
+        }
+
+        .ss-dialog-close {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .ss-dialog-close:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .ss-dialog-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            scroll-behavior: smooth;
+            background: #050505;
+            align-items: center;
+        }
+
+        @media (min-width: 600px) {
+            .ss-dialog-body {
+                padding: 2.5rem;
+            }
+        }
+
+        .ss-image-wrap {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #111;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            flex-shrink: 0;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .ss-image-wrap:hover {
+            transform: scale(1.01);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .ss-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .ss-image.loaded {
+            opacity: 1;
+        }
+
+        .ss-image-info {
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ss-image-name {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .ss-image-count {
+            color: var(--gray);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ===== IMAGE ZOOM OVERLAY ===== */
+        .image-zoom-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 11000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 1.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .image-zoom-overlay {
+                padding: 3rem;
+            }
+        }
+
+        .image-zoom-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .image-zoom-overlay img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+            transform: scale(0.9);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        }
+
+        .image-zoom-overlay.active img {
+            transform: scale(1);
+        }
+
+        .zoom-close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .zoom-close-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: rotate(90deg);
         }
 
         /* ===== PRICING DIALOG ===== */
@@ -3570,6 +3844,15 @@
                             { name: 'Suara Kustom', ok: true, exclusive: true }
                         ]
                     }
+                ],
+                screenshots: [
+                    'image/ss/besti/1.png',
+                    'image/ss/besti/2.png',
+                    'image/ss/besti/3.png',
+                    'image/ss/besti/4.png',
+                    'image/ss/besti/5.png',
+                    'image/ss/besti/6.png',
+                    'image/ss/besti/7.png'
                 ]
             },
             'siapapintar': {
@@ -3659,7 +3942,7 @@
                 rating: 5,
                 description: 'Solusi cerdas berbasis kecerdasan buatan (AI) untuk kebutuhan akademik lengkap, mulai dari Parafrase, Humanizer, Terjemahan, hingga Deteksi AI dan Plagiat untuk memastikan integritas karya ilmiah serta bantuan penulisan yang efisien.',
                 pricing_subtitle: 'Akses seluruh model Ahlkata AI dan fitur ekslusif',
-                pricing_note: 'Ahlkata adalah Freeware. Tanpa lisensi, Anda tetap bisa menggunakan semua fitur standar dengan API Key sendiri.',
+                pricing_note: 'Dapatkan lisensi untuk membuka akses penuh ke seluruh model AI dan fitur eksklusif Ahlkata.',
                 features: [
                     { text: 'Parafrase', icon: 'fas fa-wand-magic-sparkles' },
                     { text: 'Humanizer', icon: 'fas fa-face-smile-beam' },
@@ -3742,6 +4025,17 @@
                         color: '#0078D7',
                         link: 'https://sourceforge.net/projects/bufatechno-aplikasi/files/Windows/Ahlkata_x64_Installer.exe/download'
                     }
+                ],
+                screenshots: [
+                    'image/ss/ahlkata/1.png',
+                    'image/ss/ahlkata/2.png',
+                    'image/ss/ahlkata/3.png',
+                    'image/ss/ahlkata/4.png',
+                    'image/ss/ahlkata/5.png',
+                    'image/ss/ahlkata/6.png',
+                    'image/ss/ahlkata/7.png',
+                    'image/ss/ahlkata/8.png',
+                    'image/ss/ahlkata/9.png'
                 ]
             }
         };
@@ -3787,12 +4081,27 @@
                     </a>
                 `).join('');
 
-                // Pricing button at the top
-                const pricingBtnHtml = (data.pricing && data.pricing.length > 0)
-                    ? `<button class="modal-pricing-btn" onclick="openPricingDialog('${appId}')">
+                // Action buttons at the top
+                let actionsHtml = '';
+                if (data.pricing && data.pricing.length > 0) {
+                    actionsHtml += `
+                        <button class="modal-pricing-btn" onclick="openPricingDialog('${appId}')">
                            <i class="fas fa-crown"></i>
-                           <span>Harga Lisensi Premium</span>
-                       </button>
+                           <span>Harga Lisensi</span>
+                        </button>
+                    `;
+                }
+                if (data.screenshots && data.screenshots.length > 0) {
+                    actionsHtml += `
+                        <button class="modal-ss-btn" onclick="openScreenshotDialog('${appId}')">
+                           <i class="fas fa-image"></i>
+                           <span>Screenshot</span>
+                        </button>
+                    `;
+                }
+
+                const pricingBtnHtml = actionsHtml !== ''
+                    ? `<div class="modal-action-buttons">${actionsHtml}</div>
                        <div class="modal-pricing-separator"></div>`
                     : '';
 
@@ -3852,13 +4161,7 @@
                 }
             };
 
-            // Close on Escape key
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    closePricingDialog();
-                    closeAppModal();
-                }
-            });
+
 
             // ===== PRICING DIALOG LOGIC =====
             window.openPricingDialog = function (appId) {
@@ -3928,7 +4231,7 @@
                     <div class="pricing-dialog" role="dialog" aria-modal="true">
                         <div class="pricing-dialog-header">
                             <div>
-                                <h3 class="pricing-dialog-title">Paket Lisensi Premium</h3>
+                                <h3 class="pricing-dialog-title">Paket Lisensi</h3>
                                 <p class="pricing-dialog-subtitle">${data.pricing_subtitle || 'Akses fitur eksklusif sekarang'}</p>
                             </div>
                             <button class="pricing-dialog-close" onclick="closePricingDialog()" aria-label="Tutup">
@@ -3959,6 +4262,116 @@
                     setTimeout(() => { overlay.innerHTML = ''; }, 350);
                 }
             };
+
+            // ===== SCREENSHOT DIALOG LOGIC =====
+            window.openScreenshotDialog = function (appId) {
+                const data = appData[appId];
+                if (!data || !data.screenshots) return;
+
+                let overlay = document.getElementById('ssDialogOverlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.id = 'ssDialogOverlay';
+                    overlay.className = 'ss-dialog-overlay';
+                    document.body.appendChild(overlay);
+                }
+
+                const imagesHtml = data.screenshots.map((src, index) => `
+                    <div class="ss-image-wrap" onclick="zoomImage('${src}')">
+                        <img src="${src}" alt="Screenshot ${index + 1}" class="ss-image" onload="this.classList.add('loaded')">
+                        <div class="ss-image-info">
+                            <span class="ss-image-name">Screenshot ${index + 1}</span>
+                            <span class="ss-image-count">${String(index + 1).padStart(2, '0')} / ${String(data.screenshots.length).padStart(2, '0')}</span>
+                        </div>
+                    </div>
+                `).join('');
+
+                overlay.innerHTML = `
+                    <div class="ss-dialog">
+                        <div class="ss-dialog-header">
+                            <div>
+                                <h3 class="ss-dialog-title">Screenshot ${data.title}</h3>
+                                <p class="ss-dialog-subtitle">Pratinjau antarmuka dan fitur aplikasi</p>
+                            </div>
+                            <button class="ss-dialog-close" onclick="closeScreenshotDialog()" aria-label="Tutup">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="ss-dialog-body">
+                            ${imagesHtml}
+                        </div>
+                    </div>
+                `;
+
+                overlay.onclick = function (e) {
+                    if (e.target === overlay) {
+                        closeScreenshotDialog();
+                    }
+                };
+
+                requestAnimationFrame(() => {
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            };
+
+            window.closeScreenshotDialog = function () {
+                const overlay = document.getElementById('ssDialogOverlay');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                    // Only restore overflow if app modal is not open
+                    if (!document.getElementById('appModalOverlay').classList.contains('active')) {
+                        document.body.style.overflow = '';
+                    }
+                    setTimeout(() => { overlay.innerHTML = ''; }, 350);
+                }
+            };
+
+            // ===== IMAGE ZOOM LOGIC =====
+            window.zoomImage = function (src) {
+                let overlay = document.getElementById('imageZoomOverlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.id = 'imageZoomOverlay';
+                    overlay.className = 'image-zoom-overlay';
+                    overlay.innerHTML = `
+                        <button class="zoom-close-btn" onclick="closeZoom()" aria-label="Tutup">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <img id="zoomedImage" src="" alt="Tampilan Gambar Diperbesar">
+                    `;
+                    document.body.appendChild(overlay);
+
+                    overlay.onclick = function (e) {
+                        if (e.target === overlay) closeZoom();
+                    };
+                }
+
+                const zoomedImg = document.getElementById('zoomedImage');
+                zoomedImg.src = src;
+                overlay.classList.add('active');
+            };
+
+            window.closeZoom = function () {
+                const overlay = document.getElementById('imageZoomOverlay');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                }
+            };
+
+            // Close on Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    if (document.getElementById('imageZoomOverlay')?.classList.contains('active')) {
+                        closeZoom();
+                    } else if (document.getElementById('ssDialogOverlay')?.classList.contains('active')) {
+                        closeScreenshotDialog();
+                    } else {
+                        closePricingDialog();
+                        closeAppModal();
+                    }
+                }
+            });
         }
 
         // ===== ERROR HANDLING =====
