@@ -517,6 +517,8 @@
             }
         }
 
+
+
         .hero-description {
             font-size: 1.125rem;
             color: var(--gray-light);
@@ -1667,47 +1669,69 @@
         .modal-description {
             color: var(--gray-light);
             margin-bottom: 1.75rem;
-            line-height: 1.75;
+            line-height: 1.7;
             font-size: 0.95rem;
         }
 
+        @media (max-width: 480px) {
+            .modal-description {
+                font-size: 0.85rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+                color: #aaa;
+            }
+        }
+
         .modal-features-title {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
             color: var(--gray);
-            margin-bottom: 0.85rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
         }
 
         .modal-features-list {
             list-style: none;
             padding: 0;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
-            margin-bottom: 0;
+            grid-template-columns: 1fr;
+            gap: 0.65rem;
+            margin: 0;
         }
 
-        @media (max-width: 400px) {
+        @media (min-width: 768px) {
             .modal-features-list {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
             }
         }
 
         .modal-features-list li {
             position: relative;
-            padding: 0.75rem 0.85rem 0.75rem 2.8rem;
+            padding: 0.85rem 1rem 0.85rem 3.4rem;
             color: var(--light);
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.85rem;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.92rem;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            min-height: 56px;
+            justify-content: space-between;
+            min-height: 52px;
             line-height: 1.3;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        @media (max-width: 480px) {
+            .modal-features-list li {
+                padding: 0.75rem 1rem 0.75rem 3.2rem;
+                font-size: 0.88rem;
+                min-height: 50px;
+            }
         }
 
         .modal-features-list li:hover {
@@ -1718,13 +1742,24 @@
         .modal-features-list li i.feature-icon,
         .modal-features-list li::before {
             position: absolute;
-            left: 1rem;
+            left: 1.15rem;
             top: 50%;
             transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--primary);
-            font-size: 0.95rem;
+            font-size: 1rem;
             width: 1.2rem;
             text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .modal-features-list li i.feature-icon,
+            .modal-features-list li::before {
+                left: 1rem;
+                font-size: 0.95rem;
+            }
         }
 
         .modal-features-list li::before {
@@ -1738,20 +1773,24 @@
         }
 
         .feature-badge-exclusive {
-            font-size: 0.62rem;
+            font-size: 0.6rem;
             background: var(--gradient-primary);
             color: white;
             padding: 0.15rem 0.45rem;
             border-radius: 4px;
-            margin-left: 0.6rem;
+            margin-left: auto; /* Push to the far right */
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.4px;
             box-shadow: 0 2px 8px rgba(199, 19, 19, 0.3);
-            vertical-align: middle;
-            display: inline-block;
-            position: relative;
-            top: -1px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 580px) {
+            .feature-badge-exclusive {
+                font-size: 0.55rem;
+                padding: 0.1rem 0.35rem;
+            }
         }
 
         /* Download bar — sticky bottom */
@@ -3319,7 +3358,7 @@
                             <div class="stat-label">Aplikasi Dikembangkan</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">300+</div>
+                            <div class="stat-number">1000+</div>
                             <div class="stat-label">Pengguna Aktif</div>
                         </div>
                     </div>
@@ -4069,7 +4108,7 @@
                         return `<li>${feature}</li>`;
                     } else {
                         const exclusiveBadge = feature.exclusive ? '<span class="feature-badge-exclusive">Eksklusif</span>' : '';
-                        return `<li class="has-custom-icon"><i class="${feature.icon} feature-icon"></i>${feature.text}${exclusiveBadge}</li>`;
+                        return `<li class="has-custom-icon"><i class="${feature.icon} feature-icon"></i><span style="flex:1;">${feature.text}</span>${exclusiveBadge}</li>`;
                     }
                 }).join('');
 
