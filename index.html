@@ -4438,20 +4438,17 @@
 
                 const today = new Date().toISOString().split('T')[0];
                 const sfJsonUrl = `https://sourceforge.net/projects/bufatechno-aplikasi/files/stats/json?start_date=2008-01-01&end_date=${today}&cb=${Date.now()}`;
-                
-                // Tambahkan random timestamp (&timestamp=) agar proxy tidak cache data lama (Realtime)
-                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(sfJsonUrl)}&timestamp=${Date.now()}`;
+                const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(sfJsonUrl)}`;
 
                 fetch(proxyUrl)
                     .then(response => {
                         if (response.ok) return response.json();
-                        throw new Error('CORS proxy error');
+                        throw new Error('Proxy error');
                     })
                     .then(data => {
-                        const contents = JSON.parse(data.contents);
-                        if (contents && contents.total !== undefined) {
+                        if (data && data.total !== undefined) {
                             // Format dengan titik (Indonesian style)
-                            downObj.textContent = contents.total.toLocaleString('id-ID');
+                            downObj.textContent = data.total.toLocaleString('id-ID');
                         } else {
                             downObj.textContent = '--';
                         }
