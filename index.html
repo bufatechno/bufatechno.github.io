@@ -4460,7 +4460,11 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', updateStats);
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStats();
+            // Update otomatis setiap 5 menit (300.000 ms) tanpa perlu refresh halaman
+            setInterval(updateStats, 300000);
+        });
     </script>
 </body>
 
