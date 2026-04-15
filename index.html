@@ -4436,8 +4436,11 @@
                 // Set loading state dengan animasi titik bergerak
                 downObj.innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div>';
 
-                const sfJsonUrl = 'https://sourceforge.net/projects/bufatechno-aplikasi/files/stats/json?start_date=2008-01-01';
-                const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(sfJsonUrl);
+                const today = new Date().toISOString().split('T')[0];
+                const sfJsonUrl = `https://sourceforge.net/projects/bufatechno-aplikasi/files/stats/json?start_date=2008-01-01&end_date=${today}&cb=${Date.now()}`;
+                
+                // Tambahkan random timestamp (&timestamp=) agar proxy tidak cache data lama (Realtime)
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(sfJsonUrl)}&timestamp=${Date.now()}`;
 
                 fetch(proxyUrl)
                     .then(response => {
@@ -4450,12 +4453,12 @@
                             // Format dengan titik (Indonesian style)
                             downObj.textContent = contents.total.toLocaleString('id-ID');
                         } else {
-                            downObj.textContent = '1.859';
+                            downObj.textContent = '--';
                         }
                     })
                     .catch(err => {
                         console.error('SF Stats Error:', err);
-                        downObj.textContent = '1.859';
+                        downObj.textContent = '--';
                     });
             }
         }
