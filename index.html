@@ -129,6 +129,9 @@
         html {
             scroll-behavior: smooth;
             font-size: 16px;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
         }
 
         body {
@@ -138,12 +141,23 @@
             color: var(--light);
             background: var(--gradient-dark);
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
             position: relative;
         }
 
         ::selection {
             background: rgba(199, 19, 19, 0.3);
             color: white;
+        }
+
+        /* Prevent AOS horizontal scroll issues */
+        [data-aos] {
+            pointer-events: none;
+        }
+
+        .aos-animate {
+            pointer-events: auto;
         }
 
         /* ===== TYPOGRAPHY ===== */
@@ -3786,7 +3800,8 @@
                     duration: 1000,
                     easing: 'ease-in-out',
                     once: true,
-                    offset: 100
+                    offset: 100,
+                    disableMutationObserver: true // Prevent layout shift on mobile
                 });
             }
         }
