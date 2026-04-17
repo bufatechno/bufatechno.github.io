@@ -3456,51 +3456,6 @@
 
             </div>
 
-            <!-- INFO MODAL ORDER LISENSI -->
-            <div class="modal fade" id="infoOrderModal" tabindex="-1" aria-labelledby="infoOrderModalLabel" aria-hidden="true" style="z-index: 10000;">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content" style="background: var(--darker); border: 1px solid rgba(199, 19, 19, 0.3); color: var(--light); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-xl);">
-                        <div class="modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h5 class="modal-title" id="infoOrderModalLabel" style="font-family: var(--font-heading); font-weight: 700; color: var(--primary);">
-                                <i class="fas fa-info-circle me-2"></i>Informasi Pelayanan
-                            </h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body p-0" style="font-family: var(--font-primary);">
-                            <div class="p-4 p-md-5 text-center">
-                                <i class="fas fa-bell mb-4" style="font-size: 3rem; color: var(--primary); filter: drop-shadow(0 0 15px rgba(199, 19, 19, 0.4));"></i>
-                                
-                                <h5 class="fw-bold mb-3" style="color: var(--light); line-height: 1.4;">
-                                    Status Layanan Operasional <br>
-                                    <span style="color: var(--primary);">Ahlkata</span> & <span style="color: var(--primary);">BESTI</span>
-                                </h5>
-                                
-                                <p style="color: var(--light); font-size: 0.95rem; line-height: 1.5;">Yth. Pengguna, kami informasikan bahwa layanan aktivasi lisensi saat ini sedang berada di luar jam operasional aktif.</p>
-
-                                <div class="alert text-start p-3 mb-4" style="background: rgba(199, 19, 19, 0.05); border: 1px solid rgba(199, 19, 19, 0.2); border-radius: var(--border-radius);">
-                                    <div class="d-flex align-items-start">
-                                        <i class="fas fa-info-circle fs-5 me-3 flex-shrink-0 mt-1" style="color: var(--primary);"></i>
-                                        <div>
-                                            <h6 class="fw-bold mb-2" style="color: var(--light);">Penjadwalan Verifikasi Lisensi</h6>
-                                            <p class="mb-0" style="font-size: 0.9rem; color: var(--light); line-height: 1.6;">
-                                                Seluruh pemesanan yang masuk pada rentang pukul <strong>00:00 - 06:00 WIB</strong> akan tetap terdata dengan aman dan diproses langsung oleh tim Admin selambat-lambatnya pukul <strong>12:00 WIB</strong> siang ini guna menerbitkan kode aktivasi Anda.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <p class="mb-0" style="font-size: 0.85rem; color: var(--gray-light); line-height: 1.6;">
-                                    Data serta riwayat transaksi Anda terenkripsi dan tersimpan dengan aman pada pusat data kami.<br>Atas perhatian dan kerja sama yang diberikan, kami ucapkan terima kasih.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="modal-footer" style="border-top: 1px solid rgba(255, 255, 255, 0.1); justify-content: center;">
-                            <button type="button" class="btn btn-primary-modern" data-bs-dismiss="modal" style="padding: 0.5rem 1.5rem;">Mengerti</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- MODAL CONTAINER (Akan diisi via JavaScript) -->
             <div id="appModalOverlay" class="app-modal-overlay">
                 <!-- Modal Content -->
@@ -4510,19 +4465,6 @@
             updateStats();
             // Update otomatis setiap 5 menit (300.000 ms) tanpa perlu refresh halaman
             setInterval(updateStats, 300000);
-
-            // Tampilkan popup notifikasi order lisensi (Otomatis jam 00:00 - 05:59 WIB)
-            const wibTimeString = new Date().toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
-            const wibDate = new Date(wibTimeString);
-            const hoursWIB = wibDate.getHours();
-
-            if (hoursWIB >= 0 && hoursWIB < 6) {
-                if (!sessionStorage.getItem('infoOrderModalShown')) {
-                    const infoOrderModal = new bootstrap.Modal(document.getElementById('infoOrderModal'));
-                    infoOrderModal.show();
-                    sessionStorage.setItem('infoOrderModalShown', 'true');
-                }
-            }
         });
     </script>
 </body>
