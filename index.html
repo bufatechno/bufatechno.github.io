@@ -4665,81 +4665,116 @@
                 appsObj.textContent = count;
             }
 
-            // 3. Total Download (SourceForge)
+            // 3. Total Download (SourceForge) with robustness
             const today = new Date().toISOString().split('T')[0];
-            const fetchSFCount = async (path = '') => {
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+
+            const fetchSFCount = async (path = '', useFallbackProxy = false) => {
                 const cleanPath = path ? `${path}/` : '';
                 const sfUrl = `https://sourceforge.net/projects/bufatechno-aplikasi/files/${cleanPath}stats/json?start_date=2008-01-01&end_date=${today}&cb=${Date.now()}`;
-                const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(sfUrl)}`;
+                
+                // Primary: Codetabs, Secondary: AllOrigins
+                const proxyUrl = useFallbackProxy 
+                    ? `https://api.allorigins.win/get?url=${encodeURIComponent(sfUrl)}`
+                    : `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(sfUrl)}`;
+
                 try {
                     const response = await fetch(proxyUrl);
-                    if (!response.ok) return 0;
-                    const data = await response.json();
-                    return data.total || 0;
+                    if (!response.ok) throw new Error('Proxy error');
+                    
+                    let data;
+                    if (useFallbackProxy) {
+                        const json = await response.json();
+                        data = JSON.parse(json.contents);
+                    } else {
+                        data = await response.json();
+                    }
+
+                    if (data && typeof data.total !== 'undefined') {
+                        const total = data.total;
+                        // Cache the successful result
+                        localStorage.setItem(`sf_cache_${path || 'total'}`, total);
+                        return total;
+                    }
+                    throw new Error('Invalid data');
                 } catch (err) {
-                    console.error(`Error fetching SF stats for ${path}:`, err);
-                    return 0;
+                    // If primary failed, try fallback proxy
+                    if (!useFallbackProxy) {
+                        return await fetchSFCount(path, true);
+                    }
+                    // If all failed, return from localStorage
+                    const cached = localStorage.getItem(`sf_cache_${path || 'total'}`);
+                    return cached !== null ? parseInt(cached) : null;
                 }
             };
 
-            // Set loading state for total and individual apps (hanya jika belum ada data)
-            const loadingHtml = '<div class="loading-dots"><span></span><span></span><span></span></div>';
             const downObj = document.getElementById('stats-downloads');
-            if (downObj && (downObj.innerHTML.includes('loading-dots') || downObj.textContent.trim() === '')) {
+            const loadingHtml = '<div class="loading-dots"><span></span><span></span><span></span></div>';
+
+            // Show loading if no data
+            if (downObj && (downObj.textContent.trim() === '' || downObj.textContent === '--')) {
                 downObj.innerHTML = loadingHtml;
             }
 
             ['ahlkata', 'besti', 'booracle'].forEach(appId => {
                 const el = document.getElementById(`dl-count-${appId}`);
-                if (el && (el.innerHTML.includes('loading-dots') || el.textContent.trim() === '')) {
+                if (el && (el.textContent.trim() === '' || el.textContent === '-- Unduhan')) {
                     el.innerHTML = loadingHtml;
                 }
             });
 
+            // Helper to update UI for apps
+            const updateAppUI = (id, total) => {
+                const el = document.getElementById(`dl-count-${id}`);
+                const val = (total !== null && total > 0) 
+                    ? (total.toLocaleString('id-ID') + '+ Unduhan') 
+                    : (el && !el.innerHTML.includes('dots') ? el.textContent : '-- Unduhan');
+
+                if (appData[id]) appData[id].download_count = val;
+                if (el) el.textContent = val;
+
+                // Update modal if open
+                const modalDlEl = document.getElementById('modal-dl-count');
+                if (modalDlEl && modalDlEl.getAttribute('data-app-id') === id) {
+                    modalDlEl.textContent = val;
+                }
+                return total || 0;
+            };
+
             try {
-                // Fetch all stats in parallel
-                const [total, ahlkataWin, ahlkataLin, bestiWin, bestiLin, booracle] = await Promise.all([
-                    fetchSFCount(''), // Total
-                    fetchSFCount('Windows/Ahlkata_x64_Installer.exe'),
-                    fetchSFCount('Linux/Ahlkata-x86_64.AppImage'),
-                    fetchSFCount('Windows/BESTI_x64_Installer.exe'),
-                    fetchSFCount('Linux/BESTI-x86_64.AppImage'),
-                    fetchSFCount('Android/BOORacle/app-release.apk')
-                ]);
+                // Fetch sequentially with delay to avoid proxy rate limits
+                const totalCount = await fetchSFCount('');
+                if (downObj && totalCount !== null) {
+                    downObj.textContent = totalCount.toLocaleString('id-ID');
+                }
 
-                // Update Total
-                if (downObj) downObj.textContent = total > 0 ? total.toLocaleString('id-ID') : (downObj.textContent.includes('dots') ? '--' : downObj.textContent);
+                await delay(300);
+                const ahlWin = await fetchSFCount('Windows/Ahlkata_x64_Installer.exe');
+                await delay(300);
+                const ahlLin = await fetchSFCount('Linux/Ahlkata-x86_64.AppImage');
+                const ahlTotal = (ahlWin !== null || ahlLin !== null) ? (ahlWin || 0) + (ahlLin || 0) : null;
+                updateAppUI('ahlkata', ahlTotal);
 
-                // Helper to update app stats
-                const updateApp = (id, winCount, linCount) => {
-                    const total = winCount + linCount;
-                    const el = document.getElementById(`dl-count-${id}`);
+                await delay(300);
+                const bstWin = await fetchSFCount('Windows/BESTI_x64_Installer.exe');
+                await delay(300);
+                const bstLin = await fetchSFCount('Linux/BESTI-x86_64.AppImage');
+                const bstTotal = (bstWin !== null || bstLin !== null) ? (bstWin || 0) + (bstLin || 0) : null;
+                updateAppUI('besti', bstTotal);
 
-                    // Jika fetch gagal (total 0) tapi sudah ada data sebelumnya, jangan timpa
-                    if (total === 0 && el && !el.innerHTML.includes('loading-dots')) return;
+                await delay(300);
+                const boo = await fetchSFCount('Android/BOORacle/app-release.apk');
+                updateAppUI('booracle', boo);
 
-                    // Jika fetch gagal pada percobaan pertama, tampilkan --
-                    const val = total > 0 ? (total.toLocaleString('id-ID') + '+ Unduhan') : '-- Unduhan';
-
-                    if (appData[id]) appData[id].download_count = val;
-                    if (el) el.textContent = val;
-
-                    // Update modal if open for this app
-                    const modalDlEl = document.getElementById('modal-dl-count');
-                    if (modalDlEl && modalDlEl.getAttribute('data-app-id') === id) {
-                        modalDlEl.textContent = val;
-                    }
-                };
-
-                updateApp('ahlkata', ahlkataWin, ahlkataLin);
-                updateApp('besti', bestiWin, bestiLin);
-                updateApp('booracle', booracle, 0);
+                // Final consistency check: If main total failed but apps succeeded, use sum of apps
+                if (downObj && (downObj.textContent === '--' || downObj.innerHTML.includes('dots'))) {
+                   const calculatedTotal = (ahlTotal || 0) + (bstTotal || 0) + (boo || 0);
+                   if (calculatedTotal > 0) downObj.textContent = calculatedTotal.toLocaleString('id-ID');
+                }
 
             } catch (err) {
-                console.error('Update stats failed:', err);
-                if (downObj && downObj.innerHTML.includes('loading-dots')) {
-                    downObj.textContent = '--';
-                }
+                console.error('Stats automation failed:', err);
+                if (downObj && downObj.innerHTML.includes('loading-dots')) downObj.textContent = '--';
             }
         }
 
