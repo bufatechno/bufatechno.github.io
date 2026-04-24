@@ -1775,7 +1775,7 @@
 
         .modal-features-list li {
             position: relative;
-            padding: 1rem 1.25rem 1rem 3.6rem;
+            padding: 0.75rem 1.25rem 0.75rem 3.4rem;
             color: var(--light);
             background: rgba(255, 255, 255, 0.03);
             border-radius: 12px;
@@ -1785,7 +1785,8 @@
             transition: var(--transition);
             display: flex;
             align-items: center;
-            min-height: 64px;
+            min-height: 60px;
+            /* Diperbarui agar konsisten meskipun 2 baris */
             line-height: 1.2;
             box-sizing: border-box;
             overflow: hidden;
@@ -1793,9 +1794,9 @@
 
         @media (max-width: 480px) {
             .modal-features-list li {
-                padding: 0.85rem 1rem 0.85rem 3.2rem;
-                font-size: 0.9rem;
-                min-height: 58px;
+                padding: 0.6rem 1rem 0.6rem 3rem;
+                font-size: 0.85rem;
+                min-height: 52px;
             }
         }
 
@@ -1906,16 +1907,27 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.65rem;
+            gap: 0.55rem;
             background: var(--gradient-primary);
             color: white;
-            padding: 0.85rem 1.6rem;
+            padding: 0.45rem 1.4rem;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: var(--transition);
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(199, 19, 19, 0.2);
+            min-width: 120px;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 480px) {
+            .btn-app-download {
+                padding: 0.35rem 1.1rem;
+                font-size: 0.8rem;
+                min-width: 100px;
+                gap: 0.45rem;
+            }
         }
 
         .btn-app-download:hover {
@@ -1962,12 +1974,24 @@
         }
 
         .modal-action-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 0.75rem;
             margin-bottom: 0.5rem;
             width: 100%;
+        }
+
+        @media (max-width: 576px) {
+            .modal-action-buttons {
+                gap: 0.5rem;
+            }
+
+            .modal-pricing-btn,
+            .modal-ss-btn {
+                padding: 0 1rem;
+                font-size: 0.8rem;
+                height: 42px;
+            }
         }
 
         .modal-ss-btn {
@@ -2760,6 +2784,93 @@
             }
         }
 
+        .app-badges {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .app-badge-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            color: var(--gray-light);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            justify-content: center;
+        }
+
+        .app-badge-item i {
+            font-size: 0.85rem;
+        }
+
+        .app-badge-item.vt-safe i {
+            color: #2ecc71;
+        }
+
+        .app-badge-item.dl-stats i {
+            color: var(--primary);
+        }
+
+        .app-card:hover .app-badge-item {
+            border-color: rgba(199, 19, 19, 0.2);
+            background: rgba(199, 19, 19, 0.08);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .modal-badges {
+            justify-content: flex-start !important;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 576px) {
+            .app-badges {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+                justify-content: stretch;
+            }
+
+            .modal-badges {
+                display: grid !important;
+                grid-template-columns: auto auto;
+                gap: 0.4rem;
+                width: auto;
+                justify-content: flex-start !important;
+            }
+
+            .app-badge-item {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.65rem;
+                justify-content: center;
+                min-width: 0;
+            }
+
+            .modal-badges .app-badge-item {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.62rem;
+            }
+
+            .modal-app-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .modal-header-section {
+                padding: 1.25rem 1rem;
+                gap: 1rem;
+            }
+        }
+
         /* ===== IMPROVED APP FEATURES STYLING ===== */
         .app-features {
             list-style: none;
@@ -3030,13 +3141,13 @@
             width: 100%;
             height: 100%;
             border: 0;
-            filter: grayscale(1) invert(0.9) contrast(1.1) brightness(0.9);
+            filter: grayscale(1) invert(0.92) contrast(1.2) brightness(0.85);
             opacity: 0.85;
             transition: var(--transition);
         }
 
         .map-container:hover iframe {
-            filter: grayscale(0.2) invert(0.9) contrast(1.1) brightness(1);
+            filter: grayscale(0.5) invert(0.92) contrast(1.2) brightness(0.95);
             opacity: 1;
         }
 
@@ -3421,6 +3532,18 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
+                    <div class="app-badges">
+                        <div class="app-badge-item vt-safe">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>VT: 100% Aman</span>
+                        </div>
+                        <div class="app-badge-item dl-stats">
+                            <i class="fas fa-download"></i>
+                            <span id="dl-count-ahlkata">
+                                <div class="loading-dots"><span></span><span></span><span></span></div>
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- BESTI -->
@@ -3435,6 +3558,18 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
+                    </div>
+                    <div class="app-badges">
+                        <div class="app-badge-item vt-safe">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>VT: 100% Aman</span>
+                        </div>
+                        <div class="app-badge-item dl-stats">
+                            <i class="fas fa-download"></i>
+                            <span id="dl-count-besti">
+                                <div class="loading-dots"><span></span><span></span><span></span></div>
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -3451,51 +3586,82 @@
                         <i class="far fa-star"></i>
                         <i class="far fa-star"></i>
                     </div>
+                    <div class="app-badges">
+                        <div class="app-badge-item vt-safe">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>VT: 100% Aman</span>
+                        </div>
+                        <div class="app-badge-item dl-stats">
+                            <i class="fas fa-download"></i>
+                            <span id="dl-count-booracle">
+                                <div class="loading-dots"><span></span><span></span><span></span></div>
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
 
             </div>
 
             <!-- INFO MODAL ORDER LISENSI -->
-            <div class="modal fade" id="infoOrderModal" tabindex="-1" aria-labelledby="infoOrderModalLabel" aria-hidden="true" style="z-index: 10000;">
+            <div class="modal fade" id="infoOrderModal" tabindex="-1" aria-labelledby="infoOrderModalLabel"
+                aria-hidden="true" style="z-index: 10000;">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content" style="background: var(--darker); border: 1px solid rgba(199, 19, 19, 0.3); color: var(--light); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-xl);">
+                    <div class="modal-content"
+                        style="background: var(--darker); border: 1px solid rgba(199, 19, 19, 0.3); color: var(--light); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-xl);">
                         <div class="modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h5 class="modal-title" id="infoOrderModalLabel" style="font-family: var(--font-heading); font-weight: 700; color: var(--primary);">
+                            <h5 class="modal-title" id="infoOrderModalLabel"
+                                style="font-family: var(--font-heading); font-weight: 700; color: var(--primary);">
                                 <i class="fas fa-info-circle me-2"></i>Informasi Pelayanan
                             </h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body p-0" style="font-family: var(--font-primary);">
                             <div class="p-4 p-md-5 text-center">
-                                <i class="fas fa-bell mb-4" style="font-size: 3rem; color: var(--primary); filter: drop-shadow(0 0 15px rgba(199, 19, 19, 0.4));"></i>
-                                
+                                <i class="fas fa-bell mb-4"
+                                    style="font-size: 3rem; color: var(--primary); filter: drop-shadow(0 0 15px rgba(199, 19, 19, 0.4));"></i>
+
                                 <h5 class="fw-bold mb-3" style="color: var(--light); line-height: 1.4;">
                                     Status Layanan Operasional <br>
-                                    <span style="color: var(--primary);">Ahlkata</span> & <span style="color: var(--primary);">BESTI</span>
+                                    <span style="color: var(--primary);">Ahlkata</span> & <span
+                                        style="color: var(--primary);">BESTI</span>
                                 </h5>
-                                
-                                <p style="color: var(--light); font-size: 0.95rem; line-height: 1.5;">Yth. Pengguna, kami informasikan bahwa layanan aktivasi lisensi saat ini sedang berada di luar jam operasional aktif.</p>
 
-                                <div class="alert text-start p-3 mb-4" style="background: rgba(199, 19, 19, 0.05); border: 1px solid rgba(199, 19, 19, 0.2); border-radius: var(--border-radius);">
+                                <p style="color: var(--light); font-size: 0.95rem; line-height: 1.5;">Yth. Pengguna,
+                                    kami informasikan bahwa layanan aktivasi lisensi saat ini sedang berada di luar jam
+                                    operasional aktif.</p>
+
+                                <div class="alert text-start p-3 mb-4"
+                                    style="background: rgba(199, 19, 19, 0.05); border: 1px solid rgba(199, 19, 19, 0.2); border-radius: var(--border-radius);">
                                     <div class="d-flex align-items-start">
-                                        <i class="fas fa-info-circle fs-5 me-3 flex-shrink-0 mt-1" style="color: var(--primary);"></i>
+                                        <i class="fas fa-info-circle fs-5 me-3 flex-shrink-0 mt-1"
+                                            style="color: var(--primary);"></i>
                                         <div>
-                                            <h6 class="fw-bold mb-2" style="color: var(--light);">Penjadwalan Verifikasi Lisensi</h6>
-                                            <p class="mb-0" style="font-size: 0.9rem; color: var(--light); line-height: 1.6;">
-                                                Seluruh pemesanan yang masuk pada rentang pukul <strong>00:00 - 06:00 WIB</strong> akan tetap terdata dengan aman dan diproses langsung oleh tim Admin selambat-lambatnya pukul <strong>12:00 WIB</strong> siang ini guna menerbitkan kode aktivasi Anda.
+                                            <h6 class="fw-bold mb-2" style="color: var(--light);">Penjadwalan Verifikasi
+                                                Lisensi</h6>
+                                            <p class="mb-0"
+                                                style="font-size: 0.9rem; color: var(--light); line-height: 1.6;">
+                                                Seluruh pemesanan yang masuk pada rentang pukul <strong>00:00 - 06:00
+                                                    WIB</strong> akan tetap terdata dengan aman dan diproses langsung
+                                                oleh tim Admin selambat-lambatnya pukul <strong>12:00 WIB</strong> siang
+                                                ini guna menerbitkan kode aktivasi Anda.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <p class="mb-0" style="font-size: 0.85rem; color: var(--gray-light); line-height: 1.6;">
-                                    Data serta riwayat transaksi Anda terenkripsi dan tersimpan dengan aman pada pusat data kami.<br>Atas perhatian dan kerja sama yang diberikan, kami ucapkan terima kasih.
+                                    Data serta riwayat transaksi Anda terenkripsi dan tersimpan dengan aman pada pusat
+                                    data kami.<br>Atas perhatian dan kerja sama yang diberikan, kami ucapkan terima
+                                    kasih.
                                 </p>
                             </div>
                         </div>
-                        <div class="modal-footer" style="border-top: 1px solid rgba(255, 255, 255, 0.1); justify-content: center;">
-                            <button type="button" class="btn btn-primary-modern" data-bs-dismiss="modal" style="padding: 0.5rem 1.5rem;">Mengerti</button>
+                        <div class="modal-footer"
+                            style="border-top: 1px solid rgba(255, 255, 255, 0.1); justify-content: center;">
+                            <button type="button" class="btn btn-primary-modern" data-bs-dismiss="modal"
+                                style="padding: 0.5rem 1.5rem;">Mengerti</button>
                         </div>
                     </div>
                 </div>
@@ -3940,6 +4106,8 @@
                 icon: 'image/app/besti.png',
                 item_id: 'besti',
                 rating: 5,
+                vt_link: 'https://www.virustotal.com/gui/url/eff9e83509838e08d210333f5c92011fa7d675c2ab1a7fb058f5f93d672c7011/detection',
+                download_count: '<div class="loading-dots"><span></span><span></span><span></span></div>',
                 description: 'Aplikasi bel sekolah otomatis yang memberikan kemudahan dalam manajemen jadwal kegiatan sekolah secara presisi. Dilengkapi ragam fitur unggulan untuk personalisasi dan fungsionalitas yang lebih optimal.',
                 pricing_subtitle: 'Akses penuh ke seluruh fitur BESTI',
                 pricing_note: 'BESTI adalah Freeware. Lisensi premium diperlukan untuk membuka seluruh fitur ekslusif.',
@@ -4001,6 +4169,8 @@
                 title: 'BOORacle',
                 icon: 'image/app/booracle.png',
                 rating: 3,
+                vt_link: 'https://www.virustotal.com/gui/url/eff9e83509838e08d210333f5c92011fa7d675c2ab1a7fb058f5f93d672c7011/detection',
+                download_count: '<div class="loading-dots"><span></span><span></span><span></span></div>',
                 description: 'Aplikasi Android untuk meramal nasib atau takdir berbasis AI sesuai dengan data diri pengguna, memberikan wawasan pribadi yang canggih dan personal sebagai hiburan cerdas.',
                 features: [
                     { text: 'Peramal Berbasis AI', icon: 'fas fa-brain' },
@@ -4022,6 +4192,8 @@
                 icon: 'image/app/ahlkata.png',
                 item_id: 'ahlkata',
                 rating: 5,
+                vt_link: 'https://www.virustotal.com/gui/url/eff9e83509838e08d210333f5c92011fa7d675c2ab1a7fb058f5f93d672c7011/detection',
+                download_count: '<div class="loading-dots"><span></span><span></span><span></span></div>',
                 description: 'Solusi cerdas berbasis kecerdasan buatan (AI) untuk kebutuhan akademik lengkap, mulai dari Parafrase, Humanizer, Terjemahan, hingga Deteksi AI dan Plagiat untuk memastikan integritas karya ilmiah serta bantuan penulisan yang efisien.',
                 pricing_subtitle: 'Akses seluruh model Ahlkata AI dan fitur ekslusif',
                 pricing_note: 'Dapatkan lisensi untuk membuka akses penuh ke seluruh model AI dan fitur eksklusif Ahlkata.',
@@ -4133,6 +4305,9 @@
                 // Stop scrolling on body
                 document.body.style.overflow = 'hidden';
 
+                // Update URL hash for SEO and deep linking
+                window.location.hash = appId;
+
                 // Generate Stars HTML
                 let starsHtml = '';
                 for (let i = 1; i <= 5; i++) {
@@ -4198,6 +4373,16 @@
                             <div class="modal-header-info">
                                 <h2 class="modal-app-title">${data.title}</h2>
                                 <div class="modal-app-rating">${starsHtml}</div>
+                                <div class="app-badges modal-badges">
+                                    <a href="${data.vt_link}" target="_blank" class="app-badge-item vt-safe" style="text-decoration: none;">
+                                        <i class="fas fa-shield-halved"></i>
+                                        <span>VT: 100% Aman</span>
+                                    </a>
+                                    <div class="app-badge-item dl-stats">
+                                        <i class="fas fa-download"></i>
+                                        <span id="modal-dl-count" data-app-id="${appId}">${data.download_count}</span>
+                                    </div>
+                                </div>
                             </div>
                             <button class="modal-close-btn" onclick="closeAppModal()" aria-label="Tutup">
                                 <i class="fas fa-times"></i>
@@ -4206,7 +4391,7 @@
 
                         <div class="modal-body-section">
                             <p class="modal-description">${data.description}</p>
-                            <p class="modal-features-title">Fitur Unggulan</p>
+                            <p class="modal-features-title">Fitur Tersedia</p>
                             <ul class="modal-features-list">
                                 ${featuresHtml}
                             </ul>
@@ -4214,7 +4399,7 @@
 
                         <div class="modal-download-section">
                             ${pricingBtnHtml}
-                            <span class="modal-download-label">Link Download Tersedia</span>
+                            <span class="modal-download-label">Link Unduhan Tersedia</span>
                             <div class="modal-download-links">
                                 ${downloadsHtml}
                             </div>
@@ -4240,6 +4425,11 @@
                     setTimeout(() => {
                         modalOverlay.innerHTML = ''; // Clear content after animation
                         document.body.style.overflow = ''; // Restore scrolling
+                        
+                        // Remove URL hash without reloading
+                        if (window.location.hash) {
+                            history.replaceState(null, null, window.location.pathname + window.location.search);
+                        }
                     }, 400); // Match transition duration
                 }
             };
@@ -4459,7 +4649,7 @@
 
 
         // ===== STATS AUTOMATION =====
-        function updateStats() {
+        async function updateStats() {
             // 1. Tahun Pengalaman
             const yearObj = document.getElementById('stats-years');
             if (yearObj) {
@@ -4471,38 +4661,85 @@
             // 2. Aplikasi Dikembangkan
             const appsObj = document.getElementById('stats-apps');
             if (appsObj && typeof appData !== 'undefined') {
-                // Filter appData logic if needed, but currently all are apps
                 const count = Object.keys(appData).length;
                 appsObj.textContent = count;
             }
 
             // 3. Total Download (SourceForge)
+            const today = new Date().toISOString().split('T')[0];
+            const fetchSFCount = async (path = '') => {
+                const cleanPath = path ? `${path}/` : '';
+                const sfUrl = `https://sourceforge.net/projects/bufatechno-aplikasi/files/${cleanPath}stats/json?start_date=2008-01-01&end_date=${today}&cb=${Date.now()}`;
+                const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(sfUrl)}`;
+                try {
+                    const response = await fetch(proxyUrl);
+                    if (!response.ok) return 0;
+                    const data = await response.json();
+                    return data.total || 0;
+                } catch (err) {
+                    console.error(`Error fetching SF stats for ${path}:`, err);
+                    return 0;
+                }
+            };
+
+            // Set loading state for total and individual apps (hanya jika belum ada data)
+            const loadingHtml = '<div class="loading-dots"><span></span><span></span><span></span></div>';
             const downObj = document.getElementById('stats-downloads');
-            if (downObj) {
-                // Set loading state dengan animasi titik bergerak
-                downObj.innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div>';
+            if (downObj && (downObj.innerHTML.includes('loading-dots') || downObj.textContent.trim() === '')) {
+                downObj.innerHTML = loadingHtml;
+            }
 
-                const today = new Date().toISOString().split('T')[0];
-                const sfJsonUrl = `https://sourceforge.net/projects/bufatechno-aplikasi/files/stats/json?start_date=2008-01-01&end_date=${today}&cb=${Date.now()}`;
-                const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(sfJsonUrl)}`;
+            ['ahlkata', 'besti', 'booracle'].forEach(appId => {
+                const el = document.getElementById(`dl-count-${appId}`);
+                if (el && (el.innerHTML.includes('loading-dots') || el.textContent.trim() === '')) {
+                    el.innerHTML = loadingHtml;
+                }
+            });
 
-                fetch(proxyUrl)
-                    .then(response => {
-                        if (response.ok) return response.json();
-                        throw new Error('Proxy error');
-                    })
-                    .then(data => {
-                        if (data && data.total !== undefined) {
-                            // Format dengan titik (Indonesian style)
-                            downObj.textContent = data.total.toLocaleString('id-ID');
-                        } else {
-                            downObj.textContent = '--';
-                        }
-                    })
-                    .catch(err => {
-                        console.error('SF Stats Error:', err);
-                        downObj.textContent = '--';
-                    });
+            try {
+                // Fetch all stats in parallel
+                const [total, ahlkataWin, ahlkataLin, bestiWin, bestiLin, booracle] = await Promise.all([
+                    fetchSFCount(''), // Total
+                    fetchSFCount('Windows/Ahlkata_x64_Installer.exe'),
+                    fetchSFCount('Linux/Ahlkata-x86_64.AppImage'),
+                    fetchSFCount('Windows/BESTI_x64_Installer.exe'),
+                    fetchSFCount('Linux/BESTI-x86_64.AppImage'),
+                    fetchSFCount('Android/BOORacle/app-release.apk')
+                ]);
+
+                // Update Total
+                if (downObj) downObj.textContent = total > 0 ? total.toLocaleString('id-ID') : (downObj.textContent.includes('dots') ? '--' : downObj.textContent);
+
+                // Helper to update app stats
+                const updateApp = (id, winCount, linCount) => {
+                    const total = winCount + linCount;
+                    const el = document.getElementById(`dl-count-${id}`);
+
+                    // Jika fetch gagal (total 0) tapi sudah ada data sebelumnya, jangan timpa
+                    if (total === 0 && el && !el.innerHTML.includes('loading-dots')) return;
+
+                    // Jika fetch gagal pada percobaan pertama, tampilkan --
+                    const val = total > 0 ? (total.toLocaleString('id-ID') + '+ Unduhan') : '-- Unduhan';
+
+                    if (appData[id]) appData[id].download_count = val;
+                    if (el) el.textContent = val;
+
+                    // Update modal if open for this app
+                    const modalDlEl = document.getElementById('modal-dl-count');
+                    if (modalDlEl && modalDlEl.getAttribute('data-app-id') === id) {
+                        modalDlEl.textContent = val;
+                    }
+                };
+
+                updateApp('ahlkata', ahlkataWin, ahlkataLin);
+                updateApp('besti', bestiWin, bestiLin);
+                updateApp('booracle', booracle, 0);
+
+            } catch (err) {
+                console.error('Update stats failed:', err);
+                if (downObj && downObj.innerHTML.includes('loading-dots')) {
+                    downObj.textContent = '--';
+                }
             }
         }
 
@@ -4512,7 +4749,7 @@
             setInterval(updateStats, 300000);
 
             // Tampilkan popup notifikasi order lisensi (Otomatis jam 00:00 - 05:59 WIB)
-            const wibTimeString = new Date().toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+            const wibTimeString = new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
             const wibDate = new Date(wibTimeString);
             const hoursWIB = wibDate.getHours();
 
@@ -4522,6 +4759,13 @@
                     infoOrderModal.show();
                     sessionStorage.setItem('infoOrderModalShown', 'true');
                 }
+            }
+
+            // Handle deep linking for app modals
+            const hash = window.location.hash.substring(1);
+            if (hash && appData[hash]) {
+                // Beri jeda sedikit agar AOS dan elemen lain siap
+                setTimeout(() => window.openAppModal(hash), 500);
             }
         });
     </script>
