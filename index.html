@@ -3331,6 +3331,356 @@
                 --light: #ffffff;
             }
         }
+
+        /* ===== NOTIFICATION MODAL PREMIUM ===== */
+        #infoOrderModal .modal-content {
+            background: linear-gradient(165deg, rgba(15, 12, 11, 0.98) 0%, rgba(5, 5, 5, 1) 100%);
+            border: 1px solid rgba(199, 19, 19, 0.15);
+            border-radius: 28px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(199, 19, 19, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notice-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(199, 19, 19, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .notice-icon-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(199, 19, 19, 0.05);
+            border: 1px solid rgba(199, 19, 19, 0.1);
+            border-radius: 22px;
+            transform: rotate(45deg);
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .notice-icon-container i {
+            transform: rotate(-45deg);
+            font-size: 2.2rem;
+            color: var(--primary);
+            filter: drop-shadow(0 0 10px rgba(199, 19, 19, 0.3));
+        }
+
+        .notice-icon-container::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 1px solid rgba(199, 19, 19, 0.1);
+            border-radius: 26px;
+            animation: notice-pulse 3s infinite;
+        }
+
+        @keyframes notice-pulse {
+            0% {
+                transform: rotate(45deg) scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: rotate(45deg) scale(1.15);
+                opacity: 0.1;
+            }
+
+            100% {
+                transform: rotate(45deg) scale(1);
+                opacity: 0.5;
+            }
+        }
+
+        .notice-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            background: rgba(199, 19, 19, 0.08);
+            border: 1px solid rgba(199, 19, 19, 0.15);
+            border-radius: 100px;
+            color: var(--primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .notice-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .notice-title {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .notice-subtitle {
+            color: var(--gray);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 2.5rem;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .notice-icon-container {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(199, 19, 19, 0.05);
+            border: 1px solid rgba(199, 19, 19, 0.1);
+            border-radius: 20px;
+            transform: rotate(45deg);
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .notice-icon-container i {
+            transform: rotate(-45deg);
+            font-size: 1.8rem;
+            color: var(--primary);
+            filter: drop-shadow(0 0 10px rgba(199, 19, 19, 0.3));
+        }
+
+        .notice-icon-container::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border: 1px solid rgba(199, 19, 19, 0.1);
+            border-radius: 24px;
+            animation: notice-pulse 3s infinite;
+        }
+
+        @keyframes notice-pulse {
+            0% {
+                transform: rotate(45deg) scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: rotate(45deg) scale(1.15);
+                opacity: 0.1;
+            }
+
+            100% {
+                transform: rotate(45deg) scale(1);
+                opacity: 0.5;
+            }
+        }
+
+        .notice-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 22px;
+            padding: 1.75rem;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .notice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .notice-text-main {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .notice-rule-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .notice-rule-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+        }
+
+        .notice-time-highlight {
+            color: var(--primary);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .notice-footer-text {
+            color: var(--gray);
+            font-size: 0.8rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-notice-close {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 0.95rem;
+            border-radius: 16px;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 15px 35px rgba(199, 19, 19, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-notice-close:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 45px rgba(199, 19, 19, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .btn-notice-close:active {
+            transform: translateY(0);
+        }
+
+        .notice-status-text {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1.75rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 15px rgba(199, 19, 19, 0.3);
+        }
+
+        @media (max-width: 576px) {
+            .notice-status-text {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+                margin-bottom: 1.25rem;
+            }
+
+            #infoOrderModal .modal-dialog {
+                margin: 0.75rem;
+                max-width: none;
+            }
+
+            #infoOrderModal .modal-content {
+                border-radius: 20px;
+            }
+
+            .modal-body.p-md-5 {
+                padding: 1.5rem 1rem !important;
+            }
+
+            .notice-icon-container {
+                width: 55px;
+                height: 55px;
+                margin-bottom: 1.25rem;
+            }
+
+            .notice-icon-container i {
+                font-size: 1.5rem;
+            }
+
+            .notice-card {
+                padding: 1.15rem;
+                border-radius: 16px;
+                margin-bottom: 1.25rem;
+            }
+
+            .notice-text-main {
+                font-size: 0.8rem;
+                line-height: 1.6;
+                margin-bottom: 1.75rem;
+                max-width: 100%;
+            }
+
+            .notice-rule-box {
+                padding: 1.25rem;
+                border-left-width: 2px;
+            }
+            .notice-rule-content {
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+
+            .notice-rule-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+                border-radius: 12px;
+            }
+
+            .notice-rule-content {
+                font-size: 0.85rem;
+                text-align: center;
+            }
+
+            .notice-footer-text {
+                font-size: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .btn-notice-close {
+                padding: 0.85rem;
+                font-size: 0.9rem;
+                border-radius: 12px;
+            }
+        }
     </style>
     <!-- Schema.org Data -->
     <script type="application/ld+json">
@@ -3607,66 +3957,41 @@
             <!-- INFO MODAL ORDER LISENSI -->
             <div class="modal fade" id="infoOrderModal" tabindex="-1" aria-labelledby="infoOrderModalLabel"
                 aria-hidden="true" style="z-index: 10000;">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content"
-                        style="background: var(--darker); border: 1px solid rgba(199, 19, 19, 0.3); color: var(--light); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-xl);">
-                        <div class="modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h5 class="modal-title" id="infoOrderModalLabel"
-                                style="font-family: var(--font-heading); font-weight: 700; color: var(--primary);">
-                                <i class="fas fa-info-circle me-2"></i>Informasi Pelayanan
-                            </h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body p-0" style="font-family: var(--font-primary);">
-                            <div class="p-4 p-md-5 text-center">
-                                <i class="fas fa-bell mb-4"
-                                    style="font-size: 3rem; color: var(--primary); filter: drop-shadow(0 0 15px rgba(199, 19, 19, 0.4));"></i>
-
-                                <h5 class="fw-bold mb-3" style="color: var(--light); line-height: 1.4;">
-                                    Status Layanan Operasional <br>
-                                    <span style="color: var(--primary);">Ahlkata</span> & <span
-                                        style="color: var(--primary);">BESTI</span>
-                                </h5>
-
-                                <p style="color: var(--light); font-size: 0.95rem; line-height: 1.5;">Yth. Pengguna,
-                                    kami informasikan bahwa layanan aktivasi lisensi saat ini sedang berada di luar jam
-                                    operasional aktif.</p>
-
-                                <div class="alert text-start p-3 mb-4"
-                                    style="background: rgba(199, 19, 19, 0.05); border: 1px solid rgba(199, 19, 19, 0.2); border-radius: var(--border-radius);">
-                                    <div class="d-flex align-items-start">
-                                        <i class="fas fa-info-circle fs-5 me-3 flex-shrink-0 mt-1"
-                                            style="color: var(--primary);"></i>
-                                        <div>
-                                            <h6 class="fw-bold mb-2" style="color: var(--light);">Penjadwalan Verifikasi
-                                                Lisensi</h6>
-                                            <p class="mb-0"
-                                                style="font-size: 0.9rem; color: var(--light); line-height: 1.6;">
-                                                Seluruh pemesanan yang masuk pada rentang pukul <strong>00:00 - 06:00
-                                                    WIB</strong> akan tetap terdata dengan aman dan diproses langsung
-                                                oleh tim Admin selambat-lambatnya pukul <strong>12:00 WIB</strong> siang
-                                                ini guna menerbitkan kode aktivasi Anda.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <p class="mb-0" style="font-size: 0.85rem; color: var(--gray-light); line-height: 1.6;">
-                                    Data serta riwayat transaksi Anda terenkripsi dan tersimpan dengan aman pada pusat
-                                    data kami.<br>Atas perhatian dan kerja sama yang diberikan, kami ucapkan terima
-                                    kasih.
-                                </p>
+                <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 500px;">
+                    <div class="modal-content">
+                        <div class="notice-glow"></div>
+                        <div class="modal-body p-4 p-md-5 text-center">
+                            <div class="notice-icon-container">
+                                <i class="fas fa-clock"></i>
                             </div>
-                        </div>
-                        <div class="modal-footer"
-                            style="border-top: 1px solid rgba(255, 255, 255, 0.1); justify-content: center;">
-                            <button type="button" class="btn btn-primary-modern" data-bs-dismiss="modal"
-                                style="padding: 0.5rem 1.5rem;">Mengerti</button>
+
+                            <h4 class="notice-status-text">DILUAR JAM OPERASIONAL</h4>
+
+                            <div class="notice-card">
+                                <p class="notice-text-main">Kami menginformasikan bahwa saat ini layanan administrasi
+                                    sedang berada di luar jam operasional aktif.</p>
+
+                                <div class="notice-rule-box">
+                                    <p class="notice-rule-content">
+                                        Konfirmasi transaksi pukul <span class="notice-time-highlight">00:00 - 06:00 WIB</span> akan diproses oleh tim administrasi selambat-lambatnya pukul <span class="notice-time-highlight">12:00 WIB</span> pada hari yang sama.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p class="notice-footer-text">
+                                <i class="fas fa-shield-alt me-2" style="color: var(--primary);"></i>
+                                Seluruh data transaksi Anda terjamin keamanannya.<br>Terima kasih atas pengertian Anda.
+                            </p>
+
+                            <button type="button" class="btn-notice-close" data-bs-dismiss="modal">
+                                <span>Saya Mengerti</span>
+                                <i class="fas fa-check-circle"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <!-- MODAL CONTAINER (Akan diisi via JavaScript) -->
             <div id="appModalOverlay" class="app-modal-overlay">
@@ -4426,7 +4751,7 @@
                     setTimeout(() => {
                         modalOverlay.innerHTML = ''; // Clear content after animation
                         document.body.style.overflow = ''; // Restore scrolling
-                        
+
                         // Remove URL hash without reloading
                         if (window.location.hash) {
                             history.replaceState(null, null, window.location.pathname + window.location.search);
@@ -4673,16 +4998,16 @@
             const fetchSFCount = async (path = '', useFallbackProxy = false) => {
                 const cleanPath = path ? `${path}/` : '';
                 const sfUrl = `https://sourceforge.net/projects/bufatechno-aplikasi/files/${cleanPath}stats/json?start_date=2008-01-01&end_date=${today}&cb=${Date.now()}`;
-                
+
                 // Primary: Codetabs, Secondary: AllOrigins
-                const proxyUrl = useFallbackProxy 
+                const proxyUrl = useFallbackProxy
                     ? `https://api.allorigins.win/get?url=${encodeURIComponent(sfUrl)}`
                     : `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(sfUrl)}`;
 
                 try {
                     const response = await fetch(proxyUrl);
                     if (!response.ok) throw new Error('Proxy error');
-                    
+
                     let data;
                     if (useFallbackProxy) {
                         const json = await response.json();
@@ -4727,8 +5052,8 @@
             // Helper to update UI for apps
             const updateAppUI = (id, total) => {
                 const el = document.getElementById(`dl-count-${id}`);
-                const val = (total !== null && total > 0) 
-                    ? (total.toLocaleString('id-ID') + '+ Unduhan') 
+                const val = (total !== null && total > 0)
+                    ? (total.toLocaleString('id-ID') + '+ Unduhan')
                     : (el && !el.innerHTML.includes('dots') ? el.textContent : '-- Unduhan');
 
                 if (appData[id]) appData[id].download_count = val;
@@ -4769,8 +5094,8 @@
 
                 // Final consistency check: If main total failed but apps succeeded, use sum of apps
                 if (downObj && (downObj.textContent === '--' || downObj.innerHTML.includes('dots'))) {
-                   const calculatedTotal = (ahlTotal || 0) + (bstTotal || 0) + (boo || 0);
-                   if (calculatedTotal > 0) downObj.textContent = calculatedTotal.toLocaleString('id-ID');
+                    const calculatedTotal = (ahlTotal || 0) + (bstTotal || 0) + (boo || 0);
+                    if (calculatedTotal > 0) downObj.textContent = calculatedTotal.toLocaleString('id-ID');
                 }
 
             } catch (err) {
