@@ -1,26 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <!-- Home Page -->
    <url>
       <loc>https://bufatechno.web.id/</loc>
-      <lastmod>2026-04-24</lastmod>
-      <changefreq>monthly</changefreq>
+      <lastmod>2026-05-01</lastmod>
+      <changefreq>weekly</changefreq>
       <priority>1.0</priority>
    </url>
+   
+   <!-- Promo Page -->
+   <url>
+      <loc>https://bufatechno.web.id/promo/</loc>
+      <lastmod>2026-05-01</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
+   </url>
+
+   <!-- Product: Ahlkata -->
    <url>
       <loc>https://bufatechno.web.id/#ahlkata</loc>
-      <lastmod>2026-04-24</lastmod>
+      <lastmod>2026-05-01</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
+
+   <!-- Product: BESTI -->
    <url>
       <loc>https://bufatechno.web.id/#besti</loc>
-      <lastmod>2026-04-24</lastmod>
+      <lastmod>2026-05-01</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
+
+   <!-- Product: BOORacle -->
    <url>
       <loc>https://bufatechno.web.id/#booracle</loc>
-      <lastmod>2026-04-24</lastmod>
+      <lastmod>2026-05-01</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
