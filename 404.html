@@ -16,6 +16,7 @@
     <link rel="icon" type="image/png" href="/logo.png?v=1.0">
 
     <style>
+        /* Variabel & Token Warna */
         :root {
             --primary: #c71313;
             --primary-dark: #a00e0e;
@@ -23,6 +24,7 @@
             --darker: #050505;
             --light: #e8e8e7;
             --gray: #8C8CA1;
+            --gray-light: #b0b0b0;
             --gradient-primary: linear-gradient(135deg, var(--primary), #e74c3c);
             --gradient-dark: linear-gradient(135deg, var(--dark), #1a1a1a);
             --font-primary: 'Inter', sans-serif;
@@ -31,9 +33,10 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* Layout dasar */
         body {
             font-family: var(--font-primary);
-            background: var(--gradient-dark);
+            background: var(--darker);
             color: var(--light);
             height: 100vh;
             width: 100%;
@@ -44,7 +47,7 @@
             text-align: center;
         }
 
-        /* Background Elements */
+        /* Dekorasi Background */
         .bg-elements { position: fixed; inset: 0; z-index: -1; }
         .bg-element { position: absolute; border-radius: 50%; background: var(--gradient-primary); opacity: 0.1; filter: blur(80px); animation: float 15s infinite alternate ease-in-out; }
         .bg-1 { width: 600px; height: 600px; top: -10%; right: -10%; }
@@ -117,21 +120,29 @@
 
         .brand-top {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 1.25rem;
+            margin-bottom: 3rem;
         }
 
         .footer-logo {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(199, 19, 19, 0.2));
+            transition: var(--transition);
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05) rotate(5deg);
         }
 
         .footer-brand-text {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             letter-spacing: -0.5px;
+            line-height: 1;
         }
 
         .bufa { color: var(--primary); font-weight: 800; text-shadow: 0 0 15px rgba(199, 19, 19, 0.4); }
@@ -141,8 +152,9 @@
             .error-code { font-size: 8rem; }
             .error-title { font-size: 1.5rem; }
             .error-desc { font-size: 0.95rem; }
-            .footer-brand-text { font-size: 1.4rem; }
-            .footer-logo { width: 40px; height: 40px; }
+            .error-desc { font-size: 0.95rem; }
+            .footer-brand-text { font-size: 1.6rem; }
+            .footer-logo { width: 60px; height: 60px; }
         }
     </style>
 </head>

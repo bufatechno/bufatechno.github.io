@@ -1,0 +1,23 @@
+# BUFATECHNO Robots.txt
+# Optimized for SEO & Google Indexing
+
+User-agent: *
+Allow: /
+Allow: /image/
+Allow: /promo/
+Disallow: /README.md
+Disallow: /CNAME
+
+# Berikan prioritas khusus untuk Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Pastikan bot media sosial bisa mengambil gambar logo untuk preview (Open Graph)
+User-agent: Twitterbot
+Allow: /image/
+
+User-agent: facebookexternalhit
+Allow: /image/
+
+# Lokasi Sitemap
+Sitemap: https://bufatechno.web.id/sitemap.xml

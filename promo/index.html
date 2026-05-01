@@ -7,8 +7,10 @@
     <title>BUFATECHNO - Promo Spesial Pengguna Setia</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Dapatkan penawaran eksklusif dan promo spesial untuk produk BUFATECHNO: Ahlkata (AI Academic Tool) dan BESTI (Sistem Bel Sekolah Otomatis). Nikmati harga khusus hari ini!">
-    <meta name="keywords" content="Promo BUFATECHNO, Diskon Ahlkata, Promo BESTI, Lisensi Murah, AI Humanizer Promo, Bel Sekolah Otomatis Promo">
+    <meta name="description"
+        content="Dapatkan penawaran eksklusif dan promo spesial untuk produk BUFATECHNO: Ahlkata (AI Academic Tool) dan BESTI (Sistem Bel Sekolah Otomatis). Nikmati harga khusus hari ini!">
+    <meta name="keywords"
+        content="Promo BUFATECHNO, Diskon Ahlkata, Promo BESTI, Lisensi Murah, AI Humanizer Promo, Bel Sekolah Otomatis Promo">
     <meta name="author" content="BUFATECHNO">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://bufatechno.web.id/promo/">
@@ -17,14 +19,16 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bufatechno.web.id/promo/">
     <meta property="og:title" content="Promo Spesial BUFATECHNO — Penawaran Eksklusif Pengguna Setia">
-    <meta property="og:description" content="Klaim promo spesial Ahlkata dan BESTI sekarang. Solusi cerdas untuk kebutuhan akademik dan sekolah Anda dengan harga lebih hemat.">
+    <meta property="og:description"
+        content="Klaim promo spesial Ahlkata dan BESTI sekarang. Solusi cerdas untuk kebutuhan akademik dan sekolah Anda dengan harga lebih hemat.">
     <meta property="og:image" content="https://bufatechno.github.io/logo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bufatechno.web.id/promo/">
     <meta property="twitter:title" content="Promo Spesial BUFATECHNO — Penawaran Eksklusif Pengguna Setia">
-    <meta property="twitter:description" content="Klaim promo spesial Ahlkata dan BESTI sekarang. Solusi cerdas untuk kebutuhan akademik dan sekolah Anda dengan harga lebih hemat.">
+    <meta property="twitter:description"
+        content="Klaim promo spesial Ahlkata dan BESTI sekarang. Solusi cerdas untuk kebutuhan akademik dan sekolah Anda dengan harga lebih hemat.">
     <meta property="twitter:image" content="https://bufatechno.github.io/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +45,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../logo.png?v=1.0">
 
     <style>
-        /* ===== VARIABLES (Copied from index.html) ===== */
+        /* Konfigurasi warna & variabel utama */
         :root {
             --primary: #c71313;
             --primary-dark: #a00e0e;
@@ -74,7 +78,7 @@
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* ===== GLOBAL STYLES ===== */
+        /* Reset & Global Style */
         * {
             margin: 0;
             padding: 0;
@@ -661,6 +665,354 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* ===== NAVBAR ===== */
+        .navbar-promo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1500;
+            transition: var(--transition);
+        }
+
+        .navbar-promo .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand-promo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .btn-back-home {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-back-home:hover {
+            background: rgba(199, 19, 19, 0.1);
+            border-color: rgba(199, 19, 19, 0.3);
+            color: white;
+        }
+
+        /* ===== COUNTDOWN TIMER ===== */
+        .countdown-section {
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .countdown-container {
+            background: rgba(199, 19, 19, 0.05);
+            border: 1px solid rgba(199, 19, 19, 0.2);
+            padding: 2rem 4rem;
+            border-radius: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .countdown-timer {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .timer-block {
+            display: flex;
+            flex-direction: column;
+            min-width: 70px;
+        }
+
+        .timer-val {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .timer-unit {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== FLOATING WA BUTTON ===== */
+        .wa-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25d366;
+            color: white;
+            padding: 0.85rem 1.75rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 2000;
+            transition: var(--transition);
+            text-decoration: none !important;
+        }
+
+        .wa-float:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: #20ba5a;
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+            color: white;
+        }
+
+        /* Shimmer for Cards */
+        .promo-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 50%;
+            height: 300%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+
+        .promo-card:hover::before {
+            animation: card-shimmer 1.5s infinite;
+        }
+
+        @keyframes card-shimmer {
+            0% {
+                top: -100%;
+                left: -100%;
+            }
+
+            100% {
+                top: 100%;
+                left: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-promo {
+                padding: 0.75rem 0;
+            }
+
+            .btn-back-home span {
+                display: none;
+            }
+
+            .btn-back-home {
+                padding: 0.6rem;
+                width: 40px;
+                height: 40px;
+                justify-content: center;
+            }
+
+            .countdown-container {
+                padding: 1.5rem;
+                border-radius: 20px;
+                width: 100%;
+            }
+
+            .countdown-timer {
+                gap: 1rem;
+            }
+
+            .timer-val {
+                font-size: 1.75rem;
+            }
+
+            .timer-block {
+                min-width: 50px;
+            }
+
+            .wa-float span {
+                display: none;
+            }
+
+            .wa-float {
+                padding: 1rem;
+                right: 1.5rem;
+                bottom: 1.5rem;
+                width: 55px;
+                height: 55px;
+                justify-content: center;
+            }
+
+            .wa-float i {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* No Promo Overlay */
+        #noPromoOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .no-promo-content {
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3.5rem 2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            animation: modalFadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .no-promo-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            background: rgba(199, 19, 19, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 2rem;
+            color: var(--primary);
+            font-size: 2.5rem;
+            box-shadow: 0 0 30px rgba(199, 19, 19, 0.15);
+        }
+
+        .no-promo-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .no-promo-text {
+            color: var(--gray-light);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-no-promo-home {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+            border: none;
+            box-shadow: 0 15px 30px rgba(199, 19, 19, 0.2);
+        }
+
+        .btn-no-promo-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(199, 19, 19, 0.4);
+            color: #fff;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Mobile Adjustments for No Promo */
+        @media (max-width: 576px) {
+            .no-promo-content {
+                padding: 2.5rem 1.25rem;
+                width: 88%;
+                margin: 0 auto;
+                border-radius: 24px;
+            }
+
+            .no-promo-icon-wrapper {
+                width: 64px;
+                height: 64px;
+                font-size: 1.75rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .no-promo-title {
+                font-size: 1.4rem;
+                margin-bottom: 0.75rem;
+                line-height: 1.3;
+            }
+
+            .no-promo-text {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin-bottom: 2rem;
+                opacity: 0.9;
+            }
+
+            .btn-no-promo-home {
+                padding: 0.9rem 1.25rem;
+                width: 100%;
+                justify-content: center;
+                font-size: 0.95rem;
+                border-radius: 16px;
+                gap: 0.6rem;
+            }
+
+            .btn-no-promo-home i {
+                font-size: 1.1rem;
+            }
+
+            .btn-no-promo-home span {
+                white-space: nowrap; /* Mencegah teks terpotong aneh */
+            }
+        }
     </style>
 </head>
 
@@ -672,14 +1024,29 @@
     </div>
     <div class="grid-pattern"></div>
 
+    <nav class="navbar-promo">
+        <div class="container px-4 px-md-3">
+            <a href="../" class="navbar-brand-promo">
+                <img src="../logo.png" alt="Logo" class="nav-logo">
+                <span class="navbar-brand-text">
+                    <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
+                </span>
+            </a>
+            <a href="../" class="btn-back-home">
+                <i class="fas fa-arrow-left"></i>
+                <span>Kembali ke Beranda</span>
+            </a>
+        </div>
+    </nav>
+
     <main class="container px-4 px-md-3">
 
         <!-- HERO SECTION -->
         <section class="hero" data-aos="fade-up">
-            <span class="hero-badge">PROMO SPESIAL PENGGUNA SETIA</span>
             <h1 class="hero-title">
                 <span class="bufa">BUFA</span><span class="techno">TECHNO</span>
             </h1>
+            <span class="hero-badge">PROMO SPESIAL PENGGUNA SETIA</span>
             <p class="hero-desc">
                 Terima kasih atas kepercayaan Anda menggunakan aplikasi dari
                 <strong><span class="bufa">BUFA</span><span class="techno">TECHNO</span></strong>.
@@ -687,13 +1054,38 @@
             </p>
         </section>
 
+        <!-- COUNTDOWN TIMER SECTION -->
+        <section class="countdown-section" data-aos="fade-up">
+            <div class="countdown-container">
+                <h4 class="countdown-label">PROMO BERAKHIR DALAM:</h4>
+                <div class="countdown-timer" id="countdown">
+                    <div class="timer-block">
+                        <span class="timer-val" id="days">00</span>
+                        <span class="timer-unit">Hari</span>
+                    </div>
+                    <div class="timer-block">
+                        <span class="timer-val" id="hours">00</span>
+                        <span class="timer-unit">Jam</span>
+                    </div>
+                    <div class="timer-block">
+                        <span class="timer-val" id="minutes">00</span>
+                        <span class="timer-unit">Menit</span>
+                    </div>
+                    <div class="timer-block">
+                        <span class="timer-val" id="seconds">00</span>
+                        <span class="timer-unit">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- AHLKATA SECTION -->
         <section class="app-section">
             <div class="app-card-header" data-aos="fade-up">
                 <img src="../image/app/ahlkata.png" alt="Ahlkata" class="app-icon">
                 <h3 class="app-title">Ahlkata AI</h3>
-                <p class="app-desc">Solusi cerdas berbasis AI untuk Parafrase, Humanizer, Terjemahan, Deteksi AI,
-                    Plagiat, dan Penulisan Karya Ilmiah.</p>
+                <p class="app-desc">Solusi AI tercanggih untuk parafrase sempurna, humanizer anti-deteksi, terjemahan,
+                    deteksi AI & plagiat, serta asisten penulisan karya ilmiah profesional yang natural.</p>
             </div>
 
             <div class="promo-grid">
@@ -781,8 +1173,8 @@
             <div class="app-card-header" data-aos="fade-up">
                 <img src="../image/app/besti.png" alt="BESTI" class="app-icon">
                 <h3 class="app-title">BESTI</h3>
-                <p class="app-desc">Sistem bel sekolah otomatis modern yang mengubah bel manual tradisional menjadi
-                    solusi digital cerdas.</p>
+                <p class="app-desc">Transformasi bel sekolah manual menjadi sistem digital cerdas dengan fitur bel otomatis,
+                    template jadwal, auto startup, mode layar kunci, serta suara kustom untuk efisiensi sekolah.</p>
             </div>
 
             <div class="promo-grid">
@@ -867,6 +1259,12 @@
 
     </main>
 
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/+6285179974553" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>Tanya Promo</span>
+    </a>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
@@ -902,11 +1300,72 @@
         </div>
     </footer>
 
+    <!-- No Promo Overlay -->
+    <div id="noPromoOverlay">
+        <div class="no-promo-content">
+            <div class="no-promo-icon-wrapper">
+                <i class="fas fa-gift"></i>
+            </div>
+            <h2 class="no-promo-title">Nantikan Kejutan Berikutnya!</h2>
+            <p class="no-promo-text">
+                Saat ini belum ada promo aktif yang tersedia. Jangan khawatir, tim <strong><span class="bufa">BUFA</span><span class="techno">TECHNO</span></strong> sedang
+                menyiapkan penawaran istimewa lainnya khusus untuk Anda. Pantau terus halaman ini atau ikuti media
+                sosial kami untuk kabar terbaru.
+            </p>
+            <a href="../" class="btn-no-promo-home">
+                <i class="fas fa-home"></i>
+                <span>Kembali ke Beranda</span>
+            </a>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, easing: 'ease-out-quad', once: true, offset: 50 });
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Logika penghitung waktu mundur
+        function updateCountdown() {
+            // Promo berakhir pada 31 Mei 2026 pukul 23:59:59
+            const targetDate = new Date("2026-05-31T23:59:59").getTime();
+
+            function tick() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    clearInterval(timerInterval);
+                    showNoPromo();
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            }
+
+            const timerInterval = setInterval(tick, 1000);
+            tick();
+        }
+
+        // Tampilkan overlay jika promo sudah habis
+        function showNoPromo() {
+            document.getElementById('noPromoOverlay').style.display = 'flex';
+            document.querySelector('main').style.display = 'none';
+            document.querySelector('.navbar-promo').style.display = 'none';
+            document.querySelector('.footer').style.display = 'none';
+            document.querySelector('.wa-float').style.display = 'none';
+            document.body.style.overflow = 'hidden'; // Matikan scroll
+        }
+
+        updateCountdown();
     </script>
 </body>
 

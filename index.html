@@ -58,7 +58,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* ===== VARIABLES & RESET ===== */
+        /* Setup dasar & variabel warna */
         :root {
             --primary: #c71313;
             --primary-dark: #a00e0e;
@@ -95,7 +95,7 @@
             --transition-slow: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* ===== CUSTOM SCROLLBAR ===== */
+        /* Scrollbar biar lebih cakep */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -1238,17 +1238,68 @@
         }
 
         .center-logo-container {
-            position: relative;
-            width: 250px;
-            height: 250px;
-            background: var(--gradient-primary);
+            width: 280px;
+            height: 280px;
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 35px rgba(199, 19, 19, 0.6), 0 0 70px rgba(199, 19, 19, 0.4);
+            position: relative;
+            box-shadow: 0 0 50px rgba(199, 19, 19, 0.2), inset 0 0 30px rgba(199, 19, 19, 0.1);
             animation: subtle-pulse-center 3s infinite alternate ease-in-out;
             z-index: 10;
+            border: 1px solid rgba(199, 19, 19, 0.2);
+        }
+
+        /* Cyber Rings */
+        .center-logo-container::before,
+        .center-logo-container::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .center-logo-container::before {
+            inset: -15px;
+            border: 2px dashed rgba(199, 19, 19, 0.4);
+            animation: rotate-ring 20s linear infinite;
+        }
+
+        .center-logo-container::after {
+            inset: -30px;
+            border: 1px solid rgba(199, 19, 19, 0.2);
+            border-top-color: var(--primary);
+            border-bottom-color: var(--primary);
+            animation: rotate-ring 10s linear infinite reverse;
+        }
+
+        @keyframes rotate-ring {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scanning Line */
+        .center-logo-container .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            box-shadow: 0 0 15px var(--primary);
+            opacity: 0.5;
+            animation: scan-move 4s infinite linear;
+            z-index: 11;
+            pointer-events: none;
+        }
+
+        @keyframes scan-move {
+            0% { top: 10%; opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { top: 90%; opacity: 0; }
         }
 
         .tech-icon-logo {
@@ -1267,16 +1318,31 @@
             position: absolute;
             width: 75px;
             height: 75px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(15, 15, 15, 0.6);
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(199, 19, 19, 0.3);
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 15px rgba(199, 19, 19, 0.1);
+            box-shadow: 0 0 20px rgba(199, 19, 19, 0.2);
             display: flex;
             justify-content: center;
             align-items: center;
             animation: orb-float 6s ease-in-out infinite alternate;
-            z-index: 5;
+            z-index: 15;
+            transition: var(--transition);
+        }
+
+        .tech-orb::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 1px solid rgba(199, 19, 19, 0.1);
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 0; }
         }
 
         .orb-1 {
@@ -1436,18 +1502,18 @@
 
 
         /* ===== APPS SECTION ===== */
-        .apps-section {
+        .product-section {
             padding: 8rem 0;
             background: rgba(5, 5, 5, 0.5);
         }
 
         @media (max-width: 767px) {
-            .apps-section {
+            .product-section {
                 padding: 4rem 0;
             }
         }
 
-        .apps-grid {
+        .product-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -1456,7 +1522,7 @@
         }
 
         @media (max-width: 767px) {
-            .apps-grid {
+            .product-grid {
                 gap: 1.5rem;
             }
         }
@@ -1467,18 +1533,17 @@
         .app-card {
             background: rgba(255, 255, 255, 0.03);
             border-radius: var(--border-radius-lg);
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             text-align: center;
-            min-height: 380px;
+            min-height: 480px;
+            /* Tinggi minimum yang cukup untuk deskripsi panjang */
             width: 100%;
             max-width: 380px;
-            /* Lebar maksimal agar pas 3 kolom */
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             position: relative;
@@ -1509,31 +1574,34 @@
         }
 
         .app-card .app-title {
-            font-size: 1.35rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            color: #fff;
         }
 
         .app-card .app-rating {
-            margin-top: 0;
-            justify-content: center;
+            margin-top: auto;
+            /* Dorong semua elemen di bawah ini ke dasar kartu */
+            margin-bottom: 1.25rem;
             display: flex;
-            gap: 0.25rem;
+            gap: 0.35rem;
             color: var(--warning);
+            font-size: 0.9rem;
         }
 
         /* Description Preview */
         .app-card .app-description-preview {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--gray-light);
-            margin: 1rem 0;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            margin: 0 0 2rem 0;
+            line-height: 1.6;
+            display: block;
+            /* Hapus webkit-box agar teks mengalir normal */
+            overflow: visible;
+            text-overflow: clip;
+            flex-grow: 1;
+            /* Mengisi ruang yang tersedia di tengah */
         }
 
         .app-card .btn-app-download,
@@ -3653,6 +3721,7 @@
                 padding: 1.25rem;
                 border-left-width: 2px;
             }
+
             .notice-rule-content {
                 font-size: 0.85rem;
                 line-height: 1.6;
@@ -3679,6 +3748,218 @@
                 padding: 0.85rem;
                 font-size: 0.9rem;
                 border-radius: 12px;
+            }
+        }
+
+        /* ===== ENHANCED PROMO BUTTON ===== */
+        .product-promo-header {
+            margin-bottom: 6rem;
+            display: flex;
+            justify-content: center;
+            padding: 0 1.5rem;
+        }
+
+        .promo-cta-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            padding: 2px;
+            background: linear-gradient(90deg, #c71313, #ff4d4d, #c71313);
+            background-size: 200% 100%;
+            border-radius: 30px;
+            animation: borderFlow 4s linear infinite;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(199, 19, 19, 0.2);
+            transition: var(--transition);
+        }
+
+        @keyframes borderFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        .btn-promo-premium {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: #080808;
+            padding: 2rem 3rem;
+            border-radius: 28px;
+            text-decoration: none !important;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .btn-promo-premium::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(199, 19, 19, 0.15) 0%, transparent 60%);
+            transition: var(--transition);
+        }
+
+        .promo-premium-icon {
+            font-size: 3rem;
+            color: #c71313;
+            filter: drop-shadow(0 0 15px rgba(199, 19, 19, 0.6));
+            animation: giftFloat 3s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes giftFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
+                filter: drop-shadow(0 0 15px rgba(199, 19, 19, 0.6));
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(8deg);
+                filter: drop-shadow(0 0 30px rgba(199, 19, 19, 0.9));
+            }
+        }
+
+        .promo-premium-text {
+            flex-grow: 1;
+        }
+
+        .promo-premium-title {
+            display: block;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .promo-premium-subtitle {
+            display: block;
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .promo-premium-arrow {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            flex-shrink: 0;
+            background: rgba(199, 19, 19, 0.1);
+            border: 1px solid rgba(199, 19, 19, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .promo-premium-badge {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: #FFD700;
+            color: #000;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 900;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+            z-index: 5;
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 15px 30px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        .promo-cta-wrapper:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 30px rgba(199, 19, 19, 0.4);
+        }
+
+        .promo-cta-wrapper:hover .promo-premium-arrow {
+            background: #c71313;
+            transform: translateX(10px);
+            box-shadow: 0 0 20px rgba(199, 19, 19, 0.6);
+        }
+
+
+
+        .app-card-promo-badge {
+            position: absolute;
+            top: 1.25rem;
+            left: -2.5rem;
+            background: #FFD700;
+            color: #000;
+            padding: 0.25rem 3rem;
+            font-size: 0.7rem;
+            font-weight: 900;
+            transform: rotate(-45deg);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        }
+
+        @media (max-width: 767px) {
+            .product-promo-header {
+                margin-bottom: 4rem;
+                padding: 0 1rem;
+            }
+
+            .promo-cta-wrapper {
+                border-radius: 22px;
+            }
+
+            .btn-promo-premium {
+                padding: 1.25rem 1.5rem;
+                gap: 1.25rem;
+                border-radius: 20px;
+            }
+
+            .promo-premium-icon {
+                font-size: 2rem;
+            }
+
+            .promo-premium-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .promo-premium-subtitle {
+                font-size: 0.8rem;
+                line-height: 1.3;
+            }
+
+            .promo-premium-arrow {
+                display: none;
+            }
+
+            .promo-premium-badge {
+                right: 15px;
+                top: -12px;
+                padding: 0.35rem 0.75rem;
+                font-size: 0.6rem;
             }
         }
     </style>
@@ -3791,7 +4072,7 @@
                         <a class="nav-link" href="#home" class="active">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#apps">Produk</a>
+                        <a class="nav-link" href="#product">Produk</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">Tentang</a>
@@ -3815,17 +4096,16 @@
                     <span class="badge-text">SOLUSI APLIKASI CERDAS & INOVATIF</span>
                 </div>
                 <p class="hero-description">
-                    Berkomitmen untuk mengembangkan aplikasi sebagai solusi cerdas yang dirancang khusus untuk memenuhi
-                    berbagai kebutuhan Anda, mulai dari bidang pendidikan hingga pengembangan sistem yang
-                    mengintegrasikan inovasi terkini guna mentransformasi pengalaman kerja secara efisien dan efektif.
+                    Mengembangkan solusi aplikasi cerdas dan inovatif untuk mentransformasi cara kerja Anda menjadi
+                    lebih efisien, mulai dari sektor pendidikan hingga sistem manajemen modern.
                 </p>
                 <div class="hero-actions">
-                    <a href="#apps" class="btn-primary-modern">
-                        <span>Jelajahi Aplikasi</span>
+                    <a href="#product" class="btn-primary-modern">
+                        <span>Lihat Produk</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                     <a href="#about" class="btn-secondary-modern">
-                        <span>Pelajari Lebih Lanjut</span>
+                        <span>Tentang Kami</span>
                     </a>
                 </div>
             </div>
@@ -3864,18 +4144,40 @@
         </div>
     </section>
 
-    <section id="apps" class="apps-section section-padding">
+    <section id="product" class="product-section section-padding">
         <div class="container">
             <h2 class="section-title">PRODUK <span class="brand-highlight"><span class="bufa">BUFA</span><span
                         class="techno">TECHNO</span></span></h2>
             <p class="section-subtitle">Temukan solusi cerdas dan inovatif untuk kebutuhan Anda</p>
-            <div class="apps-grid">
+            <div class="product-promo-header" data-aos="zoom-in">
+                <div class="promo-cta-wrapper">
+                    <div class="promo-premium-badge">Promo Terbatas</div>
+                    <a href="promo/" class="btn-promo-premium">
+                        <div class="promo-premium-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="promo-premium-text">
+                            <span class="promo-premium-title">Ssstt... Ada Penawaran Khusus!</span>
+                            <span class="promo-premium-subtitle">Klaim promo eksklusif Ahlkata & BESTI hari ini. Klik
+                                untuk melihat promonya!</span>
+                        </div>
+                        <div class="promo-premium-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-grid">
                 <!-- Ahlkata -->
                 <div class="app-card" id="ahlkata" onclick="openAppModal('ahlkata')">
+                    <div class="app-card-promo-badge">Promo</div>
                     <img src="image/app/ahlkata.png" alt="Ahlkata" class="app-icon" loading="lazy">
                     <h3 class="app-title">Ahlkata</h3>
-                    <p class="app-description-preview">Solusi cerdas berbasis AI untuk Parafrase, Humanizer, Terjemahan,
-                        Deteksi AI, Plagiat, dan Penulisan Karya Ilmiah.</p>
+                    <p class="app-description-preview">Solusi AI tercanggih untuk parafrase sempurna, humanizer
+                        anti-deteksi,
+                        terjemahan, deteksi AI & plagiat, serta asisten penulisan karya ilmiah profesional yang natural.
+                    </p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -3899,10 +4201,13 @@
 
                 <!-- BESTI -->
                 <div class="app-card" id="besti" onclick="openAppModal('besti')">
+                    <div class="app-card-promo-badge">Promo</div>
                     <img src="image/app/besti.png" alt="BESTI" class="app-icon" loading="lazy">
                     <h3 class="app-title">BESTI</h3>
-                    <p class="app-description-preview">Sistem bel sekolah otomatis modern yang mengubah bel manual
-                        tradisional menjadi solusi digital cerdas.</p>
+                    <p class="app-description-preview">Transformasi bel sekolah manual menjadi sistem digital cerdas
+                        dengan
+                        fitur bel otomatis, template jadwal, auto startup, mode layar kunci, serta suara kustom untuk
+                        efisiensi sekolah.</p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -3928,8 +4233,8 @@
                 <div class="app-card" id="booracle" onclick="openAppModal('booracle')">
                     <img src="image/app/booracle.png" alt="BOORacle" class="app-icon" loading="lazy">
                     <h3 class="app-title">BOORacle</h3>
-                    <p class="app-description-preview">Aplikasi Android untuk meramal nasib atau takdir berbasis AI
-                        sesuai dengan data diri pengguna.</p>
+                    <p class="app-description-preview">Aplikasi Android hiburan cerdas dengan fitur peramal berbasis AI,
+                        hitung weton, hitung zodiak, dan ramalan berdasar waktu untuk wawasan personal yang unik.</p>
                     <div class="app-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -3954,6 +4259,8 @@
 
             </div>
 
+
+
             <!-- INFO MODAL ORDER LISENSI -->
             <div class="modal fade" id="infoOrderModal" tabindex="-1" aria-labelledby="infoOrderModalLabel"
                 aria-hidden="true" style="z-index: 10000;">
@@ -3973,7 +4280,9 @@
 
                                 <div class="notice-rule-box">
                                     <p class="notice-rule-content">
-                                        Konfirmasi transaksi pukul <span class="notice-time-highlight">00:00 - 06:00 WIB</span> akan diproses oleh tim administrasi selambat-lambatnya pukul <span class="notice-time-highlight">12:00 WIB</span> pada hari yang sama.
+                                        Konfirmasi transaksi pukul <span class="notice-time-highlight">00:00 - 06:00
+                                            WIB</span> akan diproses oleh tim administrasi selambat-lambatnya pukul
+                                        <span class="notice-time-highlight">12:00 WIB</span> pada hari yang sama.
                                     </p>
                                 </div>
                             </div>
@@ -3993,9 +4302,8 @@
             </div>
 
 
-            <!-- MODAL CONTAINER (Akan diisi via JavaScript) -->
+            <!-- Container buat modal aplikasi (diisi via JS) -->
             <div id="appModalOverlay" class="app-modal-overlay">
-                <!-- Modal Content -->
             </div>
         </div>
     </section>
@@ -4009,20 +4317,13 @@
                     <div class="about-text">
                         <p>
                             <span class="brand-text"><span class="bufa">BUFA</span><span
-                                    class="techno">TECHNO</span></span> merupakan pengembang aplikasi inovatif yang
-                            telah ada sejak tahun 2008 dan berkomitmen untuk menyediakan solusi teknologi mutakhir guna
-                            memenuhi tuntutan dunia digital kontemporer.
+                                    class="techno">TECHNO</span></span> telah hadir mewarnai dunia teknologi sejak tahun 2008. Kami berdedikasi untuk menciptakan aplikasi cerdas yang menjadi solusi nyata bagi berbagai kebutuhan Anda di era digital ini.
                         </p>
                         <p>
-                            Dengan fokus pada kualitas dan inovasi berkelanjutan, merancang aplikasi yang
-                            mengintegrasikan
-                            fungsionalitas canggih dengan antarmuka yang intuitif, didukung oleh penelitian mendalam
-                            serta pemahaman komprehensif terhadap kebutuhan pengguna.
+                            Kami percaya bahwa teknologi canggih haruslah mudah digunakan. Itulah alasan mengapa setiap produk kami dirancang dengan fitur mutakhir namun tetap memiliki antarmuka yang simpel dan intuitif, hasil dari riset mendalam terhadap pengalaman pengguna.
                         </p>
                         <p>
-                            Mulai dari sistem otomasi dalam bidang pendidikan hingga sistem pengembangan perangkat lunak
-                            dan terus mendorong batas kreativitas untuk menyederhanakan proses dan meningkatkan
-                            efisiensi serta produktivitas dalam berbagai aspek kehidupan.
+                            Mulai dari sistem otomatisasi sekolah hingga pengembangan perangkat lunak kustom, kami terus berinovasi untuk menyederhanakan proses kerja dan meningkatkan produktivitas dalam berbagai aspek kehidupan.
                         </p>
                     </div>
                     <div class="about-stats">
@@ -4031,7 +4332,7 @@
                             <div class="stat-label">Tahun Pengalaman</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number" id="stats-apps">--</div>
+                            <div class="stat-number" id="stats-product">--</div>
                             <div class="stat-label">Aplikasi Dikembangkan</div>
                         </div>
                         <div class="stat-item">
@@ -4044,6 +4345,7 @@
                 <div class="about-visual">
                     <div class="about-illustration">
                         <div class="center-logo-container">
+                            <div class="scan-line"></div>
                             <img src="logo.png" alt="BUFATECHNO Logo" class="tech-icon-logo">
                         </div>
 
@@ -4072,7 +4374,7 @@
                             class="techno">TECHNO</span></span></h2>
                 <p class="contact-description">
                     Tetap terhubung dengan kami untuk update dan informasi terbaru. Hubungi dan temui kami di berbagai
-                    platform media sosial yang tersedia berikut. Selain yang tertera disini adalah kontak palsu.
+                    platform media sosial yang tersedia berikut.
                 </p>
                 <div class="social-links">
                     <a href="https://www.youtube.com/@bufatechno" target="_blank" rel="noopener noreferrer"
@@ -4299,7 +4601,7 @@
             });
         }
 
-        // ===== BACK TO TOP BUTTON =====
+        // Logika tombol back to top
         function initBackToTop() {
             const backToTop = document.getElementById('backToTop');
 
@@ -4323,7 +4625,7 @@
             });
         }
 
-        // ===== CURRENT YEAR IN FOOTER =====
+        // Auto update tahun di footer
         function initCurrentYear() {
             const yearElement = document.getElementById('currentYear');
             if (yearElement) {
@@ -4331,7 +4633,7 @@
             }
         }
 
-        // ===== AOS INITIALIZATION =====
+        // Setup AOS (Animate On Scroll)
         function initAOS() {
             if (typeof AOS !== 'undefined') {
                 AOS.init({
@@ -4344,7 +4646,7 @@
             }
         }
 
-        // ===== BRAND SIGNATURE =====
+        // Tambahkan signature brand ke console
         function addBufatechnoSignature() {
             // Add subtle animation to brand elements
             const brandElements = document.querySelectorAll('.bufa, .techno');
@@ -4425,7 +4727,7 @@
             }
         }, 100));
 
-        // ===== APP DATA FOR MODALS =====
+        // Database aplikasi buat modal popup
         const appData = {
             'besti': {
                 title: 'BESTI',
@@ -4434,7 +4736,7 @@
                 rating: 5,
                 vt_link: 'https://www.virustotal.com/gui/url/eff9e83509838e08d210333f5c92011fa7d675c2ab1a7fb058f5f93d672c7011/detection',
                 download_count: '<div class="loading-dots"><span></span><span></span><span></span></div>',
-                description: 'Aplikasi bel sekolah otomatis yang memberikan kemudahan dalam manajemen jadwal kegiatan sekolah secara presisi. Dilengkapi ragam fitur unggulan untuk personalisasi dan fungsionalitas yang lebih optimal.',
+                description: 'Transformasi bel sekolah manual menjadi sistem digital cerdas dengan fitur bel otomatis, template jadwal, auto startup, mode layar kunci, serta suara kustom untuk efisiensi sekolah. Solusi tepat untuk otomasi jadwal bel yang presisi dan mudah dikelola.',
                 pricing_subtitle: 'Akses penuh ke seluruh fitur BESTI',
                 pricing_note: 'BESTI adalah Freeware. Lisensi premium diperlukan untuk membuka seluruh fitur ekslusif.',
                 features: [
@@ -4497,7 +4799,7 @@
                 rating: 3,
                 vt_link: 'https://www.virustotal.com/gui/url/eff9e83509838e08d210333f5c92011fa7d675c2ab1a7fb058f5f93d672c7011/detection',
                 download_count: '<div class="loading-dots"><span></span><span></span><span></span></div>',
-                description: 'Aplikasi Android untuk meramal nasib atau takdir berbasis AI sesuai dengan data diri pengguna, memberikan wawasan pribadi yang canggih dan personal sebagai hiburan cerdas.',
+                description: 'Aplikasi Android hiburan cerdas dengan fitur peramal berbasis AI, hitung weton, hitung zodiak, dan ramalan berdasar waktu untuk wawasan personal yang unik dan personal sebagai hiburan cerdas.',
                 features: [
                     { text: 'Peramal Berbasis AI', icon: 'fas fa-brain' },
                     { text: 'Hitung Weton', icon: 'fas fa-calendar-day' },
@@ -4520,7 +4822,7 @@
                 rating: 5,
                 vt_link: 'https://www.virustotal.com/gui/url/eff9e83509838e08d210333f5c92011fa7d675c2ab1a7fb058f5f93d672c7011/detection',
                 download_count: '<div class="loading-dots"><span></span><span></span><span></span></div>',
-                description: 'Solusi cerdas berbasis kecerdasan buatan (AI) untuk kebutuhan akademik lengkap, mulai dari Parafrase, Humanizer, Terjemahan, hingga Deteksi AI dan Plagiat untuk memastikan integritas karya ilmiah serta bantuan penulisan yang efisien.',
+                description: 'Solusi AI tercanggih untuk parafrase sempurna, humanizer anti-deteksi, terjemahan, deteksi AI & plagiat, serta asisten penulisan karya ilmiah profesional yang natural. Membantu Anda menghasilkan karya berkualitas tinggi dengan integritas akademik yang tetap terjaga.',
                 pricing_subtitle: 'Akses seluruh model Ahlkata AI dan fitur ekslusif',
                 pricing_note: 'Dapatkan lisensi untuk membuka akses penuh ke seluruh model AI dan fitur eksklusif Ahlkata.',
                 features: [
@@ -4940,8 +5242,8 @@
                 }
             };
 
-            // ===== IMAGE ZOOM LOGIC =====
-            window.zoomImage = function (src) {
+            // Fungsi buat zoom gambar
+        window.zoomImage = function (src) {
                 let overlay = document.getElementById('imageZoomOverlay');
                 if (!overlay) {
                     overlay = document.createElement('div');
@@ -4988,7 +5290,7 @@
         }
 
 
-        // ===== STATS AUTOMATION =====
+        // Logika auto-update angka statistik
         async function updateStats() {
             // 1. Tahun Pengalaman
             const yearObj = document.getElementById('stats-years');
@@ -4999,7 +5301,7 @@
             }
 
             // 2. Aplikasi Dikembangkan
-            const appsObj = document.getElementById('stats-apps');
+            const appsObj = document.getElementById('stats-product');
             if (appsObj && typeof appData !== 'undefined') {
                 const count = Object.keys(appData).length;
                 appsObj.textContent = count;
